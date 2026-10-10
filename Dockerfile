@@ -1,6 +1,6 @@
 FROM ghcr.io/juliapluto/pluto-jupyter:latest
 
-# 1. The base image ships Julia 1.6.1 and Pluto 0.14.7, far too old for this notebook.
+# 1. The base image ships Julia 1.6.1 and Pluto 0.14.7, far too old for these notebooks.
 #    Install Julia 1.13.1 and put it first in PATH, so Pluto is started with it.
 USER root
 RUN mkdir -p /opt/julia-1.13.1 && \
@@ -13,6 +13,8 @@ USER ${NB_UID}
 # 2. Install and precompile a current Pluto for Julia 1.13.1
 RUN julia -e 'using Pkg; Pkg.add("Pluto"); Pkg.precompile()'
 
-# 3. Copy the notebook and precompile ITS exact packages (PlutoUI, HypertextLiteral, Distributions, ...)
-COPY --chown=${NB_UID} 00_introduction.jl precompile.jl ${HOME}/
-RUN julia ${HOME}/precompile.jl ${HOME}/00_introduction.jl
+# 3. Copy ALL files of the repository (every notebook) into the image
+COPY --chown=${NB_UID} . ${HOME}/
+
+# 4. Precompile the exact packages of EVERY notebook (*.jl)
+RUN for f in ${HOME}/*.jl; do julia ${HOME}/precompile.jl "$f"; done
