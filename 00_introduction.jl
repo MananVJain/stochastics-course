@@ -812,10 +812,10 @@ begin
 		nh = count(u)
 		info = "Your sequence: **$(n) tosses** ($(nh) H, $(n - nh) T), **$(me.switches) switches**, longest run **$(me.longest)**." *
 			(cut ? " Only the first 400 letters are used." : "") * (nbad > 0 ? " $(nbad) other characters were ignored." : "")
-		stats = "Among 20 000 simulated fair-coin sequences of length $(n), $(pct(psw)) have at least as many switches as yours and $(pct(psw_lo)) at most as many; $(pct(prun)) have a longest run at most as long as yours and $(pct(prun_hi)) at least as long."
+		stats = "Among 20 000 simulated fair-coin sequences of length $(n), $(pct(psw)) have at least as many switches as yours; $(pct(prun)) have a longest run at most as long as yours."
 		unusual = min(psw, psw_lo, prun, prun_hi) < 0.025
-		verdict = unusual ? "**Conclusion.** In at least one statistic, your sequence lies in the outer 2.5 % of the distribution for a fair coin. Such a sequence is possible, but unusual for a coin." :
-			"**Conclusion.** In both statistics, your sequence lies within the range that is typical for a fair coin."
+		verdict = unusual ? "In at least one statistic, your sequence lies in the outer 2.5 % of the distribution for a fair coin. Such a sequence is possible, but unusual for a coin." :
+			" In both statistics, your sequence lies within the range that is typical for a fair coin."
 		figure(f, g, Markdown.parse(info * "\n\n" * stats * "\n\n" * verdict);
 			caption = Markdown.parse("**Figure 2.1.** Distribution of the number of switches (left) and of the longest run (right) in 20 000 simulated sequences of a fair coin of length $(n) (blue), and the values of your sequence (red). For a fair coin, about $(fmt((n - 1) / 2; d = 3)) switches are expected, and the longest run is typically close to ``\\log_2 n`` = $(fmt(log2(n); d = 2))."))
 	end
@@ -3075,7 +3075,7 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─a3e07761-83cc-ccd0-23d7-1bf78ced6ca2
 # ╟─249842c4-56ec-a847-415a-6b05b433f905
 # ╟─55d4eb1e-f704-d206-8e72-27c6deae61c8
-# ╟─1c721cb6-1518-5f08-14e2-3715f9e19718
+# ╠═1c721cb6-1518-5f08-14e2-3715f9e19718
 # ╟─0df99053-9c4f-8048-c719-1068fd38abc0
 # ╟─8ee00361-b280-9c3e-d72b-cab8912974ad
 # ╟─869f7884-b749-642b-ef06-cebefe174a7b
