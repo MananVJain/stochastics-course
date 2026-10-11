@@ -1,0 +1,63 @@
+name: build-course-image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*.jl"
+      - "docker/**"
+      - ".github/workflows/build-course-image.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: build-course-image
+  cancel-in-progress: true
+
+env:
+  IMAGE: ghcr.io/mananvjain/stochastics-course
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract package environments from the notebooks
+        run: python3 docker/extract_envs.py .
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: true
+          provenance: false
+          tags: |
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Point the binder branch at this exact image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker/update_binder_branch.sh "${IMAGE}@${{ steps.build.outputs.digest }}"
+
+      - name: Warm up Binder
+        run: |
+          curl -sL --max-time 900 \
+            "https://mybinder.org/build/gh/MananVJain/stochastics-course/binder" > /dev/null || true
