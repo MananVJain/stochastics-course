@@ -1081,190 +1081,6 @@ penney_table()
 # ╔═╡ 312d8ed8-f90d-6f0f-ba41-a9826728f9a1
 rps_game()
 
-# ╔═╡ d31f2275-5a0a-0e59-1256-393f6cf1990e
-# Animations, walkthroughs and sound
-begin
-	struct Player
-		items::Vector{Any}
-		n::Int
-		start::Int
-		fps::Float64
-		reads::Vector{String}
-		label::String
-		caption::Any
-		loop::Bool
-	end
-
-	player(items...; n, start = 0, fps = 12, reads = String[], label = "step", caption = nothing, loop = false) =
-		Player(collect(items), n, start, fps, reads, label, caption, loop)
-
-	function Base.show(io::IO, m::MIME"text/html", p::Player)
-		inner = join(["<div>" * _html(it) * "</div>" for it in p.items])
-		capt = p.caption === nothing ? "" : "<div class=\"fg-cap\">" * _html(p.caption isa AbstractString ? Markdown.parse(p.caption) : p.caption) * "</div>"
-		show(io, m, @htl("""<div class="pl"><div class="fg-row pl-stage">$(HTML(inner))</div>
-		<div class="pl-bar"><button class="pl-reset" title="back to the start">⏮</button><button class="pl-play" title="play or pause">▶</button><button class="pl-step" title="one step">⏭</button><button class="pl-end" title="jump to the end">⏭⏭</button>
-		<input class="pl-range" type="range" min="0" max="$(p.n)" step="1" value="$(p.start)"><span class="pl-lab"></span>
-		<label>speed <select class="pl-speed"><option value="1">1×</option><option value="2">2×</option><option value="5">5×</option><option value="20">20×</option></select></label></div>
-		<div class="pl-read"></div>$(HTML(capt))
-		<script>
-		const root = currentScript.parentElement;
-		const n = $(p.n), fps = $(p.fps), reads = $(p.reads), lab = $(p.label), loop = $(p.loop);
-		const els = Array.from(root.querySelectorAll("[data-s],[data-o],[data-ra]"));
-		const S = els.map(e => e.hasAttribute("data-s") ? +e.getAttribute("data-s") : null);
-		const O = els.map(e => e.hasAttribute("data-o") ? +e.getAttribute("data-o") : null);
-		const RA = els.map(e => e.hasAttribute("data-ra") ? +e.getAttribute("data-ra") : null);
-		const RB = els.map(e => e.hasAttribute("data-rb") ? +e.getAttribute("data-rb") : null);
-		const range = root.querySelector(".pl-range"), lb = root.querySelector(".pl-lab"), rd = root.querySelector(".pl-read");
-		const play = root.querySelector(".pl-play");
-		let k = +range.value, timer = null;
-		function show(j) {
-			k = Math.max(0, Math.min(n, j)); range.value = k;
-			for (let i = 0; i < els.length; i++) {
-				const vis = (S[i] === null || S[i] <= k) && (O[i] === null || O[i] === k) && (RA[i] === null || (RA[i] <= k && k <= RB[i]));
-				els[i].style.display = vis ? "" : "none";
-			}
-			lb.textContent = lab + " " + k + " / " + n;
-			if (reads.length > 0) rd.innerHTML = reads[Math.min(k, reads.length - 1)];
-		}
-		function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "▶"; }
-		function start() {
-			if (k >= n) show(0);
-			play.textContent = "⏸";
-			timer = setInterval(() => { const sp = +root.querySelector(".pl-speed").value; if (k >= n) { if (loop) show(0); else stop(); } else show(Math.min(n, k + sp)); }, 1000 / fps);
-		}
-		play.addEventListener("click", () => timer ? stop() : start());
-		root.querySelector(".pl-step").addEventListener("click", () => { stop(); show(k + 1); });
-		root.querySelector(".pl-reset").addEventListener("click", () => { stop(); show(0); });
-		root.querySelector(".pl-end").addEventListener("click", () => { stop(); show(n); });
-		range.addEventListener("input", () => { stop(); show(+range.value); });
-		invalidation.then(stop);
-		show(k);
-		</script></div>"""))
-	end
-
-	"""Play a sound: `x` are samples in [-1, 1] at rate `fs`; returns an HTML audio player (16-bit WAV, embedded)."""
-	function audio(x::AbstractVector{<:Real}; fs::Integer = 16000, label = "")
-		m = maximum(abs, x; init = 0.0); y = m > 0 ? x ./ m .* 0.9 : x
-		pcm = round.(Int16, clamp.(y, -1, 1) .* 32767)
-		io = IOBuffer(); nb = 2length(pcm)
-		write(io, b"RIFF", UInt32(36 + nb), b"WAVEfmt ", UInt32(16), UInt16(1), UInt16(1), UInt32(fs), UInt32(2fs), UInt16(2), UInt16(16), b"data", UInt32(nb))
-		for v in pcm; write(io, htol(v)); end
-		src = "data:audio/wav;base64," * base64encode(take!(io))
-		@htl("""<span class="aud" style="display:inline-flex;align-items:center;gap:8px">$(label == "" ? "" : @htl("<span style='color:#444'>$(label)</span>"))<audio controls preload="auto" src="$(src)" style="height:32px;vertical-align:middle"></audio></span>""")
-	end
-
-	"""
-	    play_notes(events; label, seed)
-
-	Play a list of note events in the browser (no audio file is embedded). Each event is a tuple
-	`(t, f, d, v, k)`: start time in s, frequency in Hz, duration in s, loudness in 0…1 and the
-	instrument `k` (0 a plucked string synthesised by the Karplus–Strong method from random numbers,
-	1 a low drum, 2 a high drum). Elements with class `pn-hl` and attributes `data-a`, `data-b`
-	(times in s) in the same figure are shown only while the music is between these times.
-	"""
-	function play_notes(events; label = "Play", seed::Integer = 1, group::AbstractString = "")
-		ev = [[round(Float64(e[1]), digits = 4), round(Float64(e[2]), digits = 3), round(Float64(e[3]), digits = 4), round(Float64(e[4]), digits = 3), Int(e[5])] for e in events]
-		@htl("""<span class="pn"><button class="pn-b">▶ $(label)</button><script>
-		const root = currentScript.parentElement, btn = root.querySelector(".pn-b"), ev = $(ev), lab = $(label), grp = $(group);
-		let ctx = null, src = null, raf = null, t0 = 0;
-		function rng(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-		function render(sr) {
-			const R = rng($(seed));
-			let T = 0; for (const e of ev) T = Math.max(T, e[0] + e[2]);
-			const N = Math.ceil((T + 1.6) * sr), y = new Float32Array(N);
-			for (const [t, f, d, v, k] of ev) {
-				const a = Math.floor(t * sr);
-				if (k === 0) {
-					const P = Math.max(2, Math.round(sr / f)), L = Math.min(N - a, Math.floor((d + 1.2) * sr)), buf = new Float32Array(L);
-					let lp = 0; for (let i = 0; i < Math.min(P, L); i++) { lp = 0.6 * lp + 0.4 * (2 * R() - 1); buf[i] = lp; }
-					const off = Math.floor(d * sr);
-					for (let i = P; i < L; i++) { const s = i < off ? 0.998 : 0.985; buf[i] = s * 0.5 * (buf[i - P] + buf[i - P - 1 >= 0 ? i - P - 1 : i - P]); }
-					for (let i = 0; i < L; i++) y[a + i] += v * buf[i];
-				} else if (k === 3) {
-					// a struck bowl: three partials with exponential decay (jal tarang, chimes)
-					const L = Math.min(N - a, Math.floor((d + 1.6) * sr)), parts = [[1, 1, 2.0], [2.76, 0.18, 0.7], [5.4, 0.06, 0.3]];
-					for (const [m, g, tau] of parts) { const w = 2 * Math.PI * f * m / sr; if (f * m > 0.45 * sr) continue;
-						for (let i = 0; i < L; i++) { const tt = i / sr; y[a + i] += v * g * Math.min(1, tt / 0.003) * Math.exp(-tt / tau) * Math.sin(w * i); } }
-				} else if (k === 4) {
-					// a drone tone: harmonic spectrum with a slow swell and slow beating
-					const L = Math.min(N - a, Math.floor(d * sr));
-					for (let n = 1; n <= 6; n++) { const w = 2 * Math.PI * f * n * (1 + 0.0004 * n) / sr, g = Math.pow(n, -1.1), ph = R() * 6.28, rt = 0.07 + 0.04 * n;
-						for (let i = 0; i < L; i++) { const tt = i / sr, env = Math.min(1, tt / 1.5) * Math.min(1, (L - i) / sr / 1.5);
-							y[a + i] += v * g * env * (0.6 + 0.4 * Math.sin(2 * Math.PI * rt * tt + ph)) * Math.sin(w * i + ph); } }
-				} else {
-					const low = k === 1, L = Math.min(N - a, Math.floor((low ? 0.7 : 0.35) * sr));
-					let ph = 0;
-					for (let i = 0; i < L; i++) {
-						const tt = i / sr, fr = low ? 70 + 60 * Math.exp(-tt * 18) : 330 + 40 * Math.exp(-tt * 40);
-						ph += 2 * Math.PI * fr / sr;
-						const env = Math.exp(-tt * (low ? 5 : 12));
-						let s = Math.sin(ph) + (low ? 0.2 * Math.sin(2 * ph) : 0.45 * Math.sin(2.02 * ph) + 0.25 * Math.sin(3.01 * ph));
-						if (i < 0.006 * sr) s += 0.6 * (2 * R() - 1);
-						y[a + i] += v * 0.6 * env * s;
-					}
-				}
-			}
-			let m = 0; for (let i = 0; i < N; i++) m = Math.max(m, Math.abs(y[i]));
-			if (m > 0) for (let i = 0; i < N; i++) y[i] *= 0.85 / m;
-			return y;
-		}
-		const scope = root.closest("pluto-output") || root.closest(".fg") || root.parentElement;
-		const hl = Array.from(scope.querySelectorAll(".pn-hl")).filter(e => !grp || e.dataset.g === grp);
-		function mark(t) { for (const e of hl) { const a = +e.dataset.a, b = +e.dataset.b; e.style.display = (t >= a && t < b) ? "" : "none"; } }
-		function stop() { if (src) { try { src.stop(); } catch (e) {} src = null; } if (raf) cancelAnimationFrame(raf); raf = null; btn.textContent = "▶ " + lab; mark(-1); }
-		mark(-1);
-		btn.addEventListener("click", () => {
-			if (src) { stop(); return; }
-			ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
-			const sr = ctx.sampleRate, y = render(sr), b = ctx.createBuffer(1, y.length, sr);
-			b.copyToChannel(y, 0); src = ctx.createBufferSource(); src.buffer = b; src.connect(ctx.destination);
-			src.onended = stop; t0 = ctx.currentTime + 0.05; src.start(t0); btn.textContent = "■ stop";
-			const tick = () => { mark(ctx.currentTime - t0); raf = requestAnimationFrame(tick); }; tick();
-		});
-		invalidation.then(stop);
-		</script></span>""")
-	end
-end;
-
-# ╔═╡ 8ee00361-b280-9c3e-d72b-cab8912974ad
-# Code for the figures: Section 4: the Galton board
-begin
-	function figure_2_1(s2_rows, sd00_2)
-		R = s2_rows; N = 150; rng = MersenneTwister(21 + 1009sd00_2)
-		paths = [cumsum(rand(rng, Bool, R)) for _ in 1:N]
-		bins = [p[end] for p in paths]
-		H = 0.62; top = R + 0.6 + H * R; ylo = -0.1; yhi = top + 0.8
-		f = fig(w = 440, h = 430, xr = (-1, R + 1), yr = (ylo, yhi), axes = false, l = 6, r = 6, t = 26, b = 6, title = "Galton board with $(R) rows of pegs")
-		pxu = (430 - 26 - 6) / (yhi - ylo)
-		for r in 1:R, j in 0:r-1
-			circle!(f, R / 2 - (r - 1) / 2 + j, top - r * H, 3; fill = "#555", stroke = "#555", sw = 0.5)
-		end
-		for k in 0:R+1
-			seg!(f, k - 0.5, 0, k - 0.5, R + 0.3; c = "#ccc", w = 1)
-		end
-		seg!(f, -0.5, 0, R + 0.5, 0; c = "#555", w = 1.5)
-		e = [N * binomial(R, k) / 2^R for k in 0:R]
-		cmax = max(maximum(count(==(b), bins) for b in 0:R), maximum(e)); sc = min((R + 0.1) / max(cmax, 1), 0.9)
-		cnt = zeros(Int, R + 1)
-		for (i, p) in enumerate(paths)
-			pp = vcat(0, p)
-			xs = Float64[R / 2]; ys = Float64[top + 0.5]
-			for r in 1:R
-				push!(xs, R / 2 - (r - 1) / 2 + pp[r]); push!(ys, top - r * H + 0.18)
-			end
-			k = p[end]; cnt[k+1] += 1
-			push!(xs, k); push!(ys, sc * (cnt[k+1] - 0.5))
-			line!(f, xs, ys; c = COL.red, w = 2, o = i)
-			circle!(f, k, sc * (cnt[k+1] - 0.5), max(1.5, 0.45 * sc * pxu); fill = COL.blue, stroke = "white", sw = 0.5, s = i)
-		end
-		line!(f, collect(0:R), sc .* e; c = COL.ink, w = 2, dash = "5 3", s = N)
-		reads = ["Ball $(i) was deflected to the right $(bins[i]) times out of $(R) and landed in bin $(bins[i])." for i in 1:N]
-		pushfirst!(reads, "At every peg, the ball is deflected to the left or to the right with probability ½. Press ▶.")
-		player(f; n = N, start = 0, fps = 8, reads = reads, label = "ball",
-			caption = md"**Figure 4.1.** Each ball (red path) is deflected to the left or right at every peg with probability ½. The position of a single ball cannot be predicted, but after many balls the histogram approaches the binomial distribution (dashed line, shown after the last ball).")
-	end
-end;
-
 # ╔═╡ f4fe5c11-2b9e-9980-bc5f-bc30e2351409
 # music
 begin
@@ -1716,6 +1532,190 @@ begin
 		info = Markdown.parse("**Your rolls** (bar: dice = sum): $(dice).")
 		vstack(f, figure(g, vstack(play_notes(ev; label = "Play this waltz", seed = 7 + sd00_11), info));
 			caption = md"**Figure 11.2.** Mozart's dice game. Top: the table of the 1792 edition; each number refers to one of 176 printed bars.")
+	end
+end;
+
+# ╔═╡ d31f2275-5a0a-0e59-1256-393f6cf1990e
+# Animations, walkthroughs and sound
+begin
+	struct Player
+		items::Vector{Any}
+		n::Int
+		start::Int
+		fps::Float64
+		reads::Vector{String}
+		label::String
+		caption::Any
+		loop::Bool
+	end
+
+	player(items...; n, start = 0, fps = 12, reads = String[], label = "step", caption = nothing, loop = false) =
+		Player(collect(items), n, start, fps, reads, label, caption, loop)
+
+	function Base.show(io::IO, m::MIME"text/html", p::Player)
+		inner = join(["<div>" * _html(it) * "</div>" for it in p.items])
+		capt = p.caption === nothing ? "" : "<div class=\"fg-cap\">" * _html(p.caption isa AbstractString ? Markdown.parse(p.caption) : p.caption) * "</div>"
+		show(io, m, @htl("""<div class="pl"><div class="fg-row pl-stage">$(HTML(inner))</div>
+		<div class="pl-bar"><button class="pl-reset" title="back to the start">⏮</button><button class="pl-play" title="play or pause">▶</button><button class="pl-step" title="one step">⏭</button><button class="pl-end" title="jump to the end">⏭⏭</button>
+		<input class="pl-range" type="range" min="0" max="$(p.n)" step="1" value="$(p.start)"><span class="pl-lab"></span>
+		<label>speed <select class="pl-speed"><option value="1">1×</option><option value="2">2×</option><option value="5">5×</option><option value="20">20×</option></select></label></div>
+		<div class="pl-read"></div>$(HTML(capt))
+		<script>
+		const root = currentScript.parentElement;
+		const n = $(p.n), fps = $(p.fps), reads = $(p.reads), lab = $(p.label), loop = $(p.loop);
+		const els = Array.from(root.querySelectorAll("[data-s],[data-o],[data-ra]"));
+		const S = els.map(e => e.hasAttribute("data-s") ? +e.getAttribute("data-s") : null);
+		const O = els.map(e => e.hasAttribute("data-o") ? +e.getAttribute("data-o") : null);
+		const RA = els.map(e => e.hasAttribute("data-ra") ? +e.getAttribute("data-ra") : null);
+		const RB = els.map(e => e.hasAttribute("data-rb") ? +e.getAttribute("data-rb") : null);
+		const range = root.querySelector(".pl-range"), lb = root.querySelector(".pl-lab"), rd = root.querySelector(".pl-read");
+		const play = root.querySelector(".pl-play");
+		let k = +range.value, timer = null;
+		function show(j) {
+			k = Math.max(0, Math.min(n, j)); range.value = k;
+			for (let i = 0; i < els.length; i++) {
+				const vis = (S[i] === null || S[i] <= k) && (O[i] === null || O[i] === k) && (RA[i] === null || (RA[i] <= k && k <= RB[i]));
+				els[i].style.display = vis ? "" : "none";
+			}
+			lb.textContent = lab + " " + k + " / " + n;
+			if (reads.length > 0) rd.innerHTML = reads[Math.min(k, reads.length - 1)];
+		}
+		function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "▶"; }
+		function start() {
+			if (k >= n) show(0);
+			play.textContent = "⏸";
+			timer = setInterval(() => { const sp = +root.querySelector(".pl-speed").value; if (k >= n) { if (loop) show(0); else stop(); } else show(Math.min(n, k + sp)); }, 1000 / fps);
+		}
+		play.addEventListener("click", () => timer ? stop() : start());
+		root.querySelector(".pl-step").addEventListener("click", () => { stop(); show(k + 1); });
+		root.querySelector(".pl-reset").addEventListener("click", () => { stop(); show(0); });
+		root.querySelector(".pl-end").addEventListener("click", () => { stop(); show(n); });
+		range.addEventListener("input", () => { stop(); show(+range.value); });
+		invalidation.then(stop);
+		show(k);
+		</script></div>"""))
+	end
+
+	"""Play a sound: `x` are samples in [-1, 1] at rate `fs`; returns an HTML audio player (16-bit WAV, embedded)."""
+	function audio(x::AbstractVector{<:Real}; fs::Integer = 16000, label = "")
+		m = maximum(abs, x; init = 0.0); y = m > 0 ? x ./ m .* 0.9 : x
+		pcm = round.(Int16, clamp.(y, -1, 1) .* 32767)
+		io = IOBuffer(); nb = 2length(pcm)
+		write(io, b"RIFF", UInt32(36 + nb), b"WAVEfmt ", UInt32(16), UInt16(1), UInt16(1), UInt32(fs), UInt32(2fs), UInt16(2), UInt16(16), b"data", UInt32(nb))
+		for v in pcm; write(io, htol(v)); end
+		src = "data:audio/wav;base64," * base64encode(take!(io))
+		@htl("""<span class="aud" style="display:inline-flex;align-items:center;gap:8px">$(label == "" ? "" : @htl("<span style='color:#444'>$(label)</span>"))<audio controls preload="auto" src="$(src)" style="height:32px;vertical-align:middle"></audio></span>""")
+	end
+
+	"""
+	    play_notes(events; label, seed)
+
+	Play a list of note events in the browser (no audio file is embedded). Each event is a tuple
+	`(t, f, d, v, k)`: start time in s, frequency in Hz, duration in s, loudness in 0…1 and the
+	instrument `k` (0 a plucked string synthesised by the Karplus–Strong method from random numbers,
+	1 a low drum, 2 a high drum). Elements with class `pn-hl` and attributes `data-a`, `data-b`
+	(times in s) in the same figure are shown only while the music is between these times.
+	"""
+	function play_notes(events; label = "Play", seed::Integer = 1, group::AbstractString = "")
+		ev = [[round(Float64(e[1]), digits = 4), round(Float64(e[2]), digits = 3), round(Float64(e[3]), digits = 4), round(Float64(e[4]), digits = 3), Int(e[5])] for e in events]
+		@htl("""<span class="pn"><button class="pn-b">▶ $(label)</button><script>
+		const root = currentScript.parentElement, btn = root.querySelector(".pn-b"), ev = $(ev), lab = $(label), grp = $(group);
+		let ctx = null, src = null, raf = null, t0 = 0;
+		function rng(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+		function render(sr) {
+			const R = rng($(seed));
+			let T = 0; for (const e of ev) T = Math.max(T, e[0] + e[2]);
+			const N = Math.ceil((T + 1.6) * sr), y = new Float32Array(N);
+			for (const [t, f, d, v, k] of ev) {
+				const a = Math.floor(t * sr);
+				if (k === 0) {
+					const P = Math.max(2, Math.round(sr / f)), L = Math.min(N - a, Math.floor((d + 1.2) * sr)), buf = new Float32Array(L);
+					let lp = 0; for (let i = 0; i < Math.min(P, L); i++) { lp = 0.6 * lp + 0.4 * (2 * R() - 1); buf[i] = lp; }
+					const off = Math.floor(d * sr);
+					for (let i = P; i < L; i++) { const s = i < off ? 0.998 : 0.985; buf[i] = s * 0.5 * (buf[i - P] + buf[i - P - 1 >= 0 ? i - P - 1 : i - P]); }
+					for (let i = 0; i < L; i++) y[a + i] += v * buf[i];
+				} else if (k === 3) {
+					// a struck bowl: three partials with exponential decay (jal tarang, chimes)
+					const L = Math.min(N - a, Math.floor((d + 1.6) * sr)), parts = [[1, 1, 2.0], [2.76, 0.18, 0.7], [5.4, 0.06, 0.3]];
+					for (const [m, g, tau] of parts) { const w = 2 * Math.PI * f * m / sr; if (f * m > 0.45 * sr) continue;
+						for (let i = 0; i < L; i++) { const tt = i / sr; y[a + i] += v * g * Math.min(1, tt / 0.003) * Math.exp(-tt / tau) * Math.sin(w * i); } }
+				} else if (k === 4) {
+					// a drone tone: harmonic spectrum with a slow swell and slow beating
+					const L = Math.min(N - a, Math.floor(d * sr));
+					for (let n = 1; n <= 6; n++) { const w = 2 * Math.PI * f * n * (1 + 0.0004 * n) / sr, g = Math.pow(n, -1.1), ph = R() * 6.28, rt = 0.07 + 0.04 * n;
+						for (let i = 0; i < L; i++) { const tt = i / sr, env = Math.min(1, tt / 1.5) * Math.min(1, (L - i) / sr / 1.5);
+							y[a + i] += v * g * env * (0.6 + 0.4 * Math.sin(2 * Math.PI * rt * tt + ph)) * Math.sin(w * i + ph); } }
+				} else {
+					const low = k === 1, L = Math.min(N - a, Math.floor((low ? 0.7 : 0.35) * sr));
+					let ph = 0;
+					for (let i = 0; i < L; i++) {
+						const tt = i / sr, fr = low ? 70 + 60 * Math.exp(-tt * 18) : 330 + 40 * Math.exp(-tt * 40);
+						ph += 2 * Math.PI * fr / sr;
+						const env = Math.exp(-tt * (low ? 5 : 12));
+						let s = Math.sin(ph) + (low ? 0.2 * Math.sin(2 * ph) : 0.45 * Math.sin(2.02 * ph) + 0.25 * Math.sin(3.01 * ph));
+						if (i < 0.006 * sr) s += 0.6 * (2 * R() - 1);
+						y[a + i] += v * 0.6 * env * s;
+					}
+				}
+			}
+			let m = 0; for (let i = 0; i < N; i++) m = Math.max(m, Math.abs(y[i]));
+			if (m > 0) for (let i = 0; i < N; i++) y[i] *= 0.85 / m;
+			return y;
+		}
+		const scope = root.closest("pluto-output") || root.closest(".fg") || root.parentElement;
+		const hl = Array.from(scope.querySelectorAll(".pn-hl")).filter(e => !grp || e.dataset.g === grp);
+		function mark(t) { for (const e of hl) { const a = +e.dataset.a, b = +e.dataset.b; e.style.display = (t >= a && t < b) ? "" : "none"; } }
+		function stop() { if (src) { try { src.stop(); } catch (e) {} src = null; } if (raf) cancelAnimationFrame(raf); raf = null; btn.textContent = "▶ " + lab; mark(-1); }
+		mark(-1);
+		btn.addEventListener("click", () => {
+			if (src) { stop(); return; }
+			ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+			const sr = ctx.sampleRate, y = render(sr), b = ctx.createBuffer(1, y.length, sr);
+			b.copyToChannel(y, 0); src = ctx.createBufferSource(); src.buffer = b; src.connect(ctx.destination);
+			src.onended = stop; t0 = ctx.currentTime + 0.05; src.start(t0); btn.textContent = "■ stop";
+			const tick = () => { mark(ctx.currentTime - t0); raf = requestAnimationFrame(tick); }; tick();
+		});
+		invalidation.then(stop);
+		</script></span>""")
+	end
+end;
+
+# ╔═╡ 8ee00361-b280-9c3e-d72b-cab8912974ad
+# Code for the figures: Section 4: the Galton board
+begin
+	function figure_2_1(s2_rows, sd00_2)
+		R = s2_rows; N = 150; rng = MersenneTwister(21 + 1009sd00_2)
+		paths = [cumsum(rand(rng, Bool, R)) for _ in 1:N]
+		bins = [p[end] for p in paths]
+		H = 0.62; top = R + 0.6 + H * R; ylo = -0.1; yhi = top + 0.8
+		f = fig(w = 440, h = 430, xr = (-1, R + 1), yr = (ylo, yhi), axes = false, l = 6, r = 6, t = 26, b = 6, title = "Galton board with $(R) rows of pegs")
+		pxu = (430 - 26 - 6) / (yhi - ylo)
+		for r in 1:R, j in 0:r-1
+			circle!(f, R / 2 - (r - 1) / 2 + j, top - r * H, 3; fill = "#555", stroke = "#555", sw = 0.5)
+		end
+		for k in 0:R+1
+			seg!(f, k - 0.5, 0, k - 0.5, R + 0.3; c = "#ccc", w = 1)
+		end
+		seg!(f, -0.5, 0, R + 0.5, 0; c = "#555", w = 1.5)
+		e = [N * binomial(R, k) / 2^R for k in 0:R]
+		cmax = max(maximum(count(==(b), bins) for b in 0:R), maximum(e)); sc = min((R + 0.1) / max(cmax, 1), 0.9)
+		cnt = zeros(Int, R + 1)
+		for (i, p) in enumerate(paths)
+			pp = vcat(0, p)
+			xs = Float64[R / 2]; ys = Float64[top + 0.5]
+			for r in 1:R
+				push!(xs, R / 2 - (r - 1) / 2 + pp[r]); push!(ys, top - r * H + 0.18)
+			end
+			k = p[end]; cnt[k+1] += 1
+			push!(xs, k); push!(ys, sc * (cnt[k+1] - 0.5))
+			line!(f, xs, ys; c = COL.red, w = 2, o = i)
+			circle!(f, k, sc * (cnt[k+1] - 0.5), max(1.5, 0.45 * sc * pxu); fill = COL.blue, stroke = "white", sw = 0.5, s = i)
+		end
+		line!(f, collect(0:R), sc .* e; c = COL.ink, w = 2, dash = "5 3", s = N)
+		reads = ["Ball $(i) was deflected to the right $(bins[i]) times out of $(R) and landed in bin $(bins[i])." for i in 1:N]
+		pushfirst!(reads, "At every peg, the ball is deflected to the left or to the right with probability ½. Press ▶.")
+		player(f; n = N, start = 0, fps = 8, reads = reads, label = "ball",
+			caption = md"**Figure 4.1.** Each ball (red path) is deflected to the left or right at every peg with probability ½. The position of a single ball cannot be predicted, but after many balls the histogram approaches the binomial distribution (dashed line, shown after the last ball).")
 	end
 end;
 
@@ -2379,6 +2379,24 @@ table.tbl td:first-child,table.tbl th:first-child{text-align:left}
 table.tbl tr:nth-child(even) td{background:#f6f6f3}
 .pn{display:inline-block;margin:4px 0}.pn-b{font-size:0.95rem;padding:3px 12px;cursor:pointer}
 </style>"""
+
+# ╔═╡ 31d6bf50-6165-4f16-ba90-206b44248354
+HTML("""
+<script>
+(function () {
+	let tries = 0;
+	const timer = setInterval(() => {
+		const tab = document.querySelector("#process-status-tab-button");
+		if (tab) {
+			tab.click();
+			clearInterval(timer);
+		} else if (++tries > 60) {
+			clearInterval(timer);
+		}
+	}, 500);
+})();
+</script>
+""")
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -3089,5 +3107,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─f83a5449-e79c-b196-a31e-868728129769
 # ╟─06cb0b9a-a27b-6917-2138-dc57684c09e0
 # ╟─f2d18cc3-9cf9-d2c5-4e6e-7f740c20840b
+# ╟─31d6bf50-6165-4f16-ba90-206b44248354
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

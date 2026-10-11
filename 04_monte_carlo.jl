@@ -205,20 +205,32 @@ Importance sampling does not change the ``1/\sqrt N`` law; it reduces the consta
 **Problem 1.** Which law guarantees that a Monte Carlo estimator converges as ``N \to \infty``? State it in words and as an equation, and name its assumptions.
 """
 
+# ╔═╡ 207eae68-a0a3-fc86-0351-87e9ae855cf8
+solution(pw, "N+yHUnutSJmsKAvjzGoiRt5X0OUzIfCFAdt5cnMeJ/thhXNjaEbWO78Z68Z8TbdaEWlv6o/GqL0howkKXW4O6FldPyZ4l+ISairjHPOydZEvw1vNul+nFXMtfJpM0j/zqzLPszprBAcDUw4G6Rt8j7TxcqJVigZ8peXWE5IgnIS5SHgN8GtqMg3XYxp9jgnIHzUMlWT/cA41WPkSpBGnwYX7/9boOWf9lVzpOD9NgR6TJa9VAJ2ngesmopLAgZsRX6JoS4Jg7cfSb0FRT3QjbTeEW7m4yFHVnHaf4iAvuOx8re/HwSnJmNKBo03uGMvVCuC12vz7J6VKn6Z/6Y2+yZ7kbbx4jTfj5fuNqbr3TuoIiWH9uC5p9cZDB7gPegKqIyab4oT+pfrUqLj3yiqXSbqhwTebsBpteTzrxBYKunKpizZRSaw0m6fk5oj4FrSLspxQHpKEhCNSjp4X/3n1utsTsrPVSkbVHqDPOwD3bYJVKZ6mZ5/+5Ub6D2DzWTcjM8awVBzXZ5/66uvh7S9JvmvkvVDS/0XfEy7VR3Y9LmITltE03w=="; title = "Solution to Problem 1")
+
 # ╔═╡ 6d0f2434-cac6-7a87-00fd-0714e94a2dcf
 md"""
 **Problem 2.** Compute analytically the variance of the Monte Carlo estimator of ``\int_0^1 x^3\,dx`` with ``N`` samples from ``\mathcal U(0, 1)``. Give a closed-form expression.
 """
+
+# ╔═╡ 1581a3a7-b318-7058-3e50-4f60cfd3016b
+solution(pw, "oCJTjTiezw2mqZtQtpLDTUIxko+zNYAvdxPcHF30fMivnvaec+Rwfs0pTEJRcJxQbgpHjgA9qsYpzxi4c+g+FJw1kv0TY5+37eA2yKsxwLW350G4xLnTAHoZVfxqaWguyXSN4yWc5vDLw+sv3q0rVm7OCq3wX/TI3Om4hC0lPvJVPhc3sFrQQUoERHpouy107JdVTW1yAOEa7ht5Lmty44+LZzU0E4neTkYGzVzdmrQT8puJIOGGXvF2UGdp7tmTEgxFAwHAMnJ0FuSArzuR7hmOCCqZNu2U8/fpBd5z/Aecg/tXdB0xCnleNJOLEy6VD4a0IfNvaRCLRgY+Q1MCPg8uYD16vV/35Jel3dbmH49numW4P4ERfh/bnGBz5sYYsoKD/aHdGuAo3VsUCFN6VldOh4hDHCz2LlIvBPNECMvUnhtyEhjOUroo"; title = "Solution to Problem 2")
 
 # ╔═╡ d9c4bd58-0ba5-f994-4202-18482d70966c
 md"""
 **Problem 3.** Compute analytically the variance of the importance sampling estimator of ``\int_0^1 x^3\,dx`` with the proposal ``q(x) = 2x`` on ``[0, 1]``, for ``N`` samples. By what factor is it smaller than in Problem 2? How are samples from ``q`` generated?
 """
 
+# ╔═╡ ff7180a4-cc16-ccac-688a-b2a202256575
+solution(pw, "tNCbAXS00k6T4QBiCPWOT4bEk1niaeCuyjJHKuH0wc0z1vJKorjAb4P7nfjQQ13jbmatY7qLL4Xevyh2EWKiT8Eup8MV2Aar8T3T9Ay1/mjeDmevGyDwLIyU+8BHpdl7I7ChEAdHpROQFgyIhC11v+Xnqrgjh1IxJVAvOJhIokZqfPDJb9TdzEw9ntFl6FfLX5vs45UaciB5luVrM30b6qYdDyybVPFaI+WYnEoPzc9NlZTqdlSQ3Zcb6eGhCWVe1/9ZqAFbk8pclAefJIFu0NSeSZ1NrepLNfqAoL/XmOc0nZUlXTVxRWJvhD83M6Y/6s70sfScOFjbKXo6GPf8eSGqJoqc8wGUQ6uTqXQP9VsKi/BRgfGjMujLgdgcQKghv+MZACrnG4n1hBNrnsxS55Yyq9Mq2Nalc4kjmxdInLbygLdHK26MQAVqAKA6+i0c+G9y3JX/tqVxjsqwCYxKgu3kvRKMbUXHzwPFUMYxCx0d0mqDVAVPpEU8hKJAf+JLs5jhl2Kh7YOJGF3iHIuSPkIp3ByZysvFJG8uJmn7TRUjtRLxkYyKLaJAuBLofSYT79THUSoOOKbsnIsC9FGfRiGwCp6LGwerhgp6YzXKXZ2ymNlRFQjtCLOmo9hb5w2NYDG7F/oQEhV+omWaeicC8x3RaQwja6w+JZMIaLy3tILu9w=="; title = "Solution to Problem 3")
+
 # ╔═╡ c00b6b12-2f42-414b-e52b-5c79b8015d12
 md"""
 **Problem 5.** The integral ``\int_0^\infty e^{-x}\cos(x)\,dx`` is to be estimated. (a) Why can it not be estimated with uniform samples as in Section 3.1? (b) Write it as an expectation with respect to the exponential distribution and give the estimator. (c) Is the variance of this estimator finite?
 """
+
+# ╔═╡ 270f711a-650e-a84a-1446-d1caad08fa51
+solution(pw, "rRGBVEwRwMcO/dOAfnQuZEU9sMqIpoeXYpJpJSWPuYElMnFx7fPXrziJyGwKFCrBTu1F+EBOxcgiGUThbmSIUuypp7RJtmJZWLih/vom9RziIsKUPupqwp76l0qAgzRkILl2YMJOJ6GTLbduf5qGnVUAIUuEY2oR6DRlnYTgSWlLy4lkSJHuI/P1fYs7HdTth3xxD2y56Z/z8vGDko88d9ZKM3vmdsLdaMPXj93dmWJMV5rVvlHDlUDNvFy8/K9uteH6Qhsy6Mz1ORyJZUaPzy4UNdykUREM7TL3bBS0OOEDRhy1ObZv53NqarXqXc1gyEEx3S/yLjJ7Lo6xoGAfTKbxiuizlWdGPa7+DaAyWZufV79sh0guKVrFc+9D/vfGLOU7KYCkH7mG/bszeBOKnpZ/vjaOReSqmmACQ5FVYO9AeseCdCT7Yl9i2V16r/6sY/LfFJ0ckhO/o5we2+C/JwNL/7moP/HCo0aiFtQmEOey7rXmErRARfo+4zqkv2Ki7t9qgovqXuoXHQeO"; title = "Solution to Problem 5")
 
 # ╔═╡ 3829776e-d93a-895f-b637-202a0c5e8b34
 md"""
@@ -237,6 +249,9 @@ function estimate_pi(N, rng)
 	return 4inside / N
 end;
 
+# ╔═╡ 6ec18bfd-9161-399b-8d26-85abde2400a4
+solution(pw, "Gfl3ykUWTeBYyaiOoiP2dgwkqffTddwjStF6scWdd1t2gdJQRNyDjGAg64X2+iqhTFTPfw9jJ/EE1aPMhq7WX5BEfV3JiDRyQ5oPAy5duNg3evJCtu3v8U4v/AscmundKVZo2REF8LMvXA6LETenX7aH6GvoQAUwZYRHPdWz25xCSkKF0NM12v+eINZzBfWJoSOtpdm1g6SEB8Q0jJLXI9BSvupJssC5hv/ooaoBe74+gu0CWevXwuh2thmzq+jARIl23DCbQUfaQenDLVmpPDvi9LDzk1lk8BXmUDj9a6ATMhDqWqxeC0Nv1fzILSadGEK1mtRlBGGjwJFyff4jeau67jIAT/09vWmx6MFczMxDtxcs34OO0ZBZ+Ge9rxg94PuRPkxXfsd/nVCMDS4="; title = "Solution to Exercise 1")
+
 # ╔═╡ 82df10b9-7bc3-ad36-97e2-c6da0d582441
 md"""
 **Exercise 2 · Debugging: the standard error.** `mc_integrate(f, a, b, N)` should return the estimate and its standard error ``(b - a)\,s_f/\sqrt N``. Predict by which factor the standard error must decrease when ``N`` is multiplied by 100; then correct the code.
@@ -249,6 +264,9 @@ function mc_integrate(f, a, b, N)
 	return (estimate = (b - a) * mean(fx), se = (b - a) * std(fx) / N)
 end;
 
+# ╔═╡ 095b319f-2f26-701b-0235-58c99f8f4b5a
+solution(pw, "e36OY427p85D05zHX/K4OfFh84e+B7QZpVc3+bKqXyXOdc1nZG7q6jRnh3kJVVS2LIZuWF5gu2pwYEZYD16hkWceDzqJQNyzGkCT371diC7tYtsc0Wi+XD79eqJDRbr3vXJj5D8om46N0T/CeVAwYhMDvElMXQVpnpudkrBGwtgU2dNXWaJ51hnxHuLuj0R9ZnXdvZRr+8bFAqXKwSxnwsIrNW/MJZMSLAC5rFMMFPdSZXdUjlZCFqEdasjlHoH0ezxXQqB0Pp13ANg8TsQOccVURIVREWrboObKEdO/ZxCPuD7t67jIXssos4aajTZZqGC9BWiMOCAxIddjZXZH9Rm3+NHRGRHru2B3ZwLsdQ0WtMIxynaSurh22HfxcUuarkI56iwxCJ1i2wcnkMM+djqgew=="; title = "Solution to Exercise 2")
+
 # ╔═╡ ba37f52d-2959-d794-d844-8e3129b23b32
 md"""
 **Exercise 3 · Debugging: importance sampling.** `is_x2(N)` should estimate ``\int_0^1 x^2\,dx = 1/3`` by importance sampling with ``q(x) = 2x``: samples ``X = \sqrt U`` and weights ``x^2/(2x)``. Predict which value is estimated if the samples are uniform while the weights still use ``q(x) = 2x``; then correct the code.
@@ -260,6 +278,9 @@ function is_x2(N)
 	w = x .^ 2 ./ (2 .* x)
 	return (estimate = mean(w), se = std(w) / sqrt(N))
 end;
+
+# ╔═╡ a9944d94-57bf-708a-c426-05af0acd2d85
+solution(pw, "5xeBpsuHeQXmAkMdAK6VYCn5HOQHgzmyQkkJaEOSVZTL5Df0zj0Jm9D8vfFjllPqmy2Xvnu1Jxs1ZjTQxd7ni5QKHdoNCvwi411wJW3iFjilzuQVw8QJuIEw2FYzdi67T3WXcI8H8IdmUlJQGYEqG8zvZH7Vn/QuA27e5rTL89bEWtcRJbA66uf0Vv29sFvTkMzNM/wQ0R5YtmvpVeosGZ8J7QWfUsLacOFNTOlfqgm4Z43kYd1544KXU9XeAbAV5eKU8Fdab8PZ7A3PN2S4ejDYkyvPNRyb5cpIwHEyvhPk5DYuUJYT8CurUeH3ysZwxi3sn/xr/G9jzB3xd6Ji5DY1YfKAGUWZrLa9NeNujww/aXWyvKJbkXu0xbVoMhTq6Yf0b3cO82VFwF97OGBxh4sLgwFnYOrPFQZVuK+ABq9VLgMqS7hDI05V/qt0ny4G"; title = "Solution to Exercise 3")
 
 # ╔═╡ ad58a80b-7990-6d1c-5409-b7bd2dfebfb7
 md"""
@@ -842,27 +863,6 @@ mcq(md"An importance sampler reports an estimate with a very small standard erro
 
 # ╔═╡ 78498a7b-acee-30d7-e48b-d4bee929d80d
 reveal(md"""The narrow proposal almost never visits the second, unknown source in the south-east of the lake, nor most of the background. In these regions ``q`` is practically zero. Most surveys therefore miss them entirely and underestimate the total; the rare survey that does visit them obtains an enormous weight ``c/q``. The histogram is shifted to low values with a long tail to the right, and the error estimate of each survey is misleadingly small. The defensive uniform share bounds every weight by ``c\,V/\delta`` and removes the problem, at a small cost in efficiency. The general rule: **``q`` must not be much smaller than the integrand anywhere.**""")
-
-# ╔═╡ 207eae68-a0a3-fc86-0351-87e9ae855cf8
-solution(pw, "N+yHUnutSJmsKAvjzGoiRt5X0OUzIfCFAdt5cnMeJ/thhXNjaEbWO78Z68Z8TbdaEWlv6o/GqL0howkKXW4O6FldPyZ4l+ISairjHPOydZEvw1vNul+nFXMtfJpM0j/zqzLPszprBAcDUw4G6Rt8j7TxcqJVigZ8peXWE5IgnIS5SHgN8GtqMg3XYxp9jgnIHzUMlWT/cA41WPkSpBGnwYX7/9boOWf9lVzpOD9NgR6TJa9VAJ2ngesmopLAgZsRX6JoS4Jg7cfSb0FRT3QjbTeEW7m4yFHVnHaf4iAvuOx8re/HwSnJmNKBo03uGMvVCuC12vz7J6VKn6Z/6Y2+yZ7kbbx4jTfj5fuNqbr3TuoIiWH9uC5p9cZDB7gPegKqIyab4oT+pfrUqLj3yiqXSbqhwTebsBpteTzrxBYKunKpizZRSaw0m6fk5oj4FrSLspxQHpKEhCNSjp4X/3n1utsTsrPVSkbVHqDPOwD3bYJVKZ6mZ5/+5Ub6D2DzWTcjM8awVBzXZ5/66uvh7S9JvmvkvVDS/0XfEy7VR3Y9LmITltE03w=="; title = "Solution to Problem 1")
-
-# ╔═╡ 1581a3a7-b318-7058-3e50-4f60cfd3016b
-solution(pw, "oCJTjTiezw2mqZtQtpLDTUIxko+zNYAvdxPcHF30fMivnvaec+Rwfs0pTEJRcJxQbgpHjgA9qsYpzxi4c+g+FJw1kv0TY5+37eA2yKsxwLW350G4xLnTAHoZVfxqaWguyXSN4yWc5vDLw+sv3q0rVm7OCq3wX/TI3Om4hC0lPvJVPhc3sFrQQUoERHpouy107JdVTW1yAOEa7ht5Lmty44+LZzU0E4neTkYGzVzdmrQT8puJIOGGXvF2UGdp7tmTEgxFAwHAMnJ0FuSArzuR7hmOCCqZNu2U8/fpBd5z/Aecg/tXdB0xCnleNJOLEy6VD4a0IfNvaRCLRgY+Q1MCPg8uYD16vV/35Jel3dbmH49numW4P4ERfh/bnGBz5sYYsoKD/aHdGuAo3VsUCFN6VldOh4hDHCz2LlIvBPNECMvUnhtyEhjOUroo"; title = "Solution to Problem 2")
-
-# ╔═╡ ff7180a4-cc16-ccac-688a-b2a202256575
-solution(pw, "tNCbAXS00k6T4QBiCPWOT4bEk1niaeCuyjJHKuH0wc0z1vJKorjAb4P7nfjQQ13jbmatY7qLL4Xevyh2EWKiT8Eup8MV2Aar8T3T9Ay1/mjeDmevGyDwLIyU+8BHpdl7I7ChEAdHpROQFgyIhC11v+Xnqrgjh1IxJVAvOJhIokZqfPDJb9TdzEw9ntFl6FfLX5vs45UaciB5luVrM30b6qYdDyybVPFaI+WYnEoPzc9NlZTqdlSQ3Zcb6eGhCWVe1/9ZqAFbk8pclAefJIFu0NSeSZ1NrepLNfqAoL/XmOc0nZUlXTVxRWJvhD83M6Y/6s70sfScOFjbKXo6GPf8eSGqJoqc8wGUQ6uTqXQP9VsKi/BRgfGjMujLgdgcQKghv+MZACrnG4n1hBNrnsxS55Yyq9Mq2Nalc4kjmxdInLbygLdHK26MQAVqAKA6+i0c+G9y3JX/tqVxjsqwCYxKgu3kvRKMbUXHzwPFUMYxCx0d0mqDVAVPpEU8hKJAf+JLs5jhl2Kh7YOJGF3iHIuSPkIp3ByZysvFJG8uJmn7TRUjtRLxkYyKLaJAuBLofSYT79THUSoOOKbsnIsC9FGfRiGwCp6LGwerhgp6YzXKXZ2ymNlRFQjtCLOmo9hb5w2NYDG7F/oQEhV+omWaeicC8x3RaQwja6w+JZMIaLy3tILu9w=="; title = "Solution to Problem 3")
-
-# ╔═╡ 270f711a-650e-a84a-1446-d1caad08fa51
-solution(pw, "rRGBVEwRwMcO/dOAfnQuZEU9sMqIpoeXYpJpJSWPuYElMnFx7fPXrziJyGwKFCrBTu1F+EBOxcgiGUThbmSIUuypp7RJtmJZWLih/vom9RziIsKUPupqwp76l0qAgzRkILl2YMJOJ6GTLbduf5qGnVUAIUuEY2oR6DRlnYTgSWlLy4lkSJHuI/P1fYs7HdTth3xxD2y56Z/z8vGDko88d9ZKM3vmdsLdaMPXj93dmWJMV5rVvlHDlUDNvFy8/K9uteH6Qhsy6Mz1ORyJZUaPzy4UNdykUREM7TL3bBS0OOEDRhy1ObZv53NqarXqXc1gyEEx3S/yLjJ7Lo6xoGAfTKbxiuizlWdGPa7+DaAyWZufV79sh0guKVrFc+9D/vfGLOU7KYCkH7mG/bszeBOKnpZ/vjaOReSqmmACQ5FVYO9AeseCdCT7Yl9i2V16r/6sY/LfFJ0ckhO/o5we2+C/JwNL/7moP/HCo0aiFtQmEOey7rXmErRARfo+4zqkv2Ki7t9qgovqXuoXHQeO"; title = "Solution to Problem 5")
-
-# ╔═╡ 6ec18bfd-9161-399b-8d26-85abde2400a4
-solution(pw, "Gfl3ykUWTeBYyaiOoiP2dgwkqffTddwjStF6scWdd1t2gdJQRNyDjGAg64X2+iqhTFTPfw9jJ/EE1aPMhq7WX5BEfV3JiDRyQ5oPAy5duNg3evJCtu3v8U4v/AscmundKVZo2REF8LMvXA6LETenX7aH6GvoQAUwZYRHPdWz25xCSkKF0NM12v+eINZzBfWJoSOtpdm1g6SEB8Q0jJLXI9BSvupJssC5hv/ooaoBe74+gu0CWevXwuh2thmzq+jARIl23DCbQUfaQenDLVmpPDvi9LDzk1lk8BXmUDj9a6ATMhDqWqxeC0Nv1fzILSadGEK1mtRlBGGjwJFyff4jeau67jIAT/09vWmx6MFczMxDtxcs34OO0ZBZ+Ge9rxg94PuRPkxXfsd/nVCMDS4="; title = "Solution to Exercise 1")
-
-# ╔═╡ 095b319f-2f26-701b-0235-58c99f8f4b5a
-solution(pw, "e36OY427p85D05zHX/K4OfFh84e+B7QZpVc3+bKqXyXOdc1nZG7q6jRnh3kJVVS2LIZuWF5gu2pwYEZYD16hkWceDzqJQNyzGkCT371diC7tYtsc0Wi+XD79eqJDRbr3vXJj5D8om46N0T/CeVAwYhMDvElMXQVpnpudkrBGwtgU2dNXWaJ51hnxHuLuj0R9ZnXdvZRr+8bFAqXKwSxnwsIrNW/MJZMSLAC5rFMMFPdSZXdUjlZCFqEdasjlHoH0ezxXQqB0Pp13ANg8TsQOccVURIVREWrboObKEdO/ZxCPuD7t67jIXssos4aajTZZqGC9BWiMOCAxIddjZXZH9Rm3+NHRGRHru2B3ZwLsdQ0WtMIxynaSurh22HfxcUuarkI56iwxCJ1i2wcnkMM+djqgew=="; title = "Solution to Exercise 2")
-
-# ╔═╡ a9944d94-57bf-708a-c426-05af0acd2d85
-solution(pw, "5xeBpsuHeQXmAkMdAK6VYCn5HOQHgzmyQkkJaEOSVZTL5Df0zj0Jm9D8vfFjllPqmy2Xvnu1Jxs1ZjTQxd7ni5QKHdoNCvwi411wJW3iFjilzuQVw8QJuIEw2FYzdi67T3WXcI8H8IdmUlJQGYEqG8zvZH7Vn/QuA27e5rTL89bEWtcRJbA66uf0Vv29sFvTkMzNM/wQ0R5YtmvpVeosGZ8J7QWfUsLacOFNTOlfqgm4Z43kYd1544KXU9XeAbAV5eKU8Fdab8PZ7A3PN2S4ejDYkyvPNRyb5cpIwHEyvhPk5DYuUJYT8CurUeH3ysZwxi3sn/xr/G9jzB3xd6Ji5DY1YfKAGUWZrLa9NeNujww/aXWyvKJbkXu0xbVoMhTq6Yf0b3cO82VFwF97OGBxh4sLgwFnYOrPFQZVuK+ABq9VLgMqS7hDI05V/qt0ny4G"; title = "Solution to Exercise 3")
 
 # ╔═╡ 7169378f-d01b-0643-46af-4f926f785f66
 begin
@@ -1565,6 +1565,24 @@ details.hint{margin-top:4px}
 details.hint summary{cursor:pointer;font-weight:600}
 </style>"""
 
+# ╔═╡ 04a916f0-f9f6-4fb6-8cea-38b1e2c8da4a
+HTML("""
+<script>
+(function () {
+	let tries = 0;
+	const timer = setInterval(() => {
+		const tab = document.querySelector("#process-status-tab-button");
+		if (tab) {
+			tab.click();
+			clearInterval(timer);
+		} else if (++tries > 60) {
+			clearInterval(timer);
+		}
+	}, 500);
+})();
+</script>
+""")
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -2262,5 +2280,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─468ac6f3-fd09-6aad-5cc5-2c203a5245aa
 # ╟─f3a8c8d4-48f5-39ca-f47c-662c638125e7
 # ╟─2f42b6e4-1d51-177f-1c7b-78bdbaec96ae
+# ╟─04a916f0-f9f6-4fb6-8cea-38b1e2c8da4a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
