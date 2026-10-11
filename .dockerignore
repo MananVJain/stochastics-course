@@ -1,0 +1,4 @@
+*
+!*.jl
+!envs
+!docker
