@@ -113,6 +113,19 @@ P(\neg A) = 1 - P(A), \qquad P(A \cup B) = P(A) + P(B) - P(A \cap B).
 ```
 """
 
+# ╔═╡ a5579cb0-86f7-3ab6-bfb8-0391685088f8
+# ╠═╡ disabled = true
+#=╠═╡
+proof(show_math, "Derivation of the two rules", md"""
+**NOT.** ``A`` and ``\neg A`` are mutually exclusive and together form ``\Omega``. Axioms 3 and 2 give ``P(A) + P(\neg A) = P(\Omega) = 1``.
+
+**OR.** Write ``A \cup B`` as the union of three mutually exclusive sets: ``A`` without ``B``, ``B`` without ``A``, and ``A \cap B``. Likewise, ``A`` is the union of (``A`` without ``B``) and ``A \cap B``, and similarly for ``B``. Axiom 3 then gives
+```math
+P(A \cup B) = \big(P(A) - P(A \cap B)\big) + \big(P(B) - P(A \cap B)\big) + P(A \cap B) = P(A) + P(B) - P(A \cap B).
+```
+""")
+  ╠═╡ =#
+
 # ╔═╡ 42928f2b-b87a-081f-c4b1-ca697ac06ae4
 md"""
 ### 2.2 Combinatorics
@@ -218,9 +231,6 @@ md"""
 
 The following problem is known as the Monty Hall problem. A car is behind one of three doors, goats are behind the other two. You choose a door. The host, who knows where the car is, opens one of the other two doors and shows a goat. You may then keep your door or switch to the other closed door. Play several rounds with both strategies before reading the calculation.
 """
-
-# ╔═╡ 814b0094-53a9-137f-aaf1-c3cea64dbdc9
-montyhall_game()
 
 # ╔═╡ a442dcab-e71a-9da8-2a8c-30fa1ba0589e
 md"""
@@ -460,9 +470,6 @@ md"""
 **Example 8.1.** A component is defective with probability ``p = 0.02``, independently of other components. A box contains ``n = 50`` components. (a) What is the probability that the box contains no defective component? (b) What is the probability of at most one? (c) What are the mean and standard deviation of the number of defective components?
 """
 
-# ╔═╡ 83778b1e-6f8b-7145-f7f2-48f42467e36e
-solution(pw, "0YSRPo0BjoRz7xqdR936ZnhrnduP/67F3hx5wxMiaac/voT0BgvWnB4yAJT64yEu8L/XBhWrEWEQW4HQFPA2MuoGpLG9iQNhfnuhzQJN2l0OW+iSpqvuqyVOZpWgPsYHZ0r5EH21C8P+GSZj/LYF5pDRWeItpHPF73GseKdbUudi/srcAjC//FhyBiXLPHGemzniNqZ6k0AD5sUiFj05Uq58mH3tOnKViptFc9xq1JAz5GgFfklYWs4Z+9RDg16NgQgYWtdE++KE5KXKZL72sCZpr5pMwsth3ZPEIw9sW6qSWNXd6M4Fyme+3nYisaISpS/8bVyptKUttSkVjjsI3hVyKvRn"; title = "Solution to Example 8.1")
-
 # ╔═╡ 07207311-dadf-fa61-94ec-2dd8626b33a9
 md"""
 ### 8.2 Poisson distribution
@@ -492,16 +499,10 @@ md"""
 **Example 8.2.** The hotline receives on average ``\lambda = 3`` calls per hour. (a) What is the probability of no call in an hour? (b) Of more than 5 calls? (c) The hotline can handle at most 6 calls per hour. In what fraction of hours is it overloaded?
 """
 
-# ╔═╡ 94c3aadf-28c8-51db-a8ea-9496913dbe8d
-solution(pw, "Q8sKfPBWgRaB5b8tSxKuo7QIVx8704z8MgYN7RQrVZR/oCsc74rAYoVEM9f03nSq+vTH8OFMVjr9W2bG2cuWmVCyVZiW5P2ANnqR0SO1wzj5zmfNdMOmm2JK7kSL/kkvdOOcncIo2QL1oYr2PXYt5L+6f9ZKPOB4ib053N62z8y6XzB3EkU9A9SXZOPzgSzc3UnGjiiHpk/ADzmseba95aajCGi0qOOgvQSOP6F5//u6eV/O3lShf4nkO7v1yKwP7e/2ZgQ39uWqmU7qT5ytQmFpY0yA0bARFoUYldi3szi1tZmYdb3xeqVUgi2macABCbcAXzDT4VJgw7E7cMI4+FZRFaEmsmh1RTvM9Yi1p7K+OIiaCQR6wgi185ggQwItIWI02wkqebGRjqbF+3Bf9mACv6n2acKrAUDwSupj8HGP3ZFU9Q0="; title = "Solution to Example 8.2")
-
 # ╔═╡ 636bcacc-2d74-83b7-2fcb-61d831dc48a2
 md"""
 **Example 8.3.** The lifetime of an electronic component is exponentially distributed with mean 5 years. (a) What is the probability that it fails within the first year? (b) What is the median lifetime? (c) A component has worked for 5 years. What is the probability that it works for another 5 years?
 """
-
-# ╔═╡ cd7c651f-63ac-391c-50ac-1353c65aaa3c
-solution(pw, "Qx0xcU3WrA0kr3p+YNGjcIyGSUPU8lkHHwdS0uIukgxKvu4xo6FJqoVw6GLs/ZJlBDRwMCilP+VBrMr8/sHVZ7wOMQmGvoKbzEIW//UX4YyX36NO4O6FZ7q/BkwAqj/qnyEkuaAJbtD/kmQL92Iuan+7y+6OJ/Y3p2iDdUm/nDFzRG+68dvz9dWhdWOTj0ozM9WpGyFOom1yJVDLTrFN9nU/8rOoFdgsz3tBlEHjpxcLiJYcyusZf75Cu3oyEsW0JLzZQqbia5lF5NrMUcXkYWnpPnPQhJSJQ9fb6+Qz5sAD85wIVelFmK6HsGN2vM2T5GpJJ0auihKwCYpV6ERwl9R1rh1PoNLuHRRRslzgp0oVeAagnGVWjl++gmim2fLj/u0pXda0SND+tvAe7EskyOOh2hvIjWkq20UBFKakJSPoNLYIR3Co1DQ+OcPBmqEZ62Bvtg5AXJZ7cWqK7I74WLlPAUS/iuwLEU2e+LKBuhy+/DO1U2pFJFc4fs5GDGAk0NaltzSHgtg="; title = "Solution to Example 8.3")
 
 # ╔═╡ 6596d7fa-bfb7-d365-316c-fbd07644a72a
 md"""
@@ -515,9 +516,6 @@ where ``\Phi`` is the CDF of the standard normal distribution ``\mathcal N(0, 1)
 
 **Example 8.4.** The filling weight of coffee packages is normally distributed with ``\mu = 502`` g and ``\sigma = 4`` g. (a) What fraction of packages weighs less than the declared 500 g? (b) Below which weight lie the lightest 1 % of the packages? Use ``\Phi(0.5) = 0.6915`` and ``\Phi^{-1}(0.01) = -2.326``.
 """
-
-# ╔═╡ 72335459-d175-30f5-6101-758984005c2e
-solution(pw, "771arBdjakRe45v8mlrZxWt6OXaF44LxQRllgw+n+BDBlV/zxh5MhQ+SSXn8AsLE8RzMUoBTJqgBSMlnfYaMR0qaBfuf9XgdSfN3vvkshcu+w0Ck03JhtMQ9eT1nhCE8IzY+qfE2H4OAX357s5IyCxd4ikzOQz3zePsi72ivUWOBpEd+/NjMYtF4Kl21EPFRzx8jAKp775rx+althdAGcF2dr665a4JQ8htb04YNFE2RgDjAnsS7J7+9oftTF+L3hnBAMvMrV7zcMCkszjA+RiA8CFloqJiqHtHnXZNHtNaUkG8zcmDsHbY/Ppwdmbt+kql/"; title = "Solution to Example 8.4")
 
 # ╔═╡ a97689aa-309c-a508-c44e-4df55f2e793a
 md"""
@@ -595,40 +593,25 @@ md"""
 **Problem 1.** For two events, ``P(A) = 0.5``, ``P(B) = 0.4`` and ``P(A \cup B) = 0.7``. (a) Compute ``P(A \cap B)``. (b) Are ``A`` and ``B`` independent? (c) Compute ``P(A \mid B)`` and ``P(B \mid A)``.
 """
 
-# ╔═╡ 7f8cd34d-982e-775d-da30-01956444611d
-solution(pw, "Urzf/4jlqq0kS0Pezh604BI3vq1HRhx1BcMBbpntcRfkY4proo35tAQHzK+KqMGRirxsSHJTG1tOqTMOext6t1nY9v3z6tFx4M9LAjtZgLDsFVVh33rgurutDnOc8kR1rhQYU31vqkNp3+xOtCTAYucDdytnM2CpWpHj2a3PvuXYY400T/2JkOFYQkHSdvrr26lC6rIqxYRN/qLS3YkMWSbq91YdvjozqwTk6imaxheQn7fotyvWpEyeioYnHlbn6ILQj0JZ4zQM0bI4CKH6xbND5UCM/4LMk0r8ddkFEi28UB4SgBIFmMISbHkNw6JHfepMYhqX2dmno6m9nITsmQJPED2oZXyF4VIk35RDW2zOX2zLABgyD+gILi+Qlk+a4btGoQILcYxsG7XbdU4gYCxuerSXcQ=="; title = "Solution to Problem 1")
-
 # ╔═╡ 04c2e89a-0b93-f00b-cae9-b1319dc64958
 md"""
 **Problem 2.** A committee of 3 persons is chosen at random from 5 women and 4 men. (a) How many different committees are possible? (b) What is the probability that the committee consists of 2 women and 1 man? (c) What is the probability that it contains at least one man?
 """
-
-# ╔═╡ b0788314-9702-bdc3-a02f-b19c69dc62e2
-solution(pw, "AA6rFrfBHd0SCa1l2MmpMGI7+Qo6rg2Aw3NVvC6P5XFcZ2TOUJt2Y84RLZfeEIMNgEabovLbrZgUPU7Ni5ku7pIDbDPPl1LuKphGYPOPb7E10iWArvEX+fLoViAVvEVW+7TbYxhw6T1if3tjuC8DCOoahpSWGQlfnsetPDECrlHeV0kpWbpmNPFxJnw7c389EMAKwmuv5I+BJfHPjk0uqDdz4A3RDhc8gMSxlXVKIQ4jmEzZNtRXPTyumVTx7MvmT3aqOyqB+I/gI3UNtKJficMVB7ZK6GK9CWRi/MbEl4vsesMJ1TsSSz+wQJPtbAtNtg=="; title = "Solution to Problem 2")
 
 # ╔═╡ 486619e5-4bc3-8708-19a0-cacaf3d026f6
 md"""
 **Problem 3.** A factory has three production lines that produce 50 %, 30 % and 20 % of the output; their defect rates are 1 %, 2 % and 5 %. (a) Compute the probability that a randomly chosen product is defective. (b) A product is defective. Compute the probability that it comes from each line. (c) Explain in one sentence why the answer to (b) differs from the defect rates.
 """
 
-# ╔═╡ 1bfd04a5-4240-d653-ab9b-cd710024917b
-solution(pw, "t/EG+FNktHT00E3fFKbGqV5hngtRuGl+B6Vz1ejGdu9Ke1/T7IrDACLv12uddGAGyclgr2PDUI1d6P6XpducPZEXqJvWjbhSvssE5pguCjBfa+9Q465JR0PVfgaRsbWcQpBQLAe1BXguew3Kw/BCTDanmFCfS5OWYYkxNz+YlXoJOmjGDtkt80nVjyQxFNG6+kx2HcnxkuZECaAlrtYcu0jDB7jy79o/B+JbHGOBg0EKxQUlt8Dhk1vxx0bSIoE1R4C3q3eLh8Uiv/pJIED7GQbv8Qfk8ke48YNThYDIOYRZj2MXriyzsE25eyiMJLM20bgcpwhbb9Xp4ly81TvVrjpeOJk+gv3q+ql4FFSu19HLGknQap0d6mQ2o88dVZxMRz0d8KOldtXgiqQFVj/7xd4oVByHreYbNjdnBV+DTc20vGclfbEuimW2FFIsQ0Rjv94lE8epDwlcvjuO6D0LlTkdfCnc9Te6g6HfgL/f0QyozArexjBdcztx5RUGUNqZUyvmyoB6v5AevvTD29JCOSEUkhJvBdgo2+Z0fCuyzgprKEPrvbfDKVWxkPwVzhyygolerIxC6aIOyR3KbwptQdGZuZnXwZ2W3t9+/IdZibTz1w=="; title = "Solution to Problem 3")
-
 # ╔═╡ a7796982-5923-905a-140e-9e79aa3d65cb
 md"""
 **Problem 4.** A discrete random variable takes the values 0, 1, 2 with probabilities 0.5, 0.3, 0.2. (a) Compute ``E[X]``, ``E[X^2]`` and ``\mathrm{Var}(X)``. (b) Compute mean and variance of ``Y = 3X - 2``. (c) Write down the CDF of ``X``.
 """
 
-# ╔═╡ 495f4e1a-279b-264a-f204-c246cccce481
-solution(pw, "FcxoirbfdcbduGuFb253VDWT/ISwGKp46SAz0b0T8sGZ6mtuYi5mc3DUE5txknz4kg8ERK/8w9Tv31PNr0yxt7K9GkihD6yKgNcRb49BM3B+Vb/Lkorz1ASF4ZiVz65nbGZYO2CMCAXBcGAHWOQN/vCrVkgBQqxuwqLnFXdY8GRJ4PUKFj+kLcT89Nc+LBNr/OqPQHNUnyyfzilF/FNE+1E/VqJsalKmqGZoqjysP06l661/x5OdO1Ha610FT+X2XluGusqL8nbPZUMc6euXq8YniolD8lfGcVBU040kyLHK6EuQ+6xplp4R6P/AlJ7z2U48TGRwDntQxTFe0S7wLeuuY5D7iOjZVseIjeDbtgakrniXYK1iOFmQSDRy7F1O4zuhoeE//v61XlB2DDprcQ93UsFsXr0OWqdR4Uw8Pmjt+51NZlbFHANTvyzkMnlg6OtowTp8YkufFQxRcQIz7RII"; title = "Solution to Problem 4")
-
 # ╔═╡ ee550866-c25c-abfa-268f-4eff9ef34e87
 md"""
 **Problem 5.** A continuous random variable has the density ``f(x) = c\,x^2`` on ``[0, 2]`` and 0 elsewhere. (a) Determine ``c``. (b) Compute ``P(X \le 1)``. (c) Compute ``E[X]`` and ``\mathrm{Var}(X)``. (d) Determine the median.
 """
-
-# ╔═╡ e617cbea-70a6-998e-7c50-39228342a128
-solution(pw, "/usWiDjgHg3cLGkrn3h+Hh09JuSBg1Dsw5agEsZmApS+OrfuoMzfrTL6AEKiBQaEFFIGm/m0prdCgWlvjJt7E/LSno2hQ1U85mIQUc+M7hhmpoX4gXb9dVG1xPUqXYjPCKdrHCibRl9thvc5CK43cGIax4dJqroP30eD+0ukX+iWLkfFQjfVk8gpPiPCVctp9ff0EK8RrgxIpEEUkL4h7hGUgGFVOqy8Yi8Tpm7fYbpuQB/kR92amOBCML/bEtGwfChe/NFlH/6f4k2MV8BBOaODuOiZ7SvRg+MFY4O7jbYKXxe3Z+8UielDfuJRGUx6mULI1lxTgtcRrE/fs9kZ4tppfvvXqGM2v38KicsO6gXgl9eQ1DFDMTGIsAeQmUBWwKLq0AFuHEqoTkPzad4ZzdMIvrtP16xuglDI09SvUBoIDTe2/uvE6ReJUF+9D+J79aGiNgESpEW41Xfed5cyk5+NbxaMYoskptyAso16uigIHUfsx7FYQVZLFBz9FeHtqxZvoN6OPAn5lheNsAlV"; title = "Solution to Problem 5")
 
 # ╔═╡ a6f81dee-9307-de84-1014-084ff001980a
 md"""
@@ -644,9 +627,6 @@ function mean_var(values, probs)
 	return (m, m2 - m^2)
 end;
 
-# ╔═╡ bdb8f72d-117c-e5ca-3a52-6b4f41181f63
-solution(pw, "RYckhQhiZZpPq8xAEKBpRLIjcTwo40g2pu3cja77D/ocb1WwhmdfRN2kQXyDr3KAxG0iZm9/KkmAoDeAPYFvcvG3IRV0ZcU8DYhMR2U+tu/gy0gbyixjmjB6KJcQx/UeZUcgkQDzXs7XRxbUQXNAZSi2XHlNmimwJK3rWhjXKOMmXKQ1ml0ypgpLDBrS/Cq7jlL22WCYY6Bva6wUKFbDY++ucSXuWDf9n3Kr/D1mk4TvkXHhFCxpedORoa9bkHsPa6g81NeWL1VTfDXp1l4RAsYmMOC5UB51U8Az5fM2CLG8k1r2tuKTy890L7MVTFnEvo1b6+71ONPUinVfgy8gnn/jZ6U="; title = "Solution to Exercise 1")
-
 # ╔═╡ 1a33514e-bd6d-bc9d-894a-439623a56699
 md"""
 **Exercise 2 · The binomial PMF.** Complete `binom_pmf(k, n, p)` using the formula of Section 8.1. The function `binomial(n, k)` computes ``\binom{n}{k}``.
@@ -656,9 +636,6 @@ md"""
 function binom_pmf(k, n, p)
 	return missing   # your code here
 end;
-
-# ╔═╡ 85dc7ada-c6f5-47b1-fdf6-70e53d467a5b
-solution(pw, "je3etaFRUjfqr7681Y1kxAkCb7c+9QFPyBEG4PA45gDxfGOjJMGkIqzs5YC75qneoB3IjeGEaT4KEwrKg/GKBt2VDFaARBSJIO30DB9V8TmEMUSTHYnFhAFC6w/8PXYbkDPJCKlk1CDEA6ME6cxwgoSIEUUSVghQbFuirLKoxz5eLR2LKClwCsZ7R9UV0dLDrAQCFXLHdGqBvRNCE5MpW+yGtSjIx9iiRN1O+GHnaJox2Zvwp2Uaz8Qm+bpEQpWh9L7sQgYh0JaA3ukI7WvowM/iuQgKMRvaN8bTDT84ASa/GPpGEksmfPshveJbB3dKlGxRjzbD/p+QZh1aAie7dIU="; title = "Solution to Exercise 2")
 
 # ╔═╡ 6171131b-4213-62e2-1d02-82fc4b22087a
 md"""
@@ -674,9 +651,6 @@ function prob_two_dice(event)
 	return hits / 36
 end;
 
-# ╔═╡ 7147ee06-1085-ae4b-a8da-ad633a402b73
-solution(pw, "mxRXfn8n7OgQ4RLlsV4mH/3Dfjs7DeWjY2xhqhiKDY7jGBw28aJPhflvS5Cc5hMsWtlmZZSXeBA+jgrrlqqoUX3RJ9EmtXSYGYN8MWRfquM5YcBfkG6efaSpl5r/oa71e3ZpJ73Tzb6gxcj7ckrkFEZNN5z6ZolyOiPXj3oi8dy0K3udfz/kvCgac7rH/BZjBqNL9TxySAbMRleBVPsp+9rKPojY0rAs4utbW/iE6ImcQU9Kq4Q9gzPM6ttioQlgyFFY8ogQcEcdPriYg42pugZ1eOwUVtT8s+CgnjyIqDU3yuJbUligS/MP5UT8QBhqcoC9lse+/8a/kfrvDQ5BR3L38JAs6hWGH9Ta+0gNemeZL02r+6gPU4RnK4VXvuU4hAT9y1I4OfzubSYmhHc/QQhnDxQ+ke6/DyNj9lSfD781Q4Qk53qCM+kInAEbRI1DblSFUGP7rrS6qzCjhSnhFsF0K/ZEZVS8ker5KUOCHQ=="; title = "Solution to Exercise 3")
-
 # ╔═╡ c8663cd6-de2e-828f-415a-f558a3f4c86e
 md"""
 **Exercise 4 · Debugging: the birthday problem.** `birthday(n)` should return the probability that at least two of ``n`` persons share a birthday. Evaluate `birthday(1)` first: what must it return?
@@ -690,9 +664,6 @@ function birthday(n)
 	end
 	return 1 - p_all_different
 end;
-
-# ╔═╡ 84c27ad5-7d39-5fb5-5b1d-1432fef699b8
-solution(pw, "1YYIGZ+mRGMjsV0NmvyExlBQdNOMuhI3vRhATLhzopkOcJwEL72sA0sTMJQ4AW3XMFJU4UqgV0zeXsYvUVbniVXCDruvDWXUvv9od8JptSe9z4bJ/KYMJQk5/4CyCNvdkU/JjJ4IYHXBLJjE+MXg8NxU58INEydfmrjtVlFpon7zP2JF+qr+GLFU/Rj27slybHYRNNDxV4IDeV/EJ+j5gzpmyM3MbSrJacDQierO/A/023ocR/tuJi+YwxIBHS9AioL2nIIYEC1td/Jy8pPb5iQbji6ka3r4Ctm8WoQyxdvvUiJBgvNy5UQKRJNc8ZL0yhDEQE31f7BBtP2DIdCWCbOi9aeBHTdEbfX8knEobLBaa3NJ6zCx9eGAHmoBaLp1+xaEyhGSsDH471/eH6KeLgLVXJVpsyJkLfi+Ukn/2iAuZy97cBIw9SsVgYhWThvFsQvdHss6O3uQR2nRhSEIyk2wlneXbNUf3h6WgWlZESs="; title = "Solution to Exercise 4")
 
 # ╔═╡ c7ffbfab-6ffd-8da9-ad67-d85bb262ac46
 md"""
@@ -709,9 +680,6 @@ function monty_round(rng; switch)
 	end
 	return pick == prize
 end;
-
-# ╔═╡ 9c1000fb-901d-7cd5-c36c-278fa306809d
-solution(pw, "U2IwShKEkn5AF4rElmp1a8wif9ia+FHobcNs7myxQSkxVLK0xHZibRaEZc2fGoBiNhFxvK5KoJXALz+4taqHK1CBldWiF1cHXLTdjKUA6qwHgEbFe76kQE1XvFpcb23Ecgmv1VO0xtEAeFncL9lEAnsGGuF/gCCguz+3kCpkKkSYB5dMbR+MjfGqu+/JWqzXCGlaAZlLIRdBIE+pnub89LfNjQ4blnoifJ7e3abyDGCS8vdLig7nb/7uI/BPtjEfXbvXjNAlovAqAcr7q45wWuyI9zJe+tAiBtnMPxaYI5gzyST+A/YvEwqZM5i7gd8WAoXce0GO3Mn5wsT6a/FcKgLQAp2HdxKID6MHNqX5My+fpQkm7j8xbN6Q7h5gvI7x+TG/0+Mk5rkdMcsTn+xgam4AfK50Xbb8/g=="; title = "Solution to Exercise 6")
 
 # ╔═╡ 1738ff3e-0692-eb6b-1ea4-7f461e99d8e6
 md"""
@@ -1787,19 +1755,6 @@ mcq(md"Two dice are rolled and the sum is recorded. A student writes the sample 
 	md"There is no error." => md"``P(\text{sum} = 7) = 6/36 = 1/6``, not ``1/11``.";
 	correct = 2, head = "Check your understanding")
 
-# ╔═╡ a5579cb0-86f7-3ab6-bfb8-0391685088f8
-# ╠═╡ disabled = true
-#=╠═╡
-proof(show_math, "Derivation of the two rules", md"""
-**NOT.** ``A`` and ``\neg A`` are mutually exclusive and together form ``\Omega``. Axioms 3 and 2 give ``P(A) + P(\neg A) = P(\Omega) = 1``.
-
-**OR.** Write ``A \cup B`` as the union of three mutually exclusive sets: ``A`` without ``B``, ``B`` without ``A``, and ``A \cap B``. Likewise, ``A`` is the union of (``A`` without ``B``) and ``A \cap B``, and similarly for ``B``. Axiom 3 then gives
-```math
-P(A \cup B) = \big(P(A) - P(A \cap B)\big) + \big(P(B) - P(A \cap B)\big) + P(A \cap B) = P(A) + P(B) - P(A \cap B).
-```
-""")
-  ╠═╡ =#
-
 # ╔═╡ 88bace24-5b37-7d3d-3bf0-a710d0e27b1d
 numq(md"A lottery draws 6 numbers from 1 to 49; the order of drawing does not matter. How many different tickets are possible?", 13983816,
 	why = md"``\binom{49}{6} = 13\,983\,816``. A single ticket wins with probability ``7.2 \cdot 10^{-8}``.", head = "Check your understanding")
@@ -1890,6 +1845,9 @@ mcq(md"``X`` is uniformly distributed on ``\{-1, 0, 1\}`` and ``Y = X^2``. Which
 	md"``X`` and ``Y`` are positively correlated." => md"For negative ``X``, ``Y`` is positive as well; the positive and negative contributions to the covariance cancel.";
 	correct = 2, head = "Common pitfall")
 
+# ╔═╡ 83778b1e-6f8b-7145-f7f2-48f42467e36e
+solution(pw, "0YSRPo0BjoRz7xqdR936ZnhrnduP/67F3hx5wxMiaac/voT0BgvWnB4yAJT64yEu8L/XBhWrEWEQW4HQFPA2MuoGpLG9iQNhfnuhzQJN2l0OW+iSpqvuqyVOZpWgPsYHZ0r5EH21C8P+GSZj/LYF5pDRWeItpHPF73GseKdbUudi/srcAjC//FhyBiXLPHGemzniNqZ6k0AD5sUiFj05Uq58mH3tOnKViptFc9xq1JAz5GgFfklYWs4Z+9RDg16NgQgYWtdE++KE5KXKZL72sCZpr5pMwsth3ZPEIw9sW6qSWNXd6M4Fyme+3nYisaISpS/8bVyptKUttSkVjjsI3hVyKvRn"; title = "Solution to Example 8.1")
+
 # ╔═╡ 55c537f7-a73f-6e6c-6e09-67d95814ad1d
 proof(show_math, "Derivation of the Poisson limit", md"""
 With ``p = \lambda/n``,
@@ -1898,8 +1856,47 @@ With ``p = \lambda/n``,
 ```
 """)
 
+# ╔═╡ 94c3aadf-28c8-51db-a8ea-9496913dbe8d
+solution(pw, "Q8sKfPBWgRaB5b8tSxKuo7QIVx8704z8MgYN7RQrVZR/oCsc74rAYoVEM9f03nSq+vTH8OFMVjr9W2bG2cuWmVCyVZiW5P2ANnqR0SO1wzj5zmfNdMOmm2JK7kSL/kkvdOOcncIo2QL1oYr2PXYt5L+6f9ZKPOB4ib053N62z8y6XzB3EkU9A9SXZOPzgSzc3UnGjiiHpk/ADzmseba95aajCGi0qOOgvQSOP6F5//u6eV/O3lShf4nkO7v1yKwP7e/2ZgQ39uWqmU7qT5ytQmFpY0yA0bARFoUYldi3szi1tZmYdb3xeqVUgi2macABCbcAXzDT4VJgw7E7cMI4+FZRFaEmsmh1RTvM9Yi1p7K+OIiaCQR6wgi185ggQwItIWI02wkqebGRjqbF+3Bf9mACv6n2acKrAUDwSupj8HGP3ZFU9Q0="; title = "Solution to Example 8.2")
+
+# ╔═╡ cd7c651f-63ac-391c-50ac-1353c65aaa3c
+solution(pw, "Qx0xcU3WrA0kr3p+YNGjcIyGSUPU8lkHHwdS0uIukgxKvu4xo6FJqoVw6GLs/ZJlBDRwMCilP+VBrMr8/sHVZ7wOMQmGvoKbzEIW//UX4YyX36NO4O6FZ7q/BkwAqj/qnyEkuaAJbtD/kmQL92Iuan+7y+6OJ/Y3p2iDdUm/nDFzRG+68dvz9dWhdWOTj0ozM9WpGyFOom1yJVDLTrFN9nU/8rOoFdgsz3tBlEHjpxcLiJYcyusZf75Cu3oyEsW0JLzZQqbia5lF5NrMUcXkYWnpPnPQhJSJQ9fb6+Qz5sAD85wIVelFmK6HsGN2vM2T5GpJJ0auihKwCYpV6ERwl9R1rh1PoNLuHRRRslzgp0oVeAagnGVWjl++gmim2fLj/u0pXda0SND+tvAe7EskyOOh2hvIjWkq20UBFKakJSPoNLYIR3Co1DQ+OcPBmqEZ62Bvtg5AXJZ7cWqK7I74WLlPAUS/iuwLEU2e+LKBuhy+/DO1U2pFJFc4fs5GDGAk0NaltzSHgtg="; title = "Solution to Example 8.3")
+
+# ╔═╡ 72335459-d175-30f5-6101-758984005c2e
+solution(pw, "771arBdjakRe45v8mlrZxWt6OXaF44LxQRllgw+n+BDBlV/zxh5MhQ+SSXn8AsLE8RzMUoBTJqgBSMlnfYaMR0qaBfuf9XgdSfN3vvkshcu+w0Ck03JhtMQ9eT1nhCE8IzY+qfE2H4OAX357s5IyCxd4ikzOQz3zePsi72ivUWOBpEd+/NjMYtF4Kl21EPFRzx8jAKp775rx+althdAGcF2dr665a4JQ8htb04YNFE2RgDjAnsS7J7+9oftTF+L3hnBAMvMrV7zcMCkszjA+RiA8CFloqJiqHtHnXZNHtNaUkG8zcmDsHbY/Ppwdmbt+kql/"; title = "Solution to Example 8.4")
+
 # ╔═╡ 9dfb719a-f728-2979-3298-ccb19b7fde3c
 reveal(md"""(a) The rate is not constant. Locally, over short periods, the waiting time is approximately exponential, but over a whole day it is not. (b) The calls are not independent: one event (the advertisement) triggers many calls, which arrive in clusters. Waiting times are then more often very short and very long than in the exponential model. (c) A tyre ages: the probability of failure in the next month increases with the distance driven. The waiting time has memory and is not exponential; models with an increasing failure rate (for example the Weibull distribution) are used instead.""")
+
+# ╔═╡ 7f8cd34d-982e-775d-da30-01956444611d
+solution(pw, "Urzf/4jlqq0kS0Pezh604BI3vq1HRhx1BcMBbpntcRfkY4proo35tAQHzK+KqMGRirxsSHJTG1tOqTMOext6t1nY9v3z6tFx4M9LAjtZgLDsFVVh33rgurutDnOc8kR1rhQYU31vqkNp3+xOtCTAYucDdytnM2CpWpHj2a3PvuXYY400T/2JkOFYQkHSdvrr26lC6rIqxYRN/qLS3YkMWSbq91YdvjozqwTk6imaxheQn7fotyvWpEyeioYnHlbn6ILQj0JZ4zQM0bI4CKH6xbND5UCM/4LMk0r8ddkFEi28UB4SgBIFmMISbHkNw6JHfepMYhqX2dmno6m9nITsmQJPED2oZXyF4VIk35RDW2zOX2zLABgyD+gILi+Qlk+a4btGoQILcYxsG7XbdU4gYCxuerSXcQ=="; title = "Solution to Problem 1")
+
+# ╔═╡ b0788314-9702-bdc3-a02f-b19c69dc62e2
+solution(pw, "AA6rFrfBHd0SCa1l2MmpMGI7+Qo6rg2Aw3NVvC6P5XFcZ2TOUJt2Y84RLZfeEIMNgEabovLbrZgUPU7Ni5ku7pIDbDPPl1LuKphGYPOPb7E10iWArvEX+fLoViAVvEVW+7TbYxhw6T1if3tjuC8DCOoahpSWGQlfnsetPDECrlHeV0kpWbpmNPFxJnw7c389EMAKwmuv5I+BJfHPjk0uqDdz4A3RDhc8gMSxlXVKIQ4jmEzZNtRXPTyumVTx7MvmT3aqOyqB+I/gI3UNtKJficMVB7ZK6GK9CWRi/MbEl4vsesMJ1TsSSz+wQJPtbAtNtg=="; title = "Solution to Problem 2")
+
+# ╔═╡ 1bfd04a5-4240-d653-ab9b-cd710024917b
+solution(pw, "t/EG+FNktHT00E3fFKbGqV5hngtRuGl+B6Vz1ejGdu9Ke1/T7IrDACLv12uddGAGyclgr2PDUI1d6P6XpducPZEXqJvWjbhSvssE5pguCjBfa+9Q465JR0PVfgaRsbWcQpBQLAe1BXguew3Kw/BCTDanmFCfS5OWYYkxNz+YlXoJOmjGDtkt80nVjyQxFNG6+kx2HcnxkuZECaAlrtYcu0jDB7jy79o/B+JbHGOBg0EKxQUlt8Dhk1vxx0bSIoE1R4C3q3eLh8Uiv/pJIED7GQbv8Qfk8ke48YNThYDIOYRZj2MXriyzsE25eyiMJLM20bgcpwhbb9Xp4ly81TvVrjpeOJk+gv3q+ql4FFSu19HLGknQap0d6mQ2o88dVZxMRz0d8KOldtXgiqQFVj/7xd4oVByHreYbNjdnBV+DTc20vGclfbEuimW2FFIsQ0Rjv94lE8epDwlcvjuO6D0LlTkdfCnc9Te6g6HfgL/f0QyozArexjBdcztx5RUGUNqZUyvmyoB6v5AevvTD29JCOSEUkhJvBdgo2+Z0fCuyzgprKEPrvbfDKVWxkPwVzhyygolerIxC6aIOyR3KbwptQdGZuZnXwZ2W3t9+/IdZibTz1w=="; title = "Solution to Problem 3")
+
+# ╔═╡ 495f4e1a-279b-264a-f204-c246cccce481
+solution(pw, "FcxoirbfdcbduGuFb253VDWT/ISwGKp46SAz0b0T8sGZ6mtuYi5mc3DUE5txknz4kg8ERK/8w9Tv31PNr0yxt7K9GkihD6yKgNcRb49BM3B+Vb/Lkorz1ASF4ZiVz65nbGZYO2CMCAXBcGAHWOQN/vCrVkgBQqxuwqLnFXdY8GRJ4PUKFj+kLcT89Nc+LBNr/OqPQHNUnyyfzilF/FNE+1E/VqJsalKmqGZoqjysP06l661/x5OdO1Ha610FT+X2XluGusqL8nbPZUMc6euXq8YniolD8lfGcVBU040kyLHK6EuQ+6xplp4R6P/AlJ7z2U48TGRwDntQxTFe0S7wLeuuY5D7iOjZVseIjeDbtgakrniXYK1iOFmQSDRy7F1O4zuhoeE//v61XlB2DDprcQ93UsFsXr0OWqdR4Uw8Pmjt+51NZlbFHANTvyzkMnlg6OtowTp8YkufFQxRcQIz7RII"; title = "Solution to Problem 4")
+
+# ╔═╡ e617cbea-70a6-998e-7c50-39228342a128
+solution(pw, "/usWiDjgHg3cLGkrn3h+Hh09JuSBg1Dsw5agEsZmApS+OrfuoMzfrTL6AEKiBQaEFFIGm/m0prdCgWlvjJt7E/LSno2hQ1U85mIQUc+M7hhmpoX4gXb9dVG1xPUqXYjPCKdrHCibRl9thvc5CK43cGIax4dJqroP30eD+0ukX+iWLkfFQjfVk8gpPiPCVctp9ff0EK8RrgxIpEEUkL4h7hGUgGFVOqy8Yi8Tpm7fYbpuQB/kR92amOBCML/bEtGwfChe/NFlH/6f4k2MV8BBOaODuOiZ7SvRg+MFY4O7jbYKXxe3Z+8UielDfuJRGUx6mULI1lxTgtcRrE/fs9kZ4tppfvvXqGM2v38KicsO6gXgl9eQ1DFDMTGIsAeQmUBWwKLq0AFuHEqoTkPzad4ZzdMIvrtP16xuglDI09SvUBoIDTe2/uvE6ReJUF+9D+J79aGiNgESpEW41Xfed5cyk5+NbxaMYoskptyAso16uigIHUfsx7FYQVZLFBz9FeHtqxZvoN6OPAn5lheNsAlV"; title = "Solution to Problem 5")
+
+# ╔═╡ bdb8f72d-117c-e5ca-3a52-6b4f41181f63
+solution(pw, "RYckhQhiZZpPq8xAEKBpRLIjcTwo40g2pu3cja77D/ocb1WwhmdfRN2kQXyDr3KAxG0iZm9/KkmAoDeAPYFvcvG3IRV0ZcU8DYhMR2U+tu/gy0gbyixjmjB6KJcQx/UeZUcgkQDzXs7XRxbUQXNAZSi2XHlNmimwJK3rWhjXKOMmXKQ1ml0ypgpLDBrS/Cq7jlL22WCYY6Bva6wUKFbDY++ucSXuWDf9n3Kr/D1mk4TvkXHhFCxpedORoa9bkHsPa6g81NeWL1VTfDXp1l4RAsYmMOC5UB51U8Az5fM2CLG8k1r2tuKTy890L7MVTFnEvo1b6+71ONPUinVfgy8gnn/jZ6U="; title = "Solution to Exercise 1")
+
+# ╔═╡ 85dc7ada-c6f5-47b1-fdf6-70e53d467a5b
+solution(pw, "je3etaFRUjfqr7681Y1kxAkCb7c+9QFPyBEG4PA45gDxfGOjJMGkIqzs5YC75qneoB3IjeGEaT4KEwrKg/GKBt2VDFaARBSJIO30DB9V8TmEMUSTHYnFhAFC6w/8PXYbkDPJCKlk1CDEA6ME6cxwgoSIEUUSVghQbFuirLKoxz5eLR2LKClwCsZ7R9UV0dLDrAQCFXLHdGqBvRNCE5MpW+yGtSjIx9iiRN1O+GHnaJox2Zvwp2Uaz8Qm+bpEQpWh9L7sQgYh0JaA3ukI7WvowM/iuQgKMRvaN8bTDT84ASa/GPpGEksmfPshveJbB3dKlGxRjzbD/p+QZh1aAie7dIU="; title = "Solution to Exercise 2")
+
+# ╔═╡ 7147ee06-1085-ae4b-a8da-ad633a402b73
+solution(pw, "mxRXfn8n7OgQ4RLlsV4mH/3Dfjs7DeWjY2xhqhiKDY7jGBw28aJPhflvS5Cc5hMsWtlmZZSXeBA+jgrrlqqoUX3RJ9EmtXSYGYN8MWRfquM5YcBfkG6efaSpl5r/oa71e3ZpJ73Tzb6gxcj7ckrkFEZNN5z6ZolyOiPXj3oi8dy0K3udfz/kvCgac7rH/BZjBqNL9TxySAbMRleBVPsp+9rKPojY0rAs4utbW/iE6ImcQU9Kq4Q9gzPM6ttioQlgyFFY8ogQcEcdPriYg42pugZ1eOwUVtT8s+CgnjyIqDU3yuJbUligS/MP5UT8QBhqcoC9lse+/8a/kfrvDQ5BR3L38JAs6hWGH9Ta+0gNemeZL02r+6gPU4RnK4VXvuU4hAT9y1I4OfzubSYmhHc/QQhnDxQ+ke6/DyNj9lSfD781Q4Qk53qCM+kInAEbRI1DblSFUGP7rrS6qzCjhSnhFsF0K/ZEZVS8ker5KUOCHQ=="; title = "Solution to Exercise 3")
+
+# ╔═╡ 84c27ad5-7d39-5fb5-5b1d-1432fef699b8
+solution(pw, "1YYIGZ+mRGMjsV0NmvyExlBQdNOMuhI3vRhATLhzopkOcJwEL72sA0sTMJQ4AW3XMFJU4UqgV0zeXsYvUVbniVXCDruvDWXUvv9od8JptSe9z4bJ/KYMJQk5/4CyCNvdkU/JjJ4IYHXBLJjE+MXg8NxU58INEydfmrjtVlFpon7zP2JF+qr+GLFU/Rj27slybHYRNNDxV4IDeV/EJ+j5gzpmyM3MbSrJacDQierO/A/023ocR/tuJi+YwxIBHS9AioL2nIIYEC1td/Jy8pPb5iQbji6ka3r4Ctm8WoQyxdvvUiJBgvNy5UQKRJNc8ZL0yhDEQE31f7BBtP2DIdCWCbOi9aeBHTdEbfX8knEobLBaa3NJ6zCx9eGAHmoBaLp1+xaEyhGSsDH471/eH6KeLgLVXJVpsyJkLfi+Ukn/2iAuZy97cBIw9SsVgYhWThvFsQvdHss6O3uQR2nRhSEIyk2wlneXbNUf3h6WgWlZESs="; title = "Solution to Exercise 4")
+
+# ╔═╡ 9c1000fb-901d-7cd5-c36c-278fa306809d
+solution(pw, "U2IwShKEkn5AF4rElmp1a8wif9ia+FHobcNs7myxQSkxVLK0xHZibRaEZc2fGoBiNhFxvK5KoJXALz+4taqHK1CBldWiF1cHXLTdjKUA6qwHgEbFe76kQE1XvFpcb23Ecgmv1VO0xtEAeFncL9lEAnsGGuF/gCCguz+3kCpkKkSYB5dMbR+MjfGqu+/JWqzXCGlaAZlLIRdBIE+pnub89LfNjQ4blnoifJ7e3abyDGCS8vdLig7nb/7uI/BPtjEfXbvXjNAlovAqAcr7q45wWuyI9zJe+tAiBtnMPxaYI5gzyST+A/YvEwqZM5i7gd8WAoXce0GO3Mn5wsT6a/FcKgLQAp2HdxKID6MHNqX5My+fpQkm7j8xbN6Q7h5gvI7x+TG/0+Mk5rkdMcsTn+xgam4AfK50Xbb8/g=="; title = "Solution to Exercise 6")
 
 # ╔═╡ 3ad6f6c2-5d1d-58e1-408c-bc3006ae1b4b
 # figures
@@ -2584,6 +2581,9 @@ end;
 # ╔═╡ 006f021e-087e-40cd-e940-f311ddb26ca4
 figure_1_1(s1_ex)
 
+# ╔═╡ 814b0094-53a9-137f-aaf1-c3cea64dbdc9
+montyhall_game()
+
 # ╔═╡ 7e2d1664-bbd8-5829-6739-c16fadca983d
 figure_3_6()
 
@@ -2933,24 +2933,6 @@ table.tbl tr:nth-child(even) td{background:#f6f6f3}
 details.hint{margin-top:4px}
 details.hint summary{cursor:pointer;font-weight:600}
 </style>"""
-
-# ╔═╡ c1c1fe8f-4dbf-42a5-8441-fb7802fb92a1
-HTML("""
-<script>
-(function () {
-	let tries = 0;
-	const timer = setInterval(() => {
-		const tab = document.querySelector("#process-status-tab-button");
-		if (tab) {
-			tab.click();
-			clearInterval(timer);
-		} else if (++tries > 60) {
-			clearInterval(timer);
-		}
-	}, 500);
-})();
-</script>
-""")
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -3721,7 +3703,7 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─7a7f1404-b2f9-cb94-8a1f-f3ff0a9a9450
 # ╟─25d01d86-4470-d901-7c7f-2f5143870d2f
 # ╟─99564cdb-737c-f1be-0c75-2c0d6b0e1dff
-# ╠═3ad6f6c2-5d1d-58e1-408c-bc3006ae1b4b
+# ╟─3ad6f6c2-5d1d-58e1-408c-bc3006ae1b4b
 # ╟─340cdc26-d96f-0212-edfc-f5b65ae22efb
 # ╟─95604cc8-0e65-2aef-fa54-84f6f2a613ee
 # ╟─5721bf8d-183a-2e54-3234-1272b4c392dd
@@ -3734,6 +3716,5 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─643c3c88-8139-195c-2b0b-e817d9d7c3b0
 # ╟─117bdd63-7da7-0d16-32bc-9a1f4e270dda
 # ╟─65f31e20-fc4c-a93e-50b7-c30a7ef64deb
-# ╟─c1c1fe8f-4dbf-42a5-8441-fb7802fb92a1
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

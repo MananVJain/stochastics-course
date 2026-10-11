@@ -314,16 +314,10 @@ md"""
 **Problem 1.** For the bicycle chain, a bicycle starts at the Campus. (a) Compute the probability of the path Campus → Campus → Altmarkt → Neustadt. (b) Compute the distribution of the bicycle after two days. (c) Compute ``P(X_2 = \text{Campus} \mid X_0 = \text{Campus})``.
 """
 
-# ╔═╡ b4d99478-1cf5-6e3d-0335-e1d0b713ee96
-solution(pw, "L/qtwVyZZoY3AO9af5s/KSg92S08E5NUxAPQ4zDHzPaJGSHqWzZeAGJ5hETWjhJHfP/hWHvmF2eSLAdJcIddFrqduQ0BirGxUJppGPjcNZqLeVHcx02w8BnOh3kzTLAaLcRtQ/dmDKwV5ZGgFDjNmw8d9bfYw9R5lekKb3METyC9SBFo2PwlP215uKlwe9Ag6gKQK1u8opeDEIfNqkgbV9U+lDJN0+hE8+D4tOjmlaFnx7IOoKcq3OmId86mOJfC+n30ZGHge3veThJBHQ203zUhyWV7MNEcYJLPxBnvjxOAbRkVWPpBMWMr8MaBBII5S/G488dw9haNGKA0M7GGExnDFVEgpB9o6sYjJ/ojv3Od4MR1iBJT+RPycSKxgrLNBDIAmdxGgmA9XKaE//t4OQfv3Y5Ek0+Z5hj4Y5QZsSXHhQlovT3uyK4j0MZENqc9xYV6bWs9n+Kws4n8Ba+w8PqSR1vxSV5EybgcH/IAVrABLOd/jW47fWBW1Q4HlUD1tgp9jo0lkeY+l4P8RmHO+3tsNawEMkMA0Mo5rTrum8HxAnJp6S/n3Qlz3jbE8Vjl4CPkJn+a4/I0eXY9sE9Z86q6WF9K"; title = "Solution to Problem 1")
-
 # ╔═╡ ef43fac3-bee5-bd5a-4a36-22703979a08f
 md"""
 **Problem 2.** A chain has the transition matrix ``P = \begin{pmatrix} 0.9 & 0.1 \\ 0.5 & 0.5 \end{pmatrix}``. (a) Draw the state diagram. (b) Is the chain ergodic? (c) Compute the stationary distribution. (d) Compute ``P^2``.
 """
-
-# ╔═╡ 9afc3fbd-c863-ad7a-0201-731163f20e9f
-solution(pw, "aEeH45qwBPP4P6DfjzQmgkhw2MjZ3pv6wlB+GNLnglJcXeqWG99yjhHcaC8cfXviDGbrJOK4gYle74CLqzylz4w0sjsVQ+EoVpyIJwDXgp29fizqF4evUauK/RxuCbKpOqVaKQlhc+QSB/askNcy8NOjDfE7t6s3XdUhaBGXg9eUXgi+6g2o0JbbWZaDSpkXPtJfhuiFU0IafEG+Z9EVO6Oc2fVus/zSVUzon3818hjTakvjxA/BEM78hXF7H2g4Y3fuFcAdwi241a+W5q5yrg7eXiqdj5EQRtrIj+29/AdcMVEHUDrcbXo2wEuKIkJA8j2aOXkszgJ6ucW/VU6Dj8IB6phb6y6xQ82VdeOW7R8cgbswUIWYaHEmlqS2cYDD2eJvLqWdo/PlSF1ZLHrSN0YHkXZtBvLYMoZqz2IvG5aaz2qh6D5bqI8jC8whhchOQlQlJqjAqa+AVzldPBAfNBH1nxMEYynJ6NDTBaPV7ZqUeQtGNNDndCYMuD24z1KYCiPZ08LJS5wZ+6be5Al7YL7s5iKecxZVqHRw/Q=="; title = "Solution to Problem 2")
 
 # ╔═╡ 8aea2228-5660-2a9f-f19b-be7345292b8e
 md"""
@@ -336,16 +330,10 @@ P_3 = \begin{pmatrix} 0.5 & 0.5 & 0 \\ 0 & 0.5 & 0.5 \\ 0.5 & 0 & 0.5 \end{pmatr
 ```
 """
 
-# ╔═╡ 1a7c250b-d6bf-d28a-1fa3-304edfe2c38a
-solution(pw, "isseyVNOQC9K9EYfdix7bcmscRvMuRZRQ9DV45L67OV857huYVhI6g+BGd0aKs+/aGW92iSt1zeKyh5Bz/rzeq4hL4CMde+yXGtWrRZIVohyKD7ui3bul6WvLTrueKiU9N/y8KbKcvWtKlEsfYG13vfHZpkiPVsAZk1q+BzqMjxtC0R/GBzbRT8OKZlxWP1hNdNwmhC84bBHXz0KnHMaEg5vaYXs18RFnzeqemKjR7fWeHaXF30eES2oa7/WujBzhENVmgueS4Qc9NBuB6YP+GGqdWNyWjD269ZMzuaBpxGAj2MszXvRZx6ZsPQu97Mp34XB7qbli+5PsoJcBPC0NcgTk8f3YtjR7siUfQSmzBYBRprZAJexq757UO1JP86YXnpB/V2tYRWZy92DPkv1+3uw/WaAAtUaSuUQw107G46Kt7rDZu0WEs6awe4LF+HzCP4tvKjzRcW7MFZAbYvAeew/gXB61+BcqboxMk3Rj5EQxAeIdVBo0ajP0AQK6BQ0OmSocdEhnd14Ck+nLvRJY+OZ4M03lZ5opbL2NvzhVVOi3B2QxFI4u6nM6d5YcX4doxSKRfQXxvxhkP3vHwSyW1xgnNhT8TxKarvqRcBNjGb1erEXYod0RZzfWgymNm5o5pKb52lb9i2IIXRFBUavgg=="; title = "Solution to Problem 3")
-
 # ╔═╡ bebfecf6-fd82-e30c-2633-62d0e4c6f4c4
 md"""
 **Problem 4.** A process takes the values 0 and 1. The value at time ``n + 1`` equals the value at time ``n - 1`` with probability 0.8 and is otherwise the opposite. (a) Is ``X_n`` a Markov chain?
 """
-
-# ╔═╡ ebc7f26e-1018-9f03-13c9-10785abf9ea4
-solution(pw, "AVZTkUoO3lFezeeXCFcNrmg/LVd2FRrXUUXMbaYlH6+ORkcj0ebeo9OiUisSke9pCNGY6Ue5NiD5yvc6ySi8xz9We8BR9D3etqUWRKoDQodLMo9p10wWRlK6OTU0Myl5F7z6g1oz2ED+gcimneXn1LiYDbhTgyXp6z8hK3ngVqh8UKWKAQ=="; title = "Solution to Problem 4")
 
 # ╔═╡ 4efc2fc9-f75b-9367-1af1-d7cffbddfb18
 md"""
@@ -358,9 +346,6 @@ md"""
 function normalise_rows(C)
 	return missing   # your code here
 end;
-
-# ╔═╡ a3bfd27c-6ee0-11c0-d28b-b7b3ef1f3e91
-solution(pw, "Yzjx2DnpDuRQ0/cpaAAs5dpAr6A++JBfpe5CoGy0xJsbBvSMNSZty6LLVkdct4LjbsaXQKO478vTb7GSOcuyof0QNq+aszm0SmtIUFWPvqI8KTmFXLQbqx69ZkLMldoeZ77DJIp7jQ+n3nfD44lVW1iVkI9yApcX67LFyX5w4Bb9V95cld5GUyZ5Yqh8vt8x5aoAXDqlQD0QjYMdN9iL6zLX1iy+s5CMeIRxYoqJyqPQZiYXmIt/c4Qdtie1e1LshvN2dk4g27vDMJxkprhtGVONni4pqk5Cp/YBrDfpa6ageLG2PzQfX0069aaDS2wGEdDrGR6kLiBGrYYroHpmreFtCkO/FY5AT2vc3A+2QiBGi8iwcErIJKkPhu85"; title = "Solution to Exercise 1")
 
 # ╔═╡ 0e09964e-b4fc-5277-8da0-8d9713a2ab21
 md"""
@@ -377,9 +362,6 @@ function simulate_chain(P, x0, n, rng)
 	return x
 end;
 
-# ╔═╡ 69ff4c82-7cbe-af9c-8a8a-c73bb2d20eb9
-solution(pw, "6hRg578QQ11jDV9fZY/K7ptShBaJyHyJI5TV3SWW00+O8wcxa+Z9sS8dU/8sxFZhGq9FA4XfFOj2TwdUnKJw9/dsml5+5e8kbFYAAF0xnB/8fMKLhVRtSsHYANpWo14nODL+FVnFq/+wlCdGpHgKIKQ2NeSDR/FCqf2UHrw0Od7w5J4v9Uq88EAv6wjVKQYT8L6a3/SsQLcReSDBeFMORDngDvVUCH6AsXRBYgxpHjGmoLoDnPSxi/HHrQmFinJV1ODWcqQVC0v/TcxH36JcizyubJNyWgxwxLhrW50V+u6YZDmqd6QVEWwkw7ajEwKPeqwgYfWVHitavyTOZCt13BhdISsf4iQKnuvjcsTpONm/HjBfYwqJhlx+PhxirMR0cXpuW/2xyAAVS7QGkBDrkrUL8OJJvOBhj0q2SyBHc+jvadyP+3PQeM3xa153XY/Er+qnHby19XNEIuywsDEI"; title = "Solution to Exercise 2")
-
 # ╔═╡ ea8f76f1-0ce7-8f6a-60e0-f2d325c02c98
 md"""
 **Exercise 3 · Debugging: the distribution after ``n`` steps.** `distribution_after(P, π0, n)` should return ``\pi_0 P^n``. Predict how the faulty result depends on ``n``, then correct the update.
@@ -393,9 +375,6 @@ function distribution_after(P, π0, n)
 	end
 	return π
 end;
-
-# ╔═╡ 3c9dc54c-f230-b1b2-0b01-0df6751982b4
-solution(pw, "qFhTkdkvGqgv8ykknz/lGUyFMD3K4BfRH9XmSv6oL591tckqGxcW6f4QhVbGscsQShCtfbuIuNR8nuU3lf0hLvPHEH2t2+1yqG8n09uqNxOk29xiRwnucu8qG6cF2RR6ZpXnVtxRNPQeNBNS7JjbnImqBbNFCDlb+NCpkCOoYI7GB7kKPGv3Mm6iFTwEm3480s5WwNAOHm/3HUFzhNvvo2MKa2Cug2+D/osruC188e5OBREOawmepfqBZwGYrvbT5Ij5U9PbBkpprN6esIKrJrH0l8f691uj7DU3kZsPnArULk0/VvuQkTsNM1QYNhQHc7jv"; title = "Solution to Exercise 3")
 
 # ╔═╡ 5ae1ef4a-5819-edc1-bb9b-93de0f4649d8
 md"""
@@ -830,152 +809,6 @@ begin
 	end
 end;
 
-# ╔═╡ a2e99ae6-04b2-5c25-b415-68ca954ed85a
-begin
-	const MELODIES = Dict(
-		"Ode to Joy (Beethoven, 1824)" => [(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (64, 3), (62, 1), (62, 4),
-			(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (62, 3), (60, 1), (60, 4),
-			(62, 2), (62, 2), (64, 2), (60, 2), (62, 2), (64, 1), (65, 1), (64, 2), (60, 2), (62, 2), (64, 1), (65, 1), (64, 2), (62, 2), (60, 2), (62, 2), (55, 4),
-			(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (62, 3), (60, 1), (60, 4)],
-		"Alle meine Entchen (German folk song)" => [(60, 2), (62, 2), (64, 2), (65, 2), (67, 4), (67, 4), (69, 2), (69, 2), (69, 2), (69, 2), (67, 8), (69, 2), (69, 2), (69, 2), (69, 2), (67, 8),
-			(65, 2), (65, 2), (65, 2), (65, 2), (64, 4), (64, 4), (62, 2), (62, 2), (62, 2), (62, 2), (60, 8)],
-		"Ah vous dirai-je, maman (French folk song)" => [(60, 2), (60, 2), (67, 2), (67, 2), (69, 2), (69, 2), (67, 4), (65, 2), (65, 2), (64, 2), (64, 2), (62, 2), (62, 2), (60, 4),
-			(67, 2), (67, 2), (65, 2), (65, 2), (64, 2), (64, 2), (62, 4), (67, 2), (67, 2), (65, 2), (65, 2), (64, 2), (64, 2), (62, 4),
-			(60, 2), (60, 2), (67, 2), (67, 2), (69, 2), (69, 2), (67, 4), (65, 2), (65, 2), (64, 2), (64, 2), (62, 2), (62, 2), (60, 4)],
-		"Frère Jacques (French folk song)" => [(60, 2), (62, 2), (64, 2), (60, 2), (60, 2), (62, 2), (64, 2), (60, 2), (64, 2), (65, 2), (67, 4), (64, 2), (65, 2), (67, 4),
-			(67, 1), (69, 1), (67, 1), (65, 1), (64, 2), (60, 2), (67, 1), (69, 1), (67, 1), (65, 1), (64, 2), (60, 2), (60, 2), (55, 2), (60, 4), (60, 2), (55, 2), (60, 4)],
-		"Hänschen klein (German folk song)" => [(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (62, 2), (64, 2), (65, 2), (67, 2), (67, 2), (67, 4),
-			(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (64, 2), (67, 2), (67, 2), (60, 8),
-			(62, 2), (62, 2), (62, 2), (62, 2), (62, 2), (64, 2), (65, 4), (64, 2), (64, 2), (64, 2), (64, 2), (64, 2), (65, 2), (67, 4),
-			(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (64, 2), (67, 2), (67, 2), (60, 8)])
-
-	const MEL_ALL = "all five melodies"
-
-	const NOTE_NAMES = Dict(48 => "C3", 50 => "D3", 52 => "E3", 53 => "F3", 55 => "G3", 57 => "A3", 59 => "B3", 60 => "C4", 62 => "D4", 64 => "E4", 65 => "F4", 67 => "G4", 69 => "A4", 71 => "B4", 72 => "C5")
-
-	midi_hz(n) = 440.0 * 2.0^((n - 69) / 12)
-
-	const CHORDS = [("C", [0, 4, 7], 48), ("F", [5, 9, 0], 53), ("G", [7, 11, 2], 55), ("Am", [9, 0, 4], 57), ("Dm", [2, 5, 9], 50)]
-
-	function pianoroll(notes, title; w = 680, h = 190, pitches, group = "", eighth = 0.22, chords = nothing)
-		T = sum(last.(notes))
-		f = fig(w = w, h = h + (chords === nothing ? 0 : 14), xr = (0, T), yr = (0.5, length(pitches) + 0.5), xlabel = "time (eighth notes)", yticks = 1:length(pitches), yticklabels = [NOTE_NAMES[p] for p in pitches], l = 40, title = title, t = chords === nothing ? 30 : 44)
-		for b in 0:8:T
-			vline!(f, b; c = "#d8d8d8", dash = nothing, w = 1)
-		end
-		if chords !== nothing
-			for (b, c) in enumerate(chords)
-				text!(f, (b - 1) * 8 + 0.3, length(pitches) + 0.5, c; dy = -6, size = 11, bold = true, c = COL.ochre)
-			end
-		end
-		t = 0
-		for (p, d) in notes
-			k = findfirst(==(p), pitches)
-			rect!(f, t + 0.08, k - 0.36, t + d - 0.08, k + 0.36; fill = COL.purple, op = 0.85, rx = 2)
-			raw!(f, "<rect class=\"pn-hl\" data-g=\"$(group)\" data-a=\"$(t * eighth)\" data-b=\"$((t + d) * eighth)\" x=\"$(_n(X(f, t)))\" y=\"$(_n(Y(f, k + 0.48)))\" width=\"$(_n(X(f, t + d) - X(f, t)))\" height=\"$(_n(Y(f, k - 0.48) - Y(f, k + 0.48)))\" fill=\"none\" stroke=\"$(COL.red)\" stroke-width=\"2.5\"/>"; over = true)
-			t += d
-		end
-		f
-	end
-
-	function harmonise(notes)
-		T = sum(last.(notes)); nb = cld(T, 8); score = zeros(nb, length(CHORDS)); t = 0
-		for (p, d) in notes
-			for q in 0:d-1
-				b = (t + q) ÷ 8 + 1; b > nb && continue
-				for (c, (_, pcs, _)) in enumerate(CHORDS)
-					mod(p, 12) in pcs && (score[b, c] += (t + q) % 8 == 0 ? 2.0 : 1.0)
-				end
-			end
-			t += d
-		end
-		ch = [argmax(score[b, :] .+ [0.3, 0.1, 0.2, 0, 0]) for b in 1:nb]
-		ch[end] = 1
-		nb > 1 && score[nb-1, 3] > 0 && (ch[nb-1] = 3)
-		ch
-	end
-
-	function accompaniment(ch, eighth)
-		ev = Tuple{Float64,Float64,Float64,Float64,Int}[]
-		for (b, c) in enumerate(ch)
-			_, pcs, root = CHORDS[c]; t0 = (b - 1) * 8 * eighth
-			fifth = root - 5
-			push!(ev, (t0, midi_hz(root - 12), 2eighth, 0.5, 0))
-			push!(ev, (t0 + 4eighth, midi_hz(fifth), 2eighth, 0.42, 0))
-			for (q, off) in ((2, 0), (6, 0))
-				for pc in pcs[2:3]
-					m = 52 + mod(pc - 52, 12)
-					push!(ev, (t0 + q * eighth, midi_hz(m), 1.6eighth, 0.22, 0))
-				end
-			end
-		end
-		ev
-	end
-
-	function figure_3_2m(s4_mel, s4_ord, s4_acc, sd03_m)
-		train = s4_mel == MEL_ALL ? [MELODIES[k] for k in sort(collect(keys(MELODIES)))] : [MELODIES[s4_mel]]
-		mel = s4_mel == MEL_ALL ? MELODIES["Ode to Joy (Beethoven, 1824)"] : MELODIES[s4_mel]
-		allnotes = reduce(vcat, train)
-		pitches = sort(unique(vcat(first.(allnotes), 60))); K = length(pitches)
-		ix = Dict(p => i for (i, p) in enumerate(pitches))
-		ord2 = startswith(s4_ord, "2")
-		# states are (pitch, duration) pairs; transitions are counted within each training melody
-		f1 = Dict{Tuple{Int,Int}, Vector{Tuple{Int,Int}}}(); f2 = Dict{NTuple{2,Tuple{Int,Int}}, Vector{Tuple{Int,Int}}}()
-		C = zeros(K, K)
-		for m in train
-			for t in 1:length(m)-1
-				push!(get!(f1, m[t], Tuple{Int,Int}[]), m[t+1]); C[ix[m[t][1]], ix[m[t+1][1]]] += 1
-				t <= length(m) - 2 && push!(get!(f2, (m[t], m[t+1]), Tuple{Int,Int}[]), m[t+2])
-			end
-		end
-		P = C ./ max.(sum(C, dims = 2), 1)
-		rng = MersenneTwister(31 + 1009sd03_m); bars = 8; Ttot = 8bars
-		gen = [first(rand(rng, train))]; t = gen[1][2]; restarts = 0
-		while t < Ttot - 8
-			cands = ord2 && length(gen) >= 2 ? get(f2, (gen[end-1], gen[end]), Tuple{Int,Int}[]) : get(f1, gen[end], Tuple{Int,Int}[])
-			room = 8 - t % 8
-			cands = [c for c in cands if c[2] <= room]
-			if isempty(cands)
-				cands = [c for c in get(f1, gen[end], Tuple{Int,Int}[]) if c[2] <= room]
-				isempty(cands) && (cands = [(gen[end][1], room)]; restarts += 1)
-			end
-			nx = rand(rng, cands); push!(gen, nx); t += nx[2]
-		end
-		# the last bar: a cadence that ends on C
-		rest = Ttot - t
-		if rest > 4
-			push!(gen, (rand(rng, [62, 67, 64]), rest - 4)); push!(gen, (60, 4))
-		else
-			push!(gen, (60, rest))
-		end
-		for (p, _) in gen
-			haskey(ix, p) || (push!(pitches, p))
-		end
-		pitches = sort(unique(pitches))
-		eighth = 0.24
-		ev(notes) = (tt = 0.0; out = Tuple{Float64,Float64,Float64,Float64,Int}[]; for (p, d) in notes; push!(out, (tt * eighth, midi_hz(p), d * eighth, 0.8, 0)); tt += d; end; out)
-		acc = s4_acc == "with accompaniment"
-		chm = harmonise(mel); chg = harmonise(gen)
-		R1 = pianoroll(mel, "training melody" * (s4_mel == MEL_ALL ? " (one of five): Ode to Joy" : ": $(s4_mel)"); pitches = pitches, group = "train", eighth = eighth, chords = acc ? first.(CHORDS[chm]) : nothing)
-		R2 = pianoroll(gen, "generated melody (memory: $(s4_ord))"; pitches = pitches, group = "gen", eighth = eighth, chords = acc ? first.(CHORDS[chg]) : nothing)
-		pk = sort(unique(first.(allnotes))); Kk = length(pk)
-		H = fig(w = 330, h = 300, xr = (0.5, Kk + 0.5), yr = (Kk + 0.5, 0.5), xticks = 1:Kk, yticks = 1:Kk, xticklabels = [NOTE_NAMES[p] for p in pk], yticklabels = [NOTE_NAMES[p] for p in pk],
-			xlabel = "next pitch", ylabel = "current pitch", title = "estimated pitch transitions", l = 46)
-		for (i, p) in enumerate(pk), (j, q) in enumerate(pk)
-			v = P[ix[p], ix[q]]; v > 0 || continue
-			rect!(H, j - 0.48, i - 0.48, j + 0.48, i + 0.48; fill = COL.purple, op = 0.15 + 0.75v)
-			Kk <= 9 && text!(H, j, i, fmt(v; d = 2); anchor = "middle", size = 10, c = v > 0.55 ? "white" : "#222")
-		end
-		nstates = length(f1)
-		info = Markdown.parse("Training data: $(length(train)) melod$(length(train) == 1 ? "y" : "ies") with $(length(allnotes)) notes; $(nstates) different states (pitch, duration). " *
-			"" * (restarts > 0 ? "" : "") *
-			(acc ? "" : ""))
-		evm(notes, ch) = acc ? vcat(ev(notes), accompaniment(ch, eighth)) : ev(notes)
-		vstack(R1, play_notes(evm(mel, chm); label = "Play the training melody", seed = 2, group = "train"), figure(H, info), R2, play_notes(evm(gen, chg); label = "Play the generated melody", seed = 3, group = "gen");
-			caption = md"**Figure 4.1.** Top: a training melody as a piano roll. Middle: the pitch transitions estimated from the training data (row = current pitch, column = next pitch). Bottom: a melody generated by the chain, whose state is the pitch and the duration of the last one or two notes. Chord symbols above the bars give the accompaniment.")
-	end
-end;
-
 # ╔═╡ 06424fb2-40ef-acc3-a0b8-dedf4107751e
 begin
 	struct Player
@@ -1147,6 +980,152 @@ begin
 		});
 		invalidation.then(stop);
 		</script></span>""")
+	end
+end;
+
+# ╔═╡ a2e99ae6-04b2-5c25-b415-68ca954ed85a
+begin
+	const MELODIES = Dict(
+		"Ode to Joy (Beethoven, 1824)" => [(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (64, 3), (62, 1), (62, 4),
+			(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (62, 3), (60, 1), (60, 4),
+			(62, 2), (62, 2), (64, 2), (60, 2), (62, 2), (64, 1), (65, 1), (64, 2), (60, 2), (62, 2), (64, 1), (65, 1), (64, 2), (62, 2), (60, 2), (62, 2), (55, 4),
+			(64, 2), (64, 2), (65, 2), (67, 2), (67, 2), (65, 2), (64, 2), (62, 2), (60, 2), (60, 2), (62, 2), (64, 2), (62, 3), (60, 1), (60, 4)],
+		"Alle meine Entchen (German folk song)" => [(60, 2), (62, 2), (64, 2), (65, 2), (67, 4), (67, 4), (69, 2), (69, 2), (69, 2), (69, 2), (67, 8), (69, 2), (69, 2), (69, 2), (69, 2), (67, 8),
+			(65, 2), (65, 2), (65, 2), (65, 2), (64, 4), (64, 4), (62, 2), (62, 2), (62, 2), (62, 2), (60, 8)],
+		"Ah vous dirai-je, maman (French folk song)" => [(60, 2), (60, 2), (67, 2), (67, 2), (69, 2), (69, 2), (67, 4), (65, 2), (65, 2), (64, 2), (64, 2), (62, 2), (62, 2), (60, 4),
+			(67, 2), (67, 2), (65, 2), (65, 2), (64, 2), (64, 2), (62, 4), (67, 2), (67, 2), (65, 2), (65, 2), (64, 2), (64, 2), (62, 4),
+			(60, 2), (60, 2), (67, 2), (67, 2), (69, 2), (69, 2), (67, 4), (65, 2), (65, 2), (64, 2), (64, 2), (62, 2), (62, 2), (60, 4)],
+		"Frère Jacques (French folk song)" => [(60, 2), (62, 2), (64, 2), (60, 2), (60, 2), (62, 2), (64, 2), (60, 2), (64, 2), (65, 2), (67, 4), (64, 2), (65, 2), (67, 4),
+			(67, 1), (69, 1), (67, 1), (65, 1), (64, 2), (60, 2), (67, 1), (69, 1), (67, 1), (65, 1), (64, 2), (60, 2), (60, 2), (55, 2), (60, 4), (60, 2), (55, 2), (60, 4)],
+		"Hänschen klein (German folk song)" => [(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (62, 2), (64, 2), (65, 2), (67, 2), (67, 2), (67, 4),
+			(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (64, 2), (67, 2), (67, 2), (60, 8),
+			(62, 2), (62, 2), (62, 2), (62, 2), (62, 2), (64, 2), (65, 4), (64, 2), (64, 2), (64, 2), (64, 2), (64, 2), (65, 2), (67, 4),
+			(67, 2), (64, 2), (64, 4), (65, 2), (62, 2), (62, 4), (60, 2), (64, 2), (67, 2), (67, 2), (60, 8)])
+
+	const MEL_ALL = "all five melodies"
+
+	const NOTE_NAMES = Dict(48 => "C3", 50 => "D3", 52 => "E3", 53 => "F3", 55 => "G3", 57 => "A3", 59 => "B3", 60 => "C4", 62 => "D4", 64 => "E4", 65 => "F4", 67 => "G4", 69 => "A4", 71 => "B4", 72 => "C5")
+
+	midi_hz(n) = 440.0 * 2.0^((n - 69) / 12)
+
+	const CHORDS = [("C", [0, 4, 7], 48), ("F", [5, 9, 0], 53), ("G", [7, 11, 2], 55), ("Am", [9, 0, 4], 57), ("Dm", [2, 5, 9], 50)]
+
+	function pianoroll(notes, title; w = 680, h = 190, pitches, group = "", eighth = 0.22, chords = nothing)
+		T = sum(last.(notes))
+		f = fig(w = w, h = h + (chords === nothing ? 0 : 14), xr = (0, T), yr = (0.5, length(pitches) + 0.5), xlabel = "time (eighth notes)", yticks = 1:length(pitches), yticklabels = [NOTE_NAMES[p] for p in pitches], l = 40, title = title, t = chords === nothing ? 30 : 44)
+		for b in 0:8:T
+			vline!(f, b; c = "#d8d8d8", dash = nothing, w = 1)
+		end
+		if chords !== nothing
+			for (b, c) in enumerate(chords)
+				text!(f, (b - 1) * 8 + 0.3, length(pitches) + 0.5, c; dy = -6, size = 11, bold = true, c = COL.ochre)
+			end
+		end
+		t = 0
+		for (p, d) in notes
+			k = findfirst(==(p), pitches)
+			rect!(f, t + 0.08, k - 0.36, t + d - 0.08, k + 0.36; fill = COL.purple, op = 0.85, rx = 2)
+			raw!(f, "<rect class=\"pn-hl\" data-g=\"$(group)\" data-a=\"$(t * eighth)\" data-b=\"$((t + d) * eighth)\" x=\"$(_n(X(f, t)))\" y=\"$(_n(Y(f, k + 0.48)))\" width=\"$(_n(X(f, t + d) - X(f, t)))\" height=\"$(_n(Y(f, k - 0.48) - Y(f, k + 0.48)))\" fill=\"none\" stroke=\"$(COL.red)\" stroke-width=\"2.5\"/>"; over = true)
+			t += d
+		end
+		f
+	end
+
+	function harmonise(notes)
+		T = sum(last.(notes)); nb = cld(T, 8); score = zeros(nb, length(CHORDS)); t = 0
+		for (p, d) in notes
+			for q in 0:d-1
+				b = (t + q) ÷ 8 + 1; b > nb && continue
+				for (c, (_, pcs, _)) in enumerate(CHORDS)
+					mod(p, 12) in pcs && (score[b, c] += (t + q) % 8 == 0 ? 2.0 : 1.0)
+				end
+			end
+			t += d
+		end
+		ch = [argmax(score[b, :] .+ [0.3, 0.1, 0.2, 0, 0]) for b in 1:nb]
+		ch[end] = 1
+		nb > 1 && score[nb-1, 3] > 0 && (ch[nb-1] = 3)
+		ch
+	end
+
+	function accompaniment(ch, eighth)
+		ev = Tuple{Float64,Float64,Float64,Float64,Int}[]
+		for (b, c) in enumerate(ch)
+			_, pcs, root = CHORDS[c]; t0 = (b - 1) * 8 * eighth
+			fifth = root - 5
+			push!(ev, (t0, midi_hz(root - 12), 2eighth, 0.5, 0))
+			push!(ev, (t0 + 4eighth, midi_hz(fifth), 2eighth, 0.42, 0))
+			for (q, off) in ((2, 0), (6, 0))
+				for pc in pcs[2:3]
+					m = 52 + mod(pc - 52, 12)
+					push!(ev, (t0 + q * eighth, midi_hz(m), 1.6eighth, 0.22, 0))
+				end
+			end
+		end
+		ev
+	end
+
+	function figure_3_2m(s4_mel, s4_ord, s4_acc, sd03_m)
+		train = s4_mel == MEL_ALL ? [MELODIES[k] for k in sort(collect(keys(MELODIES)))] : [MELODIES[s4_mel]]
+		mel = s4_mel == MEL_ALL ? MELODIES["Ode to Joy (Beethoven, 1824)"] : MELODIES[s4_mel]
+		allnotes = reduce(vcat, train)
+		pitches = sort(unique(vcat(first.(allnotes), 60))); K = length(pitches)
+		ix = Dict(p => i for (i, p) in enumerate(pitches))
+		ord2 = startswith(s4_ord, "2")
+		# states are (pitch, duration) pairs; transitions are counted within each training melody
+		f1 = Dict{Tuple{Int,Int}, Vector{Tuple{Int,Int}}}(); f2 = Dict{NTuple{2,Tuple{Int,Int}}, Vector{Tuple{Int,Int}}}()
+		C = zeros(K, K)
+		for m in train
+			for t in 1:length(m)-1
+				push!(get!(f1, m[t], Tuple{Int,Int}[]), m[t+1]); C[ix[m[t][1]], ix[m[t+1][1]]] += 1
+				t <= length(m) - 2 && push!(get!(f2, (m[t], m[t+1]), Tuple{Int,Int}[]), m[t+2])
+			end
+		end
+		P = C ./ max.(sum(C, dims = 2), 1)
+		rng = MersenneTwister(31 + 1009sd03_m); bars = 8; Ttot = 8bars
+		gen = [first(rand(rng, train))]; t = gen[1][2]; restarts = 0
+		while t < Ttot - 8
+			cands = ord2 && length(gen) >= 2 ? get(f2, (gen[end-1], gen[end]), Tuple{Int,Int}[]) : get(f1, gen[end], Tuple{Int,Int}[])
+			room = 8 - t % 8
+			cands = [c for c in cands if c[2] <= room]
+			if isempty(cands)
+				cands = [c for c in get(f1, gen[end], Tuple{Int,Int}[]) if c[2] <= room]
+				isempty(cands) && (cands = [(gen[end][1], room)]; restarts += 1)
+			end
+			nx = rand(rng, cands); push!(gen, nx); t += nx[2]
+		end
+		# the last bar: a cadence that ends on C
+		rest = Ttot - t
+		if rest > 4
+			push!(gen, (rand(rng, [62, 67, 64]), rest - 4)); push!(gen, (60, 4))
+		else
+			push!(gen, (60, rest))
+		end
+		for (p, _) in gen
+			haskey(ix, p) || (push!(pitches, p))
+		end
+		pitches = sort(unique(pitches))
+		eighth = 0.24
+		ev(notes) = (tt = 0.0; out = Tuple{Float64,Float64,Float64,Float64,Int}[]; for (p, d) in notes; push!(out, (tt * eighth, midi_hz(p), d * eighth, 0.8, 0)); tt += d; end; out)
+		acc = s4_acc == "with accompaniment"
+		chm = harmonise(mel); chg = harmonise(gen)
+		R1 = pianoroll(mel, "training melody" * (s4_mel == MEL_ALL ? " (one of five): Ode to Joy" : ": $(s4_mel)"); pitches = pitches, group = "train", eighth = eighth, chords = acc ? first.(CHORDS[chm]) : nothing)
+		R2 = pianoroll(gen, "generated melody (memory: $(s4_ord))"; pitches = pitches, group = "gen", eighth = eighth, chords = acc ? first.(CHORDS[chg]) : nothing)
+		pk = sort(unique(first.(allnotes))); Kk = length(pk)
+		H = fig(w = 330, h = 300, xr = (0.5, Kk + 0.5), yr = (Kk + 0.5, 0.5), xticks = 1:Kk, yticks = 1:Kk, xticklabels = [NOTE_NAMES[p] for p in pk], yticklabels = [NOTE_NAMES[p] for p in pk],
+			xlabel = "next pitch", ylabel = "current pitch", title = "estimated pitch transitions", l = 46)
+		for (i, p) in enumerate(pk), (j, q) in enumerate(pk)
+			v = P[ix[p], ix[q]]; v > 0 || continue
+			rect!(H, j - 0.48, i - 0.48, j + 0.48, i + 0.48; fill = COL.purple, op = 0.15 + 0.75v)
+			Kk <= 9 && text!(H, j, i, fmt(v; d = 2); anchor = "middle", size = 10, c = v > 0.55 ? "white" : "#222")
+		end
+		nstates = length(f1)
+		info = Markdown.parse("Training data: $(length(train)) melod$(length(train) == 1 ? "y" : "ies") with $(length(allnotes)) notes; $(nstates) different states (pitch, duration). " *
+			"" * (restarts > 0 ? "" : "") *
+			(acc ? "" : ""))
+		evm(notes, ch) = acc ? vcat(ev(notes), accompaniment(ch, eighth)) : ev(notes)
+		vstack(R1, play_notes(evm(mel, chm); label = "Play the training melody", seed = 2, group = "train"), figure(H, info), R2, play_notes(evm(gen, chg); label = "Play the generated melody", seed = 3, group = "gen");
+			caption = md"**Figure 4.1.** Top: a training melody as a piano roll. Middle: the pitch transitions estimated from the training data (row = current pitch, column = next pitch). Bottom: a melody generated by the chain, whose state is the pitch and the duration of the last one or two notes. Chord symbols above the bars give the accompaniment.")
 	end
 end;
 
@@ -1440,6 +1419,27 @@ reveal(md"""Fifty steps may be too few to forget the initial state, so the frequ
 # ╔═╡ 2ba8ad4c-8908-06e9-16c7-f78e6f027bb4
 numq(md"A two-state weather chain: after a dry day, it rains with probability ``a = 0.2``; after a rainy day, it is dry with probability ``b = 0.4``. What fraction of days is rainy in the long run?", 0.2 / 0.6; rtol = 0.01,
 	why = md"``\pi_{\text{rain}} = a/(a + b) = 0.2/0.6 = 1/3``.", head = "Check your understanding")
+
+# ╔═╡ b4d99478-1cf5-6e3d-0335-e1d0b713ee96
+solution(pw, "L/qtwVyZZoY3AO9af5s/KSg92S08E5NUxAPQ4zDHzPaJGSHqWzZeAGJ5hETWjhJHfP/hWHvmF2eSLAdJcIddFrqduQ0BirGxUJppGPjcNZqLeVHcx02w8BnOh3kzTLAaLcRtQ/dmDKwV5ZGgFDjNmw8d9bfYw9R5lekKb3METyC9SBFo2PwlP215uKlwe9Ag6gKQK1u8opeDEIfNqkgbV9U+lDJN0+hE8+D4tOjmlaFnx7IOoKcq3OmId86mOJfC+n30ZGHge3veThJBHQ203zUhyWV7MNEcYJLPxBnvjxOAbRkVWPpBMWMr8MaBBII5S/G488dw9haNGKA0M7GGExnDFVEgpB9o6sYjJ/ojv3Od4MR1iBJT+RPycSKxgrLNBDIAmdxGgmA9XKaE//t4OQfv3Y5Ek0+Z5hj4Y5QZsSXHhQlovT3uyK4j0MZENqc9xYV6bWs9n+Kws4n8Ba+w8PqSR1vxSV5EybgcH/IAVrABLOd/jW47fWBW1Q4HlUD1tgp9jo0lkeY+l4P8RmHO+3tsNawEMkMA0Mo5rTrum8HxAnJp6S/n3Qlz3jbE8Vjl4CPkJn+a4/I0eXY9sE9Z86q6WF9K"; title = "Solution to Problem 1")
+
+# ╔═╡ 9afc3fbd-c863-ad7a-0201-731163f20e9f
+solution(pw, "aEeH45qwBPP4P6DfjzQmgkhw2MjZ3pv6wlB+GNLnglJcXeqWG99yjhHcaC8cfXviDGbrJOK4gYle74CLqzylz4w0sjsVQ+EoVpyIJwDXgp29fizqF4evUauK/RxuCbKpOqVaKQlhc+QSB/askNcy8NOjDfE7t6s3XdUhaBGXg9eUXgi+6g2o0JbbWZaDSpkXPtJfhuiFU0IafEG+Z9EVO6Oc2fVus/zSVUzon3818hjTakvjxA/BEM78hXF7H2g4Y3fuFcAdwi241a+W5q5yrg7eXiqdj5EQRtrIj+29/AdcMVEHUDrcbXo2wEuKIkJA8j2aOXkszgJ6ucW/VU6Dj8IB6phb6y6xQ82VdeOW7R8cgbswUIWYaHEmlqS2cYDD2eJvLqWdo/PlSF1ZLHrSN0YHkXZtBvLYMoZqz2IvG5aaz2qh6D5bqI8jC8whhchOQlQlJqjAqa+AVzldPBAfNBH1nxMEYynJ6NDTBaPV7ZqUeQtGNNDndCYMuD24z1KYCiPZ08LJS5wZ+6be5Al7YL7s5iKecxZVqHRw/Q=="; title = "Solution to Problem 2")
+
+# ╔═╡ 1a7c250b-d6bf-d28a-1fa3-304edfe2c38a
+solution(pw, "isseyVNOQC9K9EYfdix7bcmscRvMuRZRQ9DV45L67OV857huYVhI6g+BGd0aKs+/aGW92iSt1zeKyh5Bz/rzeq4hL4CMde+yXGtWrRZIVohyKD7ui3bul6WvLTrueKiU9N/y8KbKcvWtKlEsfYG13vfHZpkiPVsAZk1q+BzqMjxtC0R/GBzbRT8OKZlxWP1hNdNwmhC84bBHXz0KnHMaEg5vaYXs18RFnzeqemKjR7fWeHaXF30eES2oa7/WujBzhENVmgueS4Qc9NBuB6YP+GGqdWNyWjD269ZMzuaBpxGAj2MszXvRZx6ZsPQu97Mp34XB7qbli+5PsoJcBPC0NcgTk8f3YtjR7siUfQSmzBYBRprZAJexq757UO1JP86YXnpB/V2tYRWZy92DPkv1+3uw/WaAAtUaSuUQw107G46Kt7rDZu0WEs6awe4LF+HzCP4tvKjzRcW7MFZAbYvAeew/gXB61+BcqboxMk3Rj5EQxAeIdVBo0ajP0AQK6BQ0OmSocdEhnd14Ck+nLvRJY+OZ4M03lZ5opbL2NvzhVVOi3B2QxFI4u6nM6d5YcX4doxSKRfQXxvxhkP3vHwSyW1xgnNhT8TxKarvqRcBNjGb1erEXYod0RZzfWgymNm5o5pKb52lb9i2IIXRFBUavgg=="; title = "Solution to Problem 3")
+
+# ╔═╡ ebc7f26e-1018-9f03-13c9-10785abf9ea4
+solution(pw, "AVZTkUoO3lFezeeXCFcNrmg/LVd2FRrXUUXMbaYlH6+ORkcj0ebeo9OiUisSke9pCNGY6Ue5NiD5yvc6ySi8xz9We8BR9D3etqUWRKoDQodLMo9p10wWRlK6OTU0Myl5F7z6g1oz2ED+gcimneXn1LiYDbhTgyXp6z8hK3ngVqh8UKWKAQ=="; title = "Solution to Problem 4")
+
+# ╔═╡ a3bfd27c-6ee0-11c0-d28b-b7b3ef1f3e91
+solution(pw, "Yzjx2DnpDuRQ0/cpaAAs5dpAr6A++JBfpe5CoGy0xJsbBvSMNSZty6LLVkdct4LjbsaXQKO478vTb7GSOcuyof0QNq+aszm0SmtIUFWPvqI8KTmFXLQbqx69ZkLMldoeZ77DJIp7jQ+n3nfD44lVW1iVkI9yApcX67LFyX5w4Bb9V95cld5GUyZ5Yqh8vt8x5aoAXDqlQD0QjYMdN9iL6zLX1iy+s5CMeIRxYoqJyqPQZiYXmIt/c4Qdtie1e1LshvN2dk4g27vDMJxkprhtGVONni4pqk5Cp/YBrDfpa6ageLG2PzQfX0069aaDS2wGEdDrGR6kLiBGrYYroHpmreFtCkO/FY5AT2vc3A+2QiBGi8iwcErIJKkPhu85"; title = "Solution to Exercise 1")
+
+# ╔═╡ 69ff4c82-7cbe-af9c-8a8a-c73bb2d20eb9
+solution(pw, "6hRg578QQ11jDV9fZY/K7ptShBaJyHyJI5TV3SWW00+O8wcxa+Z9sS8dU/8sxFZhGq9FA4XfFOj2TwdUnKJw9/dsml5+5e8kbFYAAF0xnB/8fMKLhVRtSsHYANpWo14nODL+FVnFq/+wlCdGpHgKIKQ2NeSDR/FCqf2UHrw0Od7w5J4v9Uq88EAv6wjVKQYT8L6a3/SsQLcReSDBeFMORDngDvVUCH6AsXRBYgxpHjGmoLoDnPSxi/HHrQmFinJV1ODWcqQVC0v/TcxH36JcizyubJNyWgxwxLhrW50V+u6YZDmqd6QVEWwkw7ajEwKPeqwgYfWVHitavyTOZCt13BhdISsf4iQKnuvjcsTpONm/HjBfYwqJhlx+PhxirMR0cXpuW/2xyAAVS7QGkBDrkrUL8OJJvOBhj0q2SyBHc+jvadyP+3PQeM3xa153XY/Er+qnHby19XNEIuywsDEI"; title = "Solution to Exercise 2")
+
+# ╔═╡ 3c9dc54c-f230-b1b2-0b01-0df6751982b4
+solution(pw, "qFhTkdkvGqgv8ykknz/lGUyFMD3K4BfRH9XmSv6oL591tckqGxcW6f4QhVbGscsQShCtfbuIuNR8nuU3lf0hLvPHEH2t2+1yqG8n09uqNxOk29xiRwnucu8qG6cF2RR6ZpXnVtxRNPQeNBNS7JjbnImqBbNFCDlb+NCpkCOoYI7GB7kKPGv3Mm6iFTwEm3480s5WwNAOHm/3HUFzhNvvo2MKa2Cug2+D/osruC188e5OBREOawmepfqBZwGYrvbT5Ij5U9PbBkpprN6esIKrJrH0l8f691uj7DU3kZsPnArULk0/VvuQkTsNM1QYNhQHc7jv"; title = "Solution to Exercise 3")
 
 # ╔═╡ dc02448f-28ea-527e-d834-d383c6c8b5bb
 begin
@@ -2320,24 +2320,6 @@ details.hint summary{cursor:pointer;font-weight:600}
 .wk-state p,.wk-why p,.wk-fail p{display:inline;margin:0}
 </style>"""
 
-# ╔═╡ 0d6d0cbf-bfcb-48eb-9943-470a73e21102
-HTML("""
-<script>
-(function () {
-	let tries = 0;
-	const timer = setInterval(() => {
-		const tab = document.querySelector("#process-status-tab-button");
-		if (tab) {
-			tab.click();
-			clearInterval(timer);
-		} else if (++tries > 60) {
-			clearInterval(timer);
-		}
-	}, 500);
-})();
-</script>
-""")
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -3064,6 +3046,5 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─9e20789c-f283-9cb2-9715-5b3edbf7232e
 # ╟─8bd8e61c-1b1a-9121-dce5-b156a7656d21
 # ╟─1b1f83ae-889d-31d3-7ead-5dbc444ef254
-# ╟─0d6d0cbf-bfcb-48eb-9943-470a73e21102
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

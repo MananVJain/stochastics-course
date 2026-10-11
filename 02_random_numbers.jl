@@ -1868,24 +1868,6 @@ details.hint summary{cursor:pointer;font-weight:600}
 .wk-state p,.wk-why p,.wk-fail p{display:inline;margin:0}
 </style>"""
 
-# ╔═╡ da75f13b-e2ae-4363-8287-8c7cc1eba02b
-HTML("""
-<script>
-(function () {
-	let tries = 0;
-	const timer = setInterval(() => {
-		const tab = document.querySelector("#process-status-tab-button");
-		if (tab) {
-			tab.click();
-			clearInterval(timer);
-		} else if (++tries > 60) {
-			clearInterval(timer);
-		}
-	}, 500);
-})();
-</script>
-""")
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -2581,6 +2563,5 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─78af998f-eec2-6a88-3ccb-5654c70446c4
 # ╟─02e182b6-f19b-c32a-aa3d-2abbf67bea57
 # ╟─44ce4893-4d52-54b6-0c56-b89fbb35016e
-# ╟─da75f13b-e2ae-4363-8287-8c7cc1eba02b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
