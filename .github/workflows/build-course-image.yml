@@ -55,7 +55,7 @@ jobs:
       - name: Point the binder branch at this exact image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: docker/update_binder_branch.sh "${IMAGE}@${{ steps.build.outputs.digest }}"
+        run: bash docker/update_binder_branch.sh "${IMAGE}@${{ steps.build.outputs.digest }}"
 
       - name: Warm up Binder
         run: |
