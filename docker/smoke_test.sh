@@ -6,15 +6,20 @@ set -euo pipefail
 PORT=18888
 LOG=/tmp/pluto-smoke.log
 
-julia --startup-file=no -e "import Pluto; Pluto.run(host=\"127.0.0.1\", port=$PORT, launch_browser=false, require_secret_for_open_links=false, require_secret_for_access=false)" >"$LOG" 2>&1 &
+stop_pluto() {
+  # kill the whole process group (Pluto + its workers), hard, no waiting
+  kill -KILL -- "-$PID" 2>/dev/null || true
+  pkill -KILL -f julia 2>/dev/null || true
+}
+
+setsid julia --startup-file=no -e "import Pluto; Pluto.run(host=\"127.0.0.1\", port=$PORT, launch_browser=false, require_secret_for_open_links=false, require_secret_for_access=false)" >"$LOG" 2>&1 </dev/null &
 PID=$!
+trap stop_pluto EXIT
 START=$(date +%s)
 
 for _ in $(seq 1 180); do
-  if curl -fsS "http://127.0.0.1:$PORT/" >/dev/null 2>&1; then
+  if curl -fsS --max-time 2 "http://127.0.0.1:$PORT/" >/dev/null 2>&1; then
     echo "Pluto answered after $(( $(date +%s) - START )) seconds"
-    kill "$PID" 2>/dev/null || true
-    wait "$PID" 2>/dev/null || true
     exit 0
   fi
   if ! kill -0 "$PID" 2>/dev/null; then
@@ -24,5 +29,4 @@ for _ in $(seq 1 180); do
 done
 
 echo "Pluto did not answer within 180 seconds:"; cat "$LOG"
-kill "$PID" 2>/dev/null || true
 exit 1
