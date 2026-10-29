@@ -18,7 +18,7 @@ end
 
 # ╔═╡ b3f096c7-22ad-55a4-9eeb-ef56384fd1b9
 begin
-	using PlutoUI, PlutoPlotly, HypertextLiteral, Random, Statistics, LinearAlgebra, Markdown, Printf, Distributions
+	using PlutoUI, PlutoPlotly, HypertextLiteral, Random, Statistics, Markdown, Printf, Distributions
 	import AbstractPlutoDingetjes
 end
 
@@ -43,7 +43,7 @@ md"""
 
     Bayes' theorem: ``P(A \mid B) = \dfrac{P(B \mid A)\,P(A)}{P(B)}``.
 
-    Independent events: ``P(A \cap B) = P(A)\,P(B)``, equivalently for indepedent events: ``P(A \mid B) = P(A)``.
+    Independent events: ``P(A \cap B) = P(A)\,P(B)``, equivalently for independent events: ``P(A \mid B) = P(A)``.
     
     Disjoint events: ``P(A \cap B) = 0``.
 """
@@ -57,8 +57,6 @@ md"""
     - ``P(A \mid B)``, "``A`` **given** ``B``": ``B`` is known to have happened, and we ask how likely ``A`` is in that case. The order matters: in general ``P(A \mid B) \ne P(B \mid A)``.
     - ``P(X_1 = a,\ X_2 = b)``, a **sequence**: "``a`` on day 1, **then** ``b`` on day 2". The comma lists the values of ``X_1, X_2`` in order, so swapping the **values** gives a different sequence: in general ``P(X_1 = a,\ X_2 = b) \ne P(X_1 = b,\ X_2 = a)``.
 
-!!! tasks "Tasks"
-    Choose two different values ``a \ne b``. Write down ``P(X_1 = a,\ X_2 = b)`` and ``P(X_1 = b,\ X_2 = a)``. Are they equal in general? Explain.
 """
 
 # ╔═╡ fca0d34d-333c-502e-957f-4891fbe8892b
@@ -94,7 +92,7 @@ mcq(md"A model describes 10 days, each sun or rain. With memory of the last day,
 
 # ╔═╡ 355e9c9a-3643-5e4e-92a7-fee9a638ae15
 md"""
-!!! question "Question 1.15"
+!!! question "Question 1.16"
     With no memory, the chain rule becomes ``P(A_1 \cap A_2 \cap A_3) = P(A_1)\,P(A_2)\,P(A_3)``. Which property of events does this describe?
 """
 
@@ -247,6 +245,8 @@ The fraction of days per °C is a **density**. For narrow bins of width ``\Delta
 
 # ╔═╡ 0db53489-210c-4fb1-a1cd-ec1e47e97d38
 md"""
+### 4.2 Height or area?
+
 !!! definition "Reading a distribution plot"
     - **Discrete:** the **height** of a bar is a probability, ``p_X(x) = P(X = x)``. 
     - **Continuous:** the height ``f_X(x)`` is **not** a probability. A probability is an **area** under the curve, ``P(a \le X \le b) = \int_a^b f_X(x)\,dx``. For a narrow interval, area ``\approx`` height × width: ``P(x \le X \le x + \Delta x) \approx f_X(x)\,\Delta x``.
@@ -262,7 +262,7 @@ A penalty kick crosses the goal line at a point ``(X, Y)``: sideways position an
 
 # ╔═╡ 9881f340-a35a-5984-a10b-5f9b49cc0348
 md"""
-Where the kicks are dense, the probability is high. A function of **two** variables ,the joint density, describes this. In 3D it is a mountain over the goal (rotate it with the mouse).
+Where the kicks are dense, the probability is high. A function of **two** variables, the joint density, describes this. In 3D it is a mountain over the goal (rotate it with the mouse).
 """
 
 # ╔═╡ 430216b4-a145-5ed3-b688-de7d9a783a45
@@ -276,7 +276,7 @@ Show the CDFs instead $(@bind s4_mcdf CheckBox(default = false))
 md"""
 **Conditionals.** The conditional density of ``X`` given ``Y = y`` is a slice of the joint density at height ``y``, divided by the area of the slice, ``f_Y(y)``.
 
-Position of the slice $(@bind s4_t Slider(0.02:0.02:0.98; default = 0.7)) ``\qquad`` 3D view of the slice $(@bind s4_s3d CheckBox(default = false))
+Position of the slice $(@bind s4_t Slider(0.02:0.02:0.98; default = 0.7))
 """
 
 # ╔═╡ 3b6d0a8e-842c-5c13-bc36-42369de45a42
@@ -335,32 +335,6 @@ md"""
     - Central limit theorem: the sum of many independent random variables with the same distribution is approximately normal, whatever that distribution is.
 """
 
-# ╔═╡ 5db34b3e-5299-5ed3-8db1-d1b31332c573
-md"""
-
-### Case 2: the density can be evaluated, but not sampled directly
-
-A hiker is lost in a 10 km × 10 km area. From the last phone signal, a map gives the probability density of the hiker's position at every point. A search simulation needs samples of possible positions.
-
-Show 200 points spread uniformly over the area $(@bind s7_pts CheckBox(default = false))
-"""
-
-# ╔═╡ 1c590021-d415-5426-94ca-3af67bd1c293
-md"""
-
-### Case 3: the distribution is unknown
-
-An archery target has a hidden score map: some regions give many points, but nobody knows where. Each arrow lands near its aim point and shows only its own score. You have 15 arrows. Type aim points as `x, y` pairs separated by semicolons, with ``x`` and ``y`` between ``-1`` and ``1``.
-
-Aim points $(@bind s7_aims TextField(60; default = "0, 0; 0.5, 0.5; -0.5, -0.5")) ``\qquad`` reveal the score map $(@bind s7_rev CheckBox(default = false))
-"""
-
-# ╔═╡ 4b2ab322-b660-59d8-b738-77351d2036ac
-md"""
-!!! question "Question 7.3"
-    Where should the next arrow go? How can the high-scoring regions be found, and how can the total score of 15 arrows be made as large as possible, when the map is unknown?
-"""
-
 # ╔═╡ 77b8c106-a6a1-532a-a1d4-b9c16d2b86be
 md"""
 ## 9. Exercises
@@ -405,7 +379,7 @@ md"""
 
 # ╔═╡ 479fca6c-815f-5079-a99a-dea660da9b09
 md"""
-**Exercise 10 · A normal random number from uniform ones (programming).** Let ``U_1, \dots, U_{12}`` be independent and uniform on ``[0, 1]``. (a) Show that ``Z = U_1 + \dots + U_{12} - 6`` has mean 0 and variance 1. (b) Complete `z12` so that it returns one value of ``Z``.
+**Exercise 9 · A normal random number from uniform ones (programming).** Let ``U_1, \dots, U_{12}`` be independent and uniform on ``[0, 1]``. (a) Show that ``Z = U_1 + \dots + U_{12} - 6`` has mean 0 and variance 1. (b) Complete `z12` so that it returns one value of ``Z``.
 """
 
 # ╔═╡ b07d2299-bcd2-5f07-90ba-d02a6a054b4a
@@ -434,7 +408,6 @@ html"""<style>
 .fg-row{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:flex-start}
 .fg-cap{font-size:0.9rem;color:#333;line-height:1.4;margin:6px 2px 0 2px;max-width:720px}
 .fg-cap p{margin:0}
-.fg-cap b.fg-num{font-weight:700;color:#1b1b1b}
 .pl{border:1px solid #e3e3df;border-radius:4px;padding:8px 4px 6px;background:#fff;margin:8px 0}
 .pl-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px;font-family:system-ui,sans-serif;font-size:13px}
 .pl-bar button{font:inherit;padding:2px 10px;border:1px solid #cfcfca;border-radius:3px;background:#fafaf8;cursor:pointer;min-width:2.4em}
@@ -462,14 +435,6 @@ html"""<style>
 .quiz-num button{font:inherit;padding:2px 10px;border:1px solid #cfcfca;border-radius:3px;background:#fafaf8;cursor:pointer}
 details.sol{border:1px solid #2f7d55;border-left:5px solid #2f7d55;border-radius:4px;padding:.4em .7em;margin:.2em 0 .8em}
 details.sol summary{cursor:pointer;font-weight:600;color:#2f7d55}
-div.sol-locked{border:1px dashed #bbb;border-radius:4px;padding:.35em .7em;color:#777;font-size:.9em;margin:.2em 0 .8em}
-details.proof{border-left:3px solid #16427a;padding:2px 0 2px 12px;margin:8px 0}
-details.proof summary{cursor:pointer;color:#16427a;font-weight:600}
-table.tbl{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:0.92rem;margin:6px 0}
-table.tbl th{border-bottom:1px solid #1b1b1b;padding:2px 12px;text-align:right;font-weight:600}
-table.tbl td{padding:2px 12px;text-align:right}
-table.tbl td:first-child,table.tbl th:first-child{text-align:left}
-table.tbl tr:nth-child(even) td{background:#f6f6f3}
 details.hint{margin-top:4px}
 details.hint summary{cursor:pointer;font-weight:600}
 .admonition.tasks{border-color:#6a4c93;background:#f4f1f8}
@@ -502,8 +467,6 @@ begin
 		s = string(round(x, sigdigits = d))
 		endswith(s, ".0") ? s[1:end-2] : s
 	end
-
-	pct(x; d = 1) = (d == 0 ? string(round(Int, 100x)) : string(round(100x, digits = d))) * " %"
 
 	function supnum(e::Integer)
 		m = Dict('-' => '⁻', '0' => '⁰', '1' => '¹', '2' => '²', '3' => '³', '4' => '⁴', '5' => '⁵', '6' => '⁶', '7' => '⁷', '8' => '⁸', '9' => '⁹')
@@ -616,13 +579,6 @@ begin
 		isempty(pts) && return f
 		d = "M" * _n(pts[1][1]) * "," * _n(Y(f, base)) * join(["L" * _n(p[1]) * "," * _n(p[2]) for p in pts]) * "L" * _n(pts[end][1]) * "," * _n(Y(f, base)) * "Z"
 		print(f.body, "<path d=\"$(d)\" fill=\"$(c)\" opacity=\"$(op)\" stroke=\"none\"", _st(s, o), "/>")
-		f
-	end
-
-	function band!(f::Fig, x, lo, hi; c = COL.blue, op = 0.15, s = nothing, o = nothing)
-		p1 = ["$(_n(X(f, x[i]))),$(_n(Y(f, hi[i])))" for i in eachindex(x)]
-		p2 = ["$(_n(X(f, x[i]))),$(_n(Y(f, lo[i])))" for i in reverse(eachindex(x))]
-		print(f.body, "<polygon points=\"", join(vcat(p1, p2), " "), "\" fill=\"$(c)\" opacity=\"$(op)\" stroke=\"none\"", _st(s, o), "/>")
 		f
 	end
 
@@ -816,14 +772,6 @@ begin
 		print(io, "</div>")
 	end
 
-	_tcell(c) = c isa AbstractString ? (q = Markdown.parse(c).content; isempty(q) ? Any[""] : q[1] isa Markdown.Paragraph ? q[1].content : Any[c]) :
-		c isa Number ? Any[string(c)] : Any[c]
-
-	function tbl(header, rows)
-		Markdown.MD(Any[Markdown.Table(vcat([Any[_tcell(h) for h in header]], [Any[_tcell(c) for c in r] for r in rows]),
-			vcat([:l], fill(:r, length(header) - 1)))])
-	end
-
 	row(items...; gap = "18px") = @htl("""<div class="fg-row" style="gap:6px $(gap)">$([@htl("<div>$(it)</div>") for it in items])</div>""")
 
 	function histdata(xs, edges; density = true)
@@ -836,7 +784,6 @@ begin
 		density ? c ./ (length(xs) .* diff(edges)) : c
 	end
 
-	parse_numbers(s) = [parse(Float64, t) for t in split(replace(s, "," => " ")) if tryparse(Float64, t) !== nothing]
 end;
 
 # ╔═╡ 2b123d71-3924-5781-b9cd-d096dac34b6e
@@ -965,8 +912,6 @@ begin
 
 	hint(body) = reveal(body; title = "Hint")
 
-	proof(show::Bool, title, body) = @htl("""<details class="proof" open=$(show)><summary>$(title)</summary>$(body)</details>""")
-
 	_msg(m) = m isa Function ? m() : m
 
 	struct _Failed end
@@ -981,21 +926,6 @@ begin
 		result === missing && return _box("warning", "No answer yet", md"Complete the code in the cell above; the check runs as soon as the function returns a value.", hint)
 		result isa _Failed && return _box("danger", "Not yet: the code stops with an error", @htl("<pre style='white-space:pre-wrap'>$(_LASTERR[])</pre>"), hint)
 		good ? adm("correct", "Correct", _msg(ok_msg)) : _box("danger", "Not yet", _msg(bad_msg), hint)
-	end
-
-	"""
-	    guarded(f)
-
-	Run a check; if the code under test throws while it is being checked, report the error as an answer that is not yet right.
-	"""
-	function guarded(f)
-		_LASTERR[] = ""
-		try
-			f()
-		catch e
-			msg = _LASTERR[] == "" ? _errtext(e) : _LASTERR[]
-			_box("danger", "Not yet: the code stops with an error", @htl("<pre style='white-space:pre-wrap'>$(msg)</pre>"), nothing)
-		end
 	end
 
 	_hasmissing(x) = x === missing || (x isa Union{Tuple, AbstractArray, NamedTuple} && any(_hasmissing, x))
@@ -1042,19 +972,19 @@ mcq(md"Are the events *ill* and *positive* independent?",
 # ╔═╡ eb526ce8-32a9-4cf5-a1c4-966ffce1617f
 begin
 	q8 = numq(md"What is ``P(X_1 = \text{rain},\ X_2 = \text{sun})``?", 0.12; rtol = 0.01,
-		why = md"``0.3 \cdot 0.4 = 0.12``. The comma asks for the whole sequence: day 1 is rain **and** day 2 is sun.", head = "Question 1.8")
+		why = md"``0.3 \cdot 0.4 = 0.12``. The comma asks for the whole sequence: day 1 is rain **and** day 2 is sun.", head = "Question 1.7")
 
 	q9 = numq(md"What is ``P(X_2 = \text{sun} \mid X_1 = \text{rain})``?", 0.4; rtol = 0.01,
-		why = md"``0.4``, given directly. Day 1 is **known** to be rain, so the chance ``0.3`` of rain is not counted. This is why it differs from Question 1.8: ``0.12 = 0.3 \cdot 0.4``.", head = "Question 1.9")
+		why = md"``0.4``, given directly. Day 1 is **known** to be rain, so the chance ``0.3`` of rain is not counted. This is why it differs from Question 1.7: ``0.12 = 0.3 \cdot 0.4``.", head = "Question 1.8")
 
 	q10 = numq(md"What is ``P(X_1 = \text{sun},\ X_2 = \text{rain})``?", 0.14; rtol = 0.01,
-		why = md"``0.7 \cdot 0.2 = 0.14``. The two sequences contain the same two weathers in a different order, and they have different probabilities (``0.14 \ne 0.12``).", head = "Question 1.10")
+		why = md"``0.7 \cdot 0.2 = 0.14``. The two sequences contain the same two weathers in a different order, and they have different probabilities (``0.14 \ne 0.12``).", head = "Question 1.9")
 
 	q11 = numq(md"What is ``P(X_1 = \text{rain} \mid X_2 = \text{sun})``?", 0.12 / 0.68; rtol = 0.01,
-		why = md"``P(X_2 = \text{sun}) = 0.56 + 0.12 = 0.68``, so ``P(X_1 = \text{rain} \mid X_2 = \text{sun}) = 0.12 / 0.68 \approx 0.18``. This is not ``P(X_2 = \text{sun} \mid X_1 = \text{rain}) = 0.4``: in general ``P(A \mid B) \ne P(B \mid A)``.", head = "Question 1.11")
+		why = md"``P(X_2 = \text{sun}) = 0.56 + 0.12 = 0.68``, so ``P(X_1 = \text{rain} \mid X_2 = \text{sun}) = 0.12 / 0.68 \approx 0.18``. This is not ``P(X_2 = \text{sun} \mid X_1 = \text{rain}) = 0.4``: in general ``P(A \mid B) \ne P(B \mid A)``.", head = "Question 1.10")
 
 	q12 = numq(md"What do you get when you add the probabilities of **all four** sequences?", 1.0; rtol = 0.01,
-		why = md"``0.56 + 0.14 + 0.12 + 0.18 = 1``. Every outcome of the two days is exactly one sequence.", head = "Question 1.12")
+		why = md"``0.56 + 0.14 + 0.12 + 0.18 = 1``. Every outcome of the two days is exactly one sequence.", head = "Question 1.11")
 
 	PlutoUI.ExperimentalLayout.vbox([q8, q9, q10, q11, q12])
 end
@@ -1064,22 +994,22 @@ mcq(md"Which pair of probabilities is **always** equal?",
 	md"``P(X_1 = \text{sun},\ X_2 = \text{rain})`` and ``P(X_1 = \text{rain},\ X_2 = \text{sun})``" => md"These are two different sequences: 0.14 and 0.12.",
 	md"``P(\{X_1 = \text{sun}\} \cap \{X_2 = \text{rain}\})`` and ``P(\{X_2 = \text{rain}\} \cap \{X_1 = \text{sun}\})``" => md"Right. Both describe the same days: sun on day 1 and rain on day 2. Only the order of writing differs.",
 	md"``P(X_2 = \text{rain} \mid X_1 = \text{sun})`` and ``P(X_1 = \text{sun} \mid X_2 = \text{rain})``" => md"The first is 0.2. The second asks about day 1 given day 2: ``0.14 / P(X_2 = \text{rain}) = 0.14/0.32 = 0.44``.";
-	correct = 2, head = "Question 1.9")
+	correct = 2, head = "Question 1.12")
 
 # ╔═╡ eef9e620-0813-540e-9425-fb091c5f61c1
 numq(md"Use Figure 1.3: compute ``P(X_1 = \text{sun},\ X_2 = \text{sun},\ X_3 = \text{rain})``.", 0.7 * 0.8 * 0.15; rtol = 0.01,
-	why = md"``0.7 \cdot 0.8 \cdot 0.15 = 0.084``.", head = "Question 1.11")
+	why = md"``0.7 \cdot 0.8 \cdot 0.15 = 0.084``.", head = "Question 1.13")
 
 # ╔═╡ c95211eb-34df-5779-b4ec-8d718d95ee9a
 numq(md"Add the probabilities of all eight sequences of Figure 1.3.", 1.0; rtol = 0.001,
-	why = md"The eight sequences are all possible outcomes of three days and exclude each other, so their probabilities add up to 1.", head = "Question 1.12")
+	why = md"The eight sequences are all possible outcomes of three days and exclude each other, so their probabilities add up to 1.", head = "Question 1.14")
 
 # ╔═╡ 612bca3d-1a69-5202-a88b-69bd79c5a3f2
 mcq(md"How many factors does the chain rule have for a sequence of 10 days?",
 	md"2" => md"Each day contributes one factor.",
 	md"10" => md"Right: one factor per day; the last one is conditioned on the 9 days before it.",
 	md"``2^{10}``" => md"``2^{10} = 1024`` is the number of possible **sequences**, not the number of factors in one product.";
-	correct = 2, head = "Question 1.13")
+	correct = 2, head = "Question 1.15")
 
 # ╔═╡ 8f04976e-5182-56b6-93ed-44a4e4518728
 reveal(md"Independence: ``P(A_2 \mid A_1) = P(A_2)``, so the probability of all events is the product of their probabilities.")
@@ -1177,58 +1107,58 @@ mcq(md"Are the first die and the sum independent?",
 
 # ╔═╡ d36163ad-52fe-5e2b-8191-ae91ded8c137
 numq(md"``X`` is uniform on ``[0, 10]``, so ``f_X(x) = 1/10``. Compute ``P(2 \le X \le 5)``.", 0.3;
-	why = md"``\int_2^5 \frac{1}{10}\,dx = \frac{5 - 2}{10} = 0.3``: a rectangle of width 3 and height 0.1.", head = "Question 4.4")
+	why = md"``\int_2^5 \frac{1}{10}\,dx = \frac{5 - 2}{10} = 0.3``: a rectangle of width 3 and height 0.1.", head = "Question 4.1")
 
 # ╔═╡ ac2dfb9b-ed01-5d18-8a56-49eb4c69825c
 numq(md"``f(x) = 2x`` on ``[0, 1]``. First check that the total area is 1. Then compute ``P(0.2 \le X \le 0.5)``.", 0.21;
-	why = md"``\int_0^1 2x\,dx = [x^2]_0^1 = 1``. ``\int_{0.2}^{0.5} 2x\,dx = 0.5^2 - 0.2^2 = 0.25 - 0.04 = 0.21``.", head = "Question 4.5")
+	why = md"``\int_0^1 2x\,dx = [x^2]_0^1 = 1``. ``\int_{0.2}^{0.5} 2x\,dx = 0.5^2 - 0.2^2 = 0.25 - 0.04 = 0.21``.", head = "Question 4.2")
 
 # ╔═╡ c1887141-0ff8-5d23-a23a-e4b03efd4c64
 mcq(md"For ``f(x) = 2x`` on ``[0, 1]``, what is the CDF ``F_X(x)`` for ``0 \le x \le 1``?",
 	md"``2x``" => md"That is the density itself.",
 	md"``x^2``" => md"Right. ``F_X(x) = \int_0^x 2\tilde x\,d\tilde x = x^2``, and ``dF_X/dx = 2x``.",
 	md"``2``" => md"``2`` is the derivative of the density.";
-	correct = 2, head = "Question 4.6")
+	correct = 2, head = "Question 4.3")
 
 # ╔═╡ 30b28689-279e-56c1-9d72-43b9c1bcbadd
 numq(md"``X`` is exponential with ``f(x) = e^{-x}`` for ``x \ge 0``. Compute ``P(X > 1)``.", exp(-1); rtol = 0.01,
-	why = md"``\int_1^\infty e^{-x}\,dx = [-e^{-x}]_1^\infty = e^{-1} = 0.368``.", head = "Question 4.7")
+	why = md"``\int_1^\infty e^{-x}\,dx = [-e^{-x}]_1^\infty = e^{-1} = 0.368``.", head = "Question 4.4")
 
 # ╔═╡ b1bb018a-fbd8-5d98-a19e-4598c7201b89
 mcq(md"For ``f(x) = 2x`` on ``[0, 1]``, ``f(1) = 2``. What follows?",
 	md"``P(X = 1) = 2``, which is impossible, so ``f`` is not a density." => md"``f(1)`` is not ``P(X = 1)``. A density is a probability **per unit** of ``x``.",
 	md"Nothing is wrong: densities can exceed 1; only areas under ``f`` are probabilities." => md"Right. For example ``P(0.99 \le X \le 1) \approx 2 \cdot 0.01 = 0.02``.",
 	md"``P(X \le 1) = 2``." => md"``P(X \le 1) = F_X(1) = 1``.";
-	correct = 2, head = "Question 4.8")
+	correct = 2, head = "Question 4.5")
 
 # ╔═╡ 8646e367-46dd-503b-98e8-88c7b0e0e7b8
 mcq(md"For a continuous random variable, what is ``P(X = 0.5)``?",
 	md"``f_X(0.5)``" => md"A single point has no width, so it has no area.",
 	md"0, but this does not mean that the value 0.5 is impossible." => md"Right. ``\int_{0.5}^{0.5} f_X(x)\,dx = 0``. Probabilities of continuous random variables are asked for intervals.",
 	md"It depends on the density." => md"For every density, the integral over a single point is 0.";
-	correct = 2, head = "Question 4.9")
+	correct = 2, head = "Question 4.6")
 
 # ╔═╡ b9ff50f4-4fa2-556a-b3cd-f2a504b68d10
 mcq(md"Where is the CDF steepest?",
 	md"Where the density is largest." => md"Right. ``f_X = dF_X/dx``: a steep CDF means a large density, and a wide range of heights ``u`` maps to a short range of ``x``.",
 	md"Where the density is smallest." => md"Where the density is small, the CDF is almost flat.",
 	md"At the median." => md"Only for symmetric single-peaked densities do the two coincide.";
-	correct = 1, head = "Question 4.10")
+	correct = 1, head = "Question 4.7")
 
 # ╔═╡ 8bb43df8-53f4-5098-9d96-29a7ba856aff
 numq(md"``f(x, y) = x + y`` on the unit square. Check: ``\int_0^1\!\!\int_0^1 (x + y)\,dx\,dy = ?``", 1.0;
-	why = md"``\int_0^1 \big(\tfrac12 + y\big)\,dy = \tfrac12 + \tfrac12 = 1``.", head = "Question 4.11")
+	why = md"``\int_0^1 \big(\tfrac12 + y\big)\,dy = \tfrac12 + \tfrac12 = 1``.", head = "Question 4.8")
 
 # ╔═╡ 83d360b6-fc86-51f6-8a5d-42e0e7682311
 numq(md"Same density: compute ``P(X \le \tfrac12,\ Y \le \tfrac12) = \int_0^{1/2}\!\!\int_0^{1/2} (x + y)\,dx\,dy``.", 0.125;
-	why = md"Inner integral: ``\int_0^{1/2}(x + y)\,dx = \tfrac18 + \tfrac{y}{2}``. Outer: ``\int_0^{1/2}\big(\tfrac18 + \tfrac{y}{2}\big)dy = \tfrac1{16} + \tfrac1{16} = \tfrac18``. Check with Figure 4.6.", head = "Question 4.12")
+	why = md"Inner integral: ``\int_0^{1/2}(x + y)\,dx = \tfrac18 + \tfrac{y}{2}``. Outer: ``\int_0^{1/2}\big(\tfrac18 + \tfrac{y}{2}\big)dy = \tfrac1{16} + \tfrac1{16} = \tfrac18``. Check with Figure 4.7.", head = "Question 4.9")
 
 # ╔═╡ cbf18a63-f866-5285-94d9-4a5ccabb5ca9
 mcq(md"``f(x, y) = x + y`` on the unit square. What is the marginal density ``f_X(x)``?",
 	md"``x``" => md"The integral over ``y`` also contributes ``\int_0^1 y\,dy = 1/2``.",
 	md"``x + \tfrac12``" => md"Right. ``f_X(x) = \int_0^1 (x + y)\,dy = x + \tfrac12``.",
 	md"``x + y``" => md"A marginal density depends on ``x`` only: ``y`` is integrated out.";
-	correct = 2, head = "Question 4.13")
+	correct = 2, head = "Question 4.10")
 
 # ╔═╡ 2f4adad5-d5d8-5ae1-81ce-0dac63211717
 mcq(md"In pair 1, what differs between A and B?",
@@ -1303,7 +1233,7 @@ numq(md"**Binomial.** A die is rolled 5 times. What is the probability that no s
 
 # ╔═╡ f1d93e91-bfc2-5724-bf44-cbff2dba7e5f
 numq(md"**Exponential.** A machine fails on average once every 10 hours, at random times (``\lambda = 0.1`` per hour). What is the probability that it runs for more than 20 hours?", exp(-2); rtol = 0.01,
-	why = md"``P(X > 20) = 1 - F_X(20) = e^{-0.1 \cdot 20} = e^{-2} = 0.135``.", head = "Question 6.7")
+	why = md"``P(X > 20) = 1 - F_X(20) = e^{-0.1 \cdot 20} = e^{-2} = 0.135``.", head = "Question 6.5")
 
 # ╔═╡ ff238df2-0486-5e65-ab87-eb070765046f
 hint(md"``P(H_1 \cap H_2 \cap H_3) = P(H_1)\,P(H_2 \mid H_1)\,P(H_3 \mid H_1 \cap H_2)``.")
@@ -1477,26 +1407,6 @@ begin
 		end
 		Markdown.parse("```math\n\\begin{aligned} & $(lhs) \\\\ &= " * join(terms, "\\,") * " \\\\ &= " * join(nums, " \\cdot ") * " = $(fmt(seqprob(s, :full); d = 3)) \\end{aligned}\n```")
 	end
-
-	const MEMORY = ["no memory", "memory of the last day", "memory of all earlier days"]
-	const MEMKEY = Dict(MEMORY[1] => :none, MEMORY[2] => :last, MEMORY[3] => :full)
-
-	function fig_memory_tree(case)
-		model = MEMKEY[case]
-		palette = [COL.blue, COL.red, COL.green, COL.purple, COL.ochre, COL.teal, "#8c564b", "#d62728"]
-		keyof(d, p) = model == :none ? :all : d == 1 ? :start : model == :last ? (d, p[end]) : (d, Tuple(p))
-		keys = Any[]
-		colourby = (d, p, c) -> begin
-			k = keyof(d, p)
-			k in keys || push!(keys, k)
-			palette[mod1(findfirst(==(k), keys), length(palette))]
-		end
-		fig_weather_tree(3, nothing; model = model, colourby = colourby)
-	end
-
-	memory_count(case) = case == MEMORY[1] ? (1, "") :
-		case == MEMORY[2] ? (3, "") :
-		(7, "")
 
 	# 365 equally likely days, no leap day
 	p_shared(n) = n < 2 ? 0.0 : 1 - prod((365 - i) / 365 for i in 1:n-1)
@@ -1711,19 +1621,6 @@ S_n = X_1 + X_2 + \dots + X_n ,
 so it follows ``\mathrm{Bin}(n, p)``.
 
 Rows ``n`` $(@bind s6_rows Slider(2:20; default = 10, show_value = true)) ``\qquad`` ``p`` $(@bind s6_p Slider(0.1:0.05:0.9; default = 0.5, show_value = true)) ``\qquad`` balls $(@bind s6_balls Select([50, 200, 500]; default = 200)) ``\qquad`` $(@bind s6_gseed Seed(0; label = "New balls"))
-"""
-
-# ╔═╡ b91e6ef3-c0b8-5405-b2f2-1d673d919819
-md"""
-## 7. Why sampling?
-
-Simulations need **samples**: many values drawn from a distribution. 
-
-### Case 1: the distribution is known
-
-A weather simulation needs 1000 temperatures from ``\mathcal N(17, 4^2)``. How do you get random numbers form this distribution for your simulation?
-
-Samples $(@bind s7_m Select([100, 1000, 10_000]; default = 1000)) ``\qquad`` $(@bind s7_seed Seed(0; label = "New samples"))
 """
 
 # ╔═╡ d9a597f1-de5b-5a08-a2fb-f2ccaabab9c9
@@ -2073,7 +1970,7 @@ begin
 		figure(f, Markdown.parse("``N = $(N)`` days, bin width $(w) °C: tallest bar **$(fmt(maximum(y); d = 3))**; $(tot)." * (scale == YSCALES[3] ? "" : "")))
 	end
 
-	# ---------------- Figure 4.5: probability is area, written as an integral ----------------
+	# ---------------- Figure 4.4: probability is area, written as an integral ----------------
 	const DENS_EX = ["uniform on [0, 10]", "f(x) = 2x on [0, 1]", "exponential: f(x) = e^(−x), x ≥ 0", "normal: temperature, N(17, 4²)"]
 	function dens_ex(name)
 		name == DENS_EX[1] ? (Uniform(0, 10), -1.0, 11.0) : name == DENS_EX[2] ? (TriangularDist(0, 1, 1), -0.1, 1.1) :
@@ -2105,7 +2002,7 @@ begin
 		figure(f, g, Markdown.parse("```math\nP($(fmt(a; d = 3)) \\le X \\le $(fmt(b; d = 3))) = $(integral_text(name, a, b, P)) = $(fmt(P; d = 3))\n```"))
 	end
 
-	# ---------------- Figure 4.6: from the CDF back to values ----------------
+	# ---------------- Figure 4.5: from the CDF back to values ----------------
 	const INV_DISTS = ["normal N(0, 1)", "uniform U(0, 1)", "exponential Exp(1)", "f(x) = 2x on [0, 1]", "sum of two dice (discrete)"]
 	function fig_inverse(name, u, m, seed)
 		rng = MersenneTwister(99 + 5seed); us = rand(rng, m)
@@ -2226,7 +2123,7 @@ Density $(@bind s4_ex Select(DENS_EX)) ``\qquad`` ``a`` $(@bind s4_ta Slider(0:0
 """
 
 # ╔═╡ 6aa339ec-330f-529d-b125-67ef6c086d7b
-cap(fig_area(s4_ex, s4_ta, s4_tb), md"**Figure 4.5.** Left: the density; the shaded area is ``P(a \le X \le b)``. Right: the CDF.")
+cap(fig_area(s4_ex, s4_ta, s4_tb), md"**Figure 4.4.** Left: the density; the shaded area is ``P(a \le X \le b)``. Right: the CDF.")
 
 # ╔═╡ bfcd3871-3340-53f9-ab5f-bc02a64e4356
 md"""
@@ -2250,10 +2147,10 @@ Random heights $(@bind s4_m Select([20, 200, 2000]; default = 2000)) ``\qquad`` 
 """
 
 # ╔═╡ 458816be-fc49-545f-a426-d0a116bab369
-cap(fig_inverse(s4_inv, s4_u, s4_m, s4_useed), md"**Figure 4.6.** Left: the CDF, read from a height ``u`` (purple) to the value ``x = F_X^{-1}(u)``; orange ticks are random heights. Right: the density (or PMF) and the values obtained from all random heights (orange).")
+cap(fig_inverse(s4_inv, s4_u, s4_m, s4_useed), md"**Figure 4.5.** Left: the CDF, read from a height ``u`` (purple) to the value ``x = F_X^{-1}(u)``; orange ticks are random heights. Right: the density (or PMF) and the values obtained from all random heights (orange).")
 
 # ╔═╡ 694accf7-7fe4-597b-8a26-700c588d1318
-# Section 4.2: two continuous random variables, penalty kicks (synthetic kickers)
+# Section 4.5: two continuous random variables, penalty kicks (synthetic kickers)
 begin
 	const POST = 3.66; const BAR = 2.44                      # goal: 7.32 m wide, 2.44 m high
 	const KX = collect(-5.5:0.05:5.5); const KY = collect(0.0:0.025:3.5)
@@ -2264,10 +2161,6 @@ begin
 		"wild striker" => (ax = 0.0, ay = 1.2, sx = 1.6, sy = 0.7, ρ = 0.0),
 		"corner specialist" => (ax = -2.9, ay = 1.9, sx = 0.6, sy = 0.4, ρ = 0.0),
 		"tilted striker" => (ax = 0.0, ay = 1.1, sx = 1.4, sy = 0.55, ρ = 0.75)]
-	const KICKER_NAMES = first.(KICKERS)
-
-
-
 	struct Kicker
 		p::NamedTuple
 		f::Matrix{Float64}          # f[i, j] = joint density at (KX[i], KY[j]), normalised on the grid
@@ -2323,7 +2216,7 @@ begin
 			push!(reads, "kick <b>$(k)</b>: x = $(fmt(xs[k]; d = 2)) m, y = $(fmt(ys[k]; d = 2)) m · on target so far: $(hits) of $(k) ($(round(Int, 100hits / k)) %)")
 		end
 		player(f; n = n, start = n, fps = 10, reads = reads, label = "kick",
-			caption = md"**Figure 4.7.** Front view of the goal (7.32 m × 2.44 m). Filled dots: kicks inside the frame; open dots: kicks that miss. ")
+			caption = md"**Figure 4.6.** Front view of the goal (7.32 m × 2.44 m). Filled dots: kicks inside the frame; open dots: kicks that miss. ")
 	end
 
 	# colour scale for densities: white → blue
@@ -2331,18 +2224,6 @@ begin
 		t = clamp(t, 0, 1)
 		r = round(Int, 255 - t * (255 - 31)); g = round(Int, 255 - t * (255 - 90)); b = round(Int, 255 - t * (255 - 166))
 		"rgb($(r),$(g),$(b))"
-	end
-
-	function heat!(f, K; step = 3, op = 1.0)
-		m = maximum(K.f)
-		print(f.body, "<defs><filter id=\"bl$(f.id)\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feGaussianBlur stdDeviation=\"2.2\"/></filter></defs><g filter=\"url(#bl$(f.id))\">")
-		for i in 1:step:length(KX)-step, j in 1:step:length(KY)-step
-			v = K.f[i, j]; v < 0.02m && continue
-			c = heatcol(v / m)
-			rect!(f, KX[i], KY[j], KX[i+step], KY[j+step]; fill = c, op = op, stroke = c, sw = 0.6)
-		end
-		print(f.body, "</g>")
-		f
 	end
 
 	# 3D surface with an optional slice at height y0 (PlutoPlotly)
@@ -2370,7 +2251,7 @@ fig_shots_player(make_kicker("tilted striker", nothing), 0)
 surface3d(make_kicker("tilted striker", nothing))
 
 # ╔═╡ ed28dc41-d9d5-5aac-bb20-9ee103cf7a96
-# Section 4.4: two continuous random variables, standard joint densities
+# Section 4.5: two continuous random variables, standard joint densities
 begin
 	struct D2
 		name::String
@@ -2396,20 +2277,40 @@ begin
 		D2(name, xs, ys, dx, dy, f, vec(sum(f, dims = 2)) .* dy, vec(sum(f, dims = 1)) .* dx)
 	end
 
-	function heat2!(g, D; op = 1.0)
-		m = maximum(D.f); n = length(D.xs); st = max(1, n ÷ 45)
-		print(g.body, "<defs><filter id=\"b2$(g.id)\" x=\"-5%\" y=\"-5%\" width=\"110%\" height=\"110%\"><feGaussianBlur stdDeviation=\"1.6\"/></filter></defs><g filter=\"url(#b2$(g.id))\">")
-		for i in 1:st:n-st, j in 1:st:length(D.ys)-st
-			v = D.f[i, j]; v < 0.015m && continue
-			c = heatcol(v / m)
-			rect!(g, D.xs[i], D.ys[j], D.xs[i+st], D.ys[j+st]; fill = c, op = op, stroke = c, sw = 0.6)
-		end
-		print(g.body, "</g>")
-		g
+	rng2(D) = (D.xs[1], D.xs[end]), (D.ys[1], D.ys[end])
+	grid3(D) = (st = max(1, length(D.xs) ÷ 60); (1:st:length(D.xs), 1:st:length(D.ys)))
+	fnear(D, x, y) = D.f[clamp(searchsortedfirst(D.xs, x), 1, length(D.xs)), clamp(searchsortedfirst(D.ys, y), 1, length(D.ys))]
+
+	function surf3(D; op = 0.95)
+		xi, yi = grid3(D)
+		surface(x = D.xs[xi], y = D.ys[yi], z = D.f[xi, yi], colorscale = [[0, "#ffffff"], [1, COL.blue]], showscale = false, opacity = op)
 	end
 
-	rng2(D) = (D.xs[1], D.xs[end]), (D.ys[1], D.ys[end])
-	sq(D; w = 330, h = 300, kw...) = (r = rng2(D); fig(; w = w, h = h, xr = r[1], yr = r[2], xlabel = "x", ylabel = "y", kw...))
+	function plot3(tr)
+		PlutoPlotly.plot(tr, Layout(height = 420, showlegend = false, margin = attr(l = 0, r = 0, t = 10, b = 0),
+			scene = attr(xaxis = attr(title = "x"), yaxis = attr(title = "y"), zaxis = attr(title = "f(x, y)"), camera = attr(eye = attr(x = 1.5, y = -1.6, z = 1.1)))))
+	end
+
+	function volume3(D, keep, px, py)
+		xi, yi = grid3(D)
+		Z = [keep(D.xs[i], D.ys[j]) ? 1.003 * D.f[i, j] : NaN for i in xi, j in yi]
+		top = surface(x = D.xs[xi], y = D.ys[yi], z = Z, colorscale = [[0, COL.purple], [1, COL.purple]], showscale = false, opacity = 0.85)
+		xs = Float64[]; ys = Float64[]; n = length(px)
+		for k in 1:n
+			a, b = k, mod1(k + 1, n)
+			for s in range(0, 1, length = 80)
+				push!(xs, px[a] + s * (px[b] - px[a])); push!(ys, py[a] + s * (py[b] - py[a]))
+			end
+		end
+		m = length(xs); zs = [fnear(D, xs[k], ys[k]) for k in 1:m]
+		I = Int[]; J = Int[]; K = Int[]
+		for k in 0:m-2
+			append!(I, [k, k + 1]); append!(J, [k + 1, m + k + 1]); append!(K, [m + k, m + k])
+		end
+		wall = mesh3d(x = vcat(xs, xs), y = vcat(ys, ys), z = vcat(zeros(m), zs), i = I, j = J, k = K, color = COL.purple, opacity = 0.3)
+		floor = scatter3d(x = xs, y = ys, z = zeros(m), mode = "lines", line = attr(color = COL.purple, width = 5))
+		[top, wall, floor]
+	end
 
 	# ---------------- regions and their probabilities ----------------
 	function regions(D)
@@ -2432,67 +2333,60 @@ begin
 		r == "X + Y ≤ 1" ? ([x0, 1, x0], [y0, y0, 1]) : ([x0, 2, x0], [y0, y0, 2])
 	end
 
-	function fig_region2(D, r)
-		g = sq(D; w = 330, h = 300); heat2!(g, D)
-		px, py = regpoly(D, r); poly!(g, px, py; fill = COL.purple, op = 0.18, stroke = COL.purple, sw = 2)
-		g
+	function fig_region2(D, r; caption = nothing)
+		px, py = regpoly(D, r)
+		p = plot3(vcat([surf3(D; op = 0.5)], volume3(D, (x, y) -> inreg(D, r, x, y), px, py)))
+		txt = Markdown.parse("``P(" * replace(r, " and " => ",\\ ") * ") =`` **$(fmt(regprob(D, r); d = 3))**")
+		PlutoUI.ExperimentalLayout.vbox([p, figure(txt; caption = caption)])
 	end
 
 	# ---------------- marginals ----------------
-	function fig_marg2(D, showcdf)
+	function fig_marg2(D, showcdf; caption = nothing)
 		(x0, x1), (y0, y1) = rng2(D)
-		c = sq(D; w = 470, h = 300, l = 50, r = 6); heat2!(c, D)
-		top = fig(w = 470, h = 150, xr = (x0, x1), yr = (0, showcdf ? 1.05 : 1.2 * maximum(D.fx)), ylabel = showcdf ? "F_X(x)" : "f_X(x)", l = 50, r = 6, b = 22, t = 10)
-		side = fig(w = 170, h = 300, xr = (0, showcdf ? 1.05 : 1.2 * maximum(D.fy)), yr = (y0, y1), xlabel = showcdf ? "F_Y(y)" : "f_Y(y)", l = 34, r = 10, b = 46, t = 14)
+		a = fig(w = 330, h = 210, xr = (x0, x1), yr = (0, showcdf ? 1.05 : 1.2 * maximum(D.fx)), xlabel = "x", ylabel = showcdf ? "F_X(x)" : "f_X(x)", l = 56)
+		b = fig(w = 330, h = 210, xr = (y0, y1), yr = (0, showcdf ? 1.05 : 1.2 * maximum(D.fy)), xlabel = "y", ylabel = showcdf ? "F_Y(y)" : "f_Y(y)", l = 56)
 		if showcdf
-			line!(top, D.xs, cumsum(D.fx) .* D.dx; c = COL.green, w = 2.2); line!(side, cumsum(D.fy) .* D.dy, D.ys; c = COL.green, w = 2.2)
+			line!(a, D.xs, cumsum(D.fx) .* D.dx; c = COL.green, w = 2.2); line!(b, D.ys, cumsum(D.fy) .* D.dy; c = COL.green, w = 2.2)
 		else
-			area!(top, D.xs, D.fx; c = COL.blue, op = 0.15); line!(top, D.xs, D.fx; c = COL.blue, w = 2.2)
-			line!(side, D.fy, D.ys; c = COL.blue, w = 2.2)
+			area!(a, D.xs, D.fx; c = COL.blue, op = 0.15); line!(a, D.xs, D.fx; c = COL.blue, w = 2.2)
+			area!(b, D.ys, D.fy; c = COL.blue, op = 0.15); line!(b, D.ys, D.fy; c = COL.blue, w = 2.2)
 		end
-		vstack(top, figure(c, side))
+		PlutoUI.ExperimentalLayout.vbox([plot3([surf3(D)]), figure(a, b; caption = caption)])
 	end
 
 	# ---------------- conditional slices ----------------
-	function fig_slice2(D, t)
+	function fig_slice2(D, t; caption = nothing)
 		(x0, x1), (y0, y1) = rng2(D)
 		j = clamp(round(Int, 1 + t * (length(D.ys) - 1)), 1, length(D.ys)); y = D.ys[j]
 		raw = D.f[:, j]; fyv = D.fy[j]; cond = raw ./ fyv
-		g = sq(D; w = 230, h = 230); heat2!(g, D); hline!(g, y; c = COL.purple, dash = nothing, w = 2.4)
-		a = fig(w = 220, h = 230, xr = (x0, x1), yr = (0, 1.15 * maximum(D.f)), xlabel = "x", ylabel = "f_{X,Y}(x, y)", title = "slice as cut", l = 50)
+		a = fig(w = 330, h = 230, xr = (x0, x1), yr = (0, 1.15 * maximum(D.f)), xlabel = "x", ylabel = "f_{X,Y}(x, y)", title = "slice as cut", l = 56)
 		area!(a, D.xs, raw; c = COL.purple, op = 0.2); line!(a, D.xs, raw; c = COL.purple, w = 2.2)
-		b = fig(w = 220, h = 230, xr = (x0, x1), yr = (0, 1.15 * max(maximum(cond), maximum(D.fx))), xlabel = "x", ylabel = "f_{X|Y}(x | y)", title = "divided by its area", l = 50)
+		b = fig(w = 330, h = 230, xr = (x0, x1), yr = (0, 1.15 * max(maximum(cond), maximum(D.fx))), xlabel = "x", ylabel = "f_{X|Y}(x | y)", title = "divided by its area", l = 56)
 		line!(b, D.xs, D.fx; c = COL.green, w = 1.8, dash = "5 4")
 		area!(b, D.xs, cond; c = COL.purple, op = 0.2); line!(b, D.xs, cond; c = COL.purple, w = 2.4)
 		mx = sum(D.xs .* cond) * D.dx
-		figure(g, a, b, Markdown.parse("Slice at ``y = $(fmt(y; d = 3))``. Its area is ``f_Y($(fmt(y; d = 3))) = $(fmt(fyv; d = 3))``. The conditional density (purple, right) has the mean ``E[X \\mid Y = $(fmt(y; d = 3))] = $(fmt(mx; d = 3))``; the marginal ``f_X`` is dashed green."))
+		zm = maximum(D.f)
+		tr = [surf3(D),
+			scatter3d(x = D.xs, y = fill(y, length(D.xs)), z = raw, mode = "lines", line = attr(color = COL.purple, width = 8)),
+			mesh3d(x = [x0, x1, x1, x0], y = fill(y, 4), z = [0, 0, zm, zm], i = [0, 0], j = [1, 2], k = [2, 3], color = COL.purple, opacity = 0.15)]
+		txt = Markdown.parse("Slice at ``y = $(fmt(y; d = 3))``. Its area is ``f_Y($(fmt(y; d = 3))) = $(fmt(fyv; d = 3))``. The conditional density (purple, right) has the mean ``E[X \\mid Y = $(fmt(y; d = 3))] = $(fmt(mx; d = 3))``; the marginal ``f_X`` is dashed green.")
+		PlutoUI.ExperimentalLayout.vbox([plot3(tr), figure(a, b, txt; caption = caption)])
 	end
 
 	# ---------------- the joint CDF ----------------
-	function fig_jcdf2(D, tx, ty)
+	function fig_jcdf2(D, tx, ty; caption = nothing)
 		(x0, x1), (y0, y1) = rng2(D)
 		i = clamp(round(Int, 1 + tx * (length(D.xs) - 1)), 1, length(D.xs)); j = clamp(round(Int, 1 + ty * (length(D.ys) - 1)), 1, length(D.ys))
-		g = sq(D; w = 400, h = 300); heat2!(g, D)
-		rect!(g, x0, y0, D.xs[i], D.ys[j]; fill = COL.purple, op = 0.2, stroke = COL.purple, sw = 2, over = true)
-		dots!(g, [D.xs[i]], [D.ys[j]]; c = COL.purple, r = 6, stroke = "white", sw = 1.5, over = true)
+		xc, yc = D.xs[i], D.ys[j]
+		tr = vcat([surf3(D; op = 0.5)], volume3(D, (x, y) -> x <= xc && y <= yc, [x0, xc, xc, x0], [y0, y0, yc, yc]),
+			[scatter3d(x = [xc], y = [yc], z = [0.0], mode = "markers", marker = attr(color = COL.purple, size = 6))])
 		F = sum(D.f[1:i, 1:j]) * D.dx * D.dy; FX = sum(D.fx[1:i]) * D.dx
-		figure(g, Markdown.parse("``F_{X,Y}($(fmt(D.xs[i]; d = 3)), $(fmt(D.ys[j]; d = 3))) = P(X \\le $(fmt(D.xs[i]; d = 3)),\\ Y \\le $(fmt(D.ys[j]; d = 3))) =`` **$(fmt(F; d = 3))**. For comparison ``F_X($(fmt(D.xs[i]; d = 3))) = $(fmt(FX; d = 3))``" *
-			(ty >= 0.999 ? ": with ``y`` at the top they agree, ``F_X(x) = F_{X,Y}(x, \\infty)``." : ".")))
-	end
-
-	# ---------------- 3D view ----------------
-	function surface3d2(D; t = nothing)
-		st = max(1, length(D.xs) ÷ 60); xi = 1:st:length(D.xs); yi = 1:st:length(D.ys)
-		tr = [surface(x = D.xs[xi], y = D.ys[yi], z = D.f[xi, yi], colorscale = [[0, "#ffffff"], [1, COL.blue]], showscale = false, opacity = 0.95)]
-		if t !== nothing
-			j = clamp(round(Int, 1 + t * (length(D.ys) - 1)), 1, length(D.ys)); zm = maximum(D.f)
-			push!(tr, scatter3d(x = D.xs, y = fill(D.ys[j], length(D.xs)), z = D.f[:, j], mode = "lines", line = attr(color = COL.purple, width = 8), showlegend = false))
-			push!(tr, mesh3d(x = [D.xs[1], D.xs[end], D.xs[end], D.xs[1]], y = fill(D.ys[j], 4), z = [0, 0, zm, zm], i = [0, 0], j = [1, 2], k = [2, 3], color = COL.purple, opacity = 0.15))
-		end
-		PlutoPlotly.plot(tr, Layout(height = 400, margin = attr(l = 0, r = 0, t = 10, b = 0),
-			scene = attr(xaxis = attr(title = "x"), yaxis = attr(title = "y"), zaxis = attr(title = "f(x, y)"), camera = attr(eye = attr(x = 1.5, y = -1.6, z = 1.1)))))
+		txt = Markdown.parse("``F_{X,Y}($(fmt(xc; d = 3)), $(fmt(yc; d = 3))) = P(X \\le $(fmt(xc; d = 3)),\\ Y \\le $(fmt(yc; d = 3))) =`` **$(fmt(F; d = 3))**. For comparison ``F_X($(fmt(xc; d = 3))) = $(fmt(FX; d = 3))``" *
+			(ty >= 0.999 ? ": with ``y`` at the top they agree, ``F_X(x) = F_{X,Y}(x, \\infty)``." : "."))
+		PlutoUI.ExperimentalLayout.vbox([plot3(tr), figure(txt; caption = caption)])
 	end
 end;
+
 
 # ╔═╡ 5d73f290-a06d-5ce0-b3d9-caafd26e3e12
 md"""
@@ -2504,14 +2398,11 @@ md"""
 
     Conditional density: ``f_{X \mid Y}(x \mid y) = \dfrac{f_{X,Y}(x, y)}{f_Y(y)}``. Independence: ``f_{X,Y}(x, y) = f_X(x)\,f_Y(y)``.
 
-Density $(@bind s4_d2 Select(D2_NAMES)) ``\qquad`` correlation ``\rho`` (bivariate normal only) $(@bind s4_rho Slider(-0.9:0.1:0.9; default = 0.6, show_value = true)) ``\qquad`` 3D view $(@bind s4_3d CheckBox(default = false))
+Density $(@bind s4_d2 Select(D2_NAMES)) ``\qquad`` correlation ``\rho`` (bivariate normal only) $(@bind s4_rho Slider(-0.9:0.1:0.9; default = 0.6, show_value = true))
 """
 
 # ╔═╡ 394f5ac6-eaf2-5c37-83d6-2984b2bf1f22
 D = make_d2(s4_d2, s4_rho);
-
-# ╔═╡ 5b3dff57-e4e6-59a0-a192-09408988719d
-s4_3d ? surface3d2(D) : md""
 
 # ╔═╡ cc96137c-6b21-562e-8db3-4a5580fc878b
 md"""
@@ -2521,19 +2412,16 @@ Region $(@bind s4_reg Select(regions(D)))
 """
 
 # ╔═╡ 9d147992-9b72-507b-8673-865ac8e16f9d
-cap(vstack(fig_region2(D, s4_reg), Markdown.parse("``P(" * replace(s4_reg, " and " => ",\\ ") * ") =`` **$(fmt(regprob(D, s4_reg); d = 3))**")), md"**Figure 4.8.** The joint density (blue, darker is larger) and the selected region (purple).")
+fig_region2(D, s4_reg; caption = md"**Figure 4.7.** The joint density (blue) and the volume over the selected region (purple). Drag to rotate.")
 
 # ╔═╡ 74dfa6ff-24d1-563d-b024-944667c2f6e7
-cap(fig_marg2(D, s4_mcdf), md"**Figure 4.9.** The joint density (centre) and its marginal densities ``f_X`` (top) and ``f_Y`` (right), or the marginal CDFs.")
+fig_marg2(D, s4_mcdf; caption = md"**Figure 4.8.** Top: the joint density. Bottom: its marginal densities ``f_X`` and ``f_Y``, or the marginal CDFs.")
 
 # ╔═╡ 851491e7-b3a3-5bab-ad0a-65ee4c9f955d
-cap(fig_slice2(D, s4_t), md"**Figure 4.10.** Left: the joint density with the slice (purple). Middle: the slice as cut. Right: the slice divided by its area, the conditional density ``f_{X \mid Y}(x \mid y)``, with the marginal ``f_X`` (dashed).")
-
-# ╔═╡ 832b90a7-b6fc-590f-9416-26eb5fe47448
-s4_s3d ? surface3d2(D; t = s4_t) : md""
+fig_slice2(D, s4_t; caption = md"**Figure 4.9.** Top: the joint density with the slice (purple). Bottom left: the slice as cut. Bottom right: the slice divided by its area, the conditional density ``f_{X \mid Y}(x \mid y)``, with the marginal ``f_X`` (dashed).")
 
 # ╔═╡ d35f2b09-3eed-518e-8c9c-664bd66cfbf4
-cap(fig_jcdf2(D, s4_cx, s4_cy), md"**Figure 4.11.** The joint CDF is the volume under the density over the shaded region.")
+fig_jcdf2(D, s4_cx, s4_cy; caption = md"**Figure 4.10.** The joint CDF is the volume under the density over the purple region, below and to the left of the point.")
 
 # ╔═╡ 94226bca-c7c5-52f6-8ce5-ed60e560a6c4
 # Section 5: moments
@@ -2580,61 +2468,6 @@ begin
 		sdbar!(f, M1, σ, 0.88ymax; lab = "E[X] ± σ")
 		text!(f, M1, -0.12ymax, "E[X] = $(fmt0(M1; d = 4))"; dx = 18, size = 12, bold = true, bg = true)
 		figure(f, Markdown.parse("``M_1[X] = E[X] = $(fmt0(M1; d = 4))``, ``\\;M_2[X] = E[X^2] = $(fmt0(M2; d = 4))``, ``\\;\\mathrm{Var}(X) = M_2 - M_1^2 = $(fmt0(V; d = 4))``, ``\\;\\sigma = $(fmt0(σ; d = 3))``."))
-	end
-
-	# ---------------- Figure 5.3: matching moments one by one ----------------
-	const MG = collect(range(0, 10, length = 1001)); const MDX = MG[2] - MG[1]
-	const MTARGETS = [
-		"skewed" => x -> pdf(Gamma(2.5, 1.2), x),
-		"two peaks" => x -> 0.65pdf(Normal(3, 0.75), x) + 0.35pdf(Normal(6.5, 0.75), x),
-		"normal" => x -> pdf(Normal(6, 1.2), x),
-		"sharp peak, heavy tails" => x -> pdf(Laplace(4.5, 0.8), x)]
-	const MNAMES = ["area", "centroid (mean)", "spread (variance)", "asymmetry (skewness)", "tails (kurtosis)"]
-
-	# area, mean, variance, skewness, kurtosis of a density on the grid MG
-	function mstats(f)
-		A = sum(f) * MDX; w = f .* MDX ./ A
-		m = sum(w .* MG); v = sum(w .* (MG .- m) .^ 2); s = sqrt(v)
-		[A, m, v, sum(w .* ((MG .- m) ./ s) .^ 3), sum(w .* ((MG .- m) ./ s) .^ 4)]
-	end
-
-	# the flattest density on [0, 10] with the same first k moments as the target (maximum entropy)
-	function mflat(tf, k)
-		k == 0 && return fill(0.1, length(MG))
-		u = (MG .- 5) ./ 5; U = hcat([u .^ j for j in 1:k]...)
-		t = tf.(MG); t ./= sum(t); m = U' * t
-		dual(λ) = (e = U * λ; c = maximum(e); c + log(sum(exp.(e .- c))) - dot(λ, m))
-		λ = zeros(k)
-		for _ in 1:300
-			e = U * λ; p = exp.(e .- maximum(e)); p ./= sum(p)
-			g = U' * p .- m
-			maximum(abs.(g)) < 1e-10 && break
-			H = U' * (U .* p) .- (U' * p) * (U' * p)'
-			st = (H + 1e-12I) \ g; τ = 1.0; D0 = dual(λ)
-			while dual(λ .- τ .* st) > D0 - 1e-4τ * dot(g, st) && τ > 1e-8
-				τ /= 2
-			end
-			λ .-= τ .* st
-		end
-		e = U * λ; p = exp.(e .- maximum(e)); p ./ (sum(p) * MDX)
-	end
-
-	function fig_match(tname, k)
-		tf = last(MTARGETS[findfirst(==(tname), first.(MTARGETS))])
-		t = tf.(MG); t ./= sum(t) * MDX
-		q = mflat(tf, k)
-		ts = mstats(t); qs = mstats(q)
-		ym = 1.25 * max(maximum(t), maximum(q))
-		f = fig(w = 680, h = 310, xr = (0, 10), yr = (-0.12ym, ym), xlabel = "x", ylabel = "density", grid = true, t = 34)
-		area!(f, MG, t; c = COL.blue, op = 0.18); line!(f, MG, t; c = COL.blue, w = 2.2)
-		line!(f, MG, q; c = ORANGE, w = 2.8)
-		seg!(f, 0, 0, 10, 0; c = "#333", w = 1.2)
-		k >= 1 && fulcrum!(f, ts[2])
-		k >= 1 && text!(f, ts[2], -0.09ym, "centroid"; dx = 14, size = 11.5, bold = true, bg = true)
-		k >= 2 && sdbar!(f, ts[2], sqrt(ts[3]), 0.9ym; c = COL.purple, lab = "mean ± σ")
-		legend!(f, [("target", COL.blue, :line), ("flattest density with the same moments up to order $(k)", ORANGE, :line)]; at = :top)
-		rows = ["- order $(j - 1), **$(MNAMES[j])**: target $(fmt0(ts[j]; d = 3)), orange $(fmt0(qs[j]; d = 3))" * (j - 1 <= k ? " ✓ matched" : "") for j in 1:5]
-		figure(f, Markdown.parse(join(rows, "\n")))
 	end
 
 	# ---------------- Figure 5.4: the sign of the covariance ----------------
@@ -3001,20 +2834,9 @@ begin
 	end
 end;
 
-# ╔═╡ d7c1b120-6198-5168-843d-e16057a82d6a
-cap(fig_case1(s7_m, s7_seed), md"**Figure 7.1.** Left: uniform random heights ``u`` mapped through the CDF of ``\mathcal N(17, 4^2)``. Right: the temperatures obtained, against the density.")
-
-# ╔═╡ b14f55d6-7b6c-5628-b395-abb92aec9a9d
-cap(fig_case2(s7_pts, 0), md"**Figure 7.2.** The density of the hiker's position (blue, darker is larger).")
-
-# ╔═╡ a84ed3ba-8704-5438-9cbc-8e2fc3182a51
-cap(fig_case3(parse_aims(s7_aims), s7_rev), md"**Figure 7.3.** Where the arrows landed and their scores. With the checkbox, the hidden score map is shown (blue, darker is more points).")
-
 # ╔═╡ 92f42b3b-9842-583f-8e6d-6e207b3bdbb7
 # Section 8: notation check
 begin
-	# colours used in the formulas: random variable, value, event, condition
-	const NC = (rv = "#1f5aa6", val = "#d9730d", ev = "#2f7d55", cond = "#6a4c93")
 	const NOTATION = [
 		"P(A ∩ B)" => (raw"P({\color{#2f7d55}A} \cap {\color{#2f7d55}B}) = P({\color{#2f7d55}B} \cap {\color{#2f7d55}A})",
 			"the probability of A and B",
@@ -3084,7 +2906,6 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 PlutoPlotly = "8e989ff0-3d88-8e9f-f020-2b208a939ff0"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
@@ -3106,7 +2927,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.13.3"
 manifest_format = "2.1"
-project_hash = "30fe68203181d28d0bc7de850e5651cd0c057424"
+project_hash = "52c07346abde63b57d1e38b7669aea2d49e0db1a"
 
 [[deps.AbstractPlutoDingetjes]]
 git-tree-sha1 = "e71ee7b4aa06b045259a7d6101e1cb45ad140bce"
@@ -4009,7 +3830,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─75ca6b65-c931-5805-abf8-16817a0d336b
 # ╟─5d73f290-a06d-5ce0-b3d9-caafd26e3e12
 # ╟─394f5ac6-eaf2-5c37-83d6-2984b2bf1f22
-# ╟─5b3dff57-e4e6-59a0-a192-09408988719d
 # ╟─cc96137c-6b21-562e-8db3-4a5580fc878b
 # ╟─9d147992-9b72-507b-8673-865ac8e16f9d
 # ╟─8bb43df8-53f4-5098-9d96-29a7ba856aff
@@ -4019,7 +3839,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─cbf18a63-f866-5285-94d9-4a5ccabb5ca9
 # ╟─e9415266-6f6a-53b8-ae3b-49f9d46b28ac
 # ╟─851491e7-b3a3-5bab-ad0a-65ee4c9f955d
-# ╟─832b90a7-b6fc-590f-9416-26eb5fe47448
 # ╟─3b6d0a8e-842c-5c13-bc36-42369de45a42
 # ╟─d35f2b09-3eed-518e-8c9c-664bd66cfbf4
 # ╟─54c262ee-e7ba-51fd-b464-0e5767201186
@@ -4062,13 +3881,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─588e4463-82a0-5b71-aeec-ed90848ede23
 # ╟─771e7984-cccf-50cc-adbd-8689714b3ac9
 # ╟─7a4fb405-604d-532d-b02d-0c2b56850c11
-# ╟─b91e6ef3-c0b8-5405-b2f2-1d673d919819
-# ╟─d7c1b120-6198-5168-843d-e16057a82d6a
-# ╟─5db34b3e-5299-5ed3-8db1-d1b31332c573
-# ╟─b14f55d6-7b6c-5628-b395-abb92aec9a9d
-# ╟─1c590021-d415-5426-94ca-3af67bd1c293
-# ╟─a84ed3ba-8704-5438-9cbc-8e2fc3182a51
-# ╟─4b2ab322-b660-59d8-b738-77351d2036ac
 # ╟─583c818f-35c5-51b2-ab3e-844c5aad4f90
 # ╟─5f072d1c-5554-5a3f-8c4a-557f943cf73e
 # ╟─77b8c106-a6a1-532a-a1d4-b9c16d2b86be
