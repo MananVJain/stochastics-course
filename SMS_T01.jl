@@ -2110,9 +2110,6 @@ Days $(@bind s4_N Select([100, 1000, 100_000]; default = 1000)) ``\qquad`` verti
 # ╔═╡ e8fb2d0c-e641-5157-a8c4-148a83648dd4
 cap(fig_temp_scale(s4_N, s4_scale, s4_w), md"**Figure 4.2.** Histogram of the temperatures (orange) with the selected vertical axis. On the density scale, the blue curve is the density of the model.")
 
-# ╔═╡ 074cb7b7-22db-4303-8b94-d8c4c82ae710
-cap(pipe_probe(), md"**Figure 4.3.** Axial velocity in a pipe, measured by a probe (synthetic). Left: the signal of the last 0.1 s. Right: all samples so far, sorted into bins; the newest bin is dark. With the check box: the density of a long record (blue), scaled to the counts.")
-
 # ╔═╡ c17db78a-2f6e-44f5-b7b5-53c2e647f53e
 md"""
 ### 4.3 Probabilities as integrals
@@ -3810,7 +3807,6 @@ uuid = "23338594-aafe-5451-b93e-139f81909106"
 # ╟─aea33500-c9c8-5d28-aae8-5872949d5552
 # ╟─2b4c119d-d181-5796-b52e-3f585dc70cd2
 # ╟─e8fb2d0c-e641-5157-a8c4-148a83648dd4
-# ╟─074cb7b7-22db-4303-8b94-d8c4c82ae710
 # ╟─4f11fe3e-6eb3-56f2-82f4-56673834d95a
 # ╟─0db53489-210c-4fb1-a1cd-ec1e47e97d38
 # ╟─c17db78a-2f6e-44f5-b7b5-53c2e647f53e
